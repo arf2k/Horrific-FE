@@ -2,7 +2,8 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom'
 import React from 'react'
 import Login from './components/Login.js'
-import Welcome from "./components/Welcome.js"
+import Welcome from './components/Welcome.js'
+import NavBar from './containers/NavBar.js'
 
 const BASE_API = "http://localhost:3001/"
 
@@ -68,8 +69,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-       <Login loginHandler={this.loginHandler}/>
-       <Welcome />
+        <NavBar logout={this.logout}/>
+        <Switch>
+            <Route path="/login" render={(routerprops) => <Welcome {...routerprops} user={this.state.user}/> } />
+       
+       </Switch>
       </div>
     );
   }

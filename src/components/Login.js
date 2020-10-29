@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import {NavLink} from 'react-router-dom'
 
 function Login(props) {
 
@@ -47,7 +48,7 @@ function Login(props) {
                               </Segment>
                          </Form>
                          <Message>
-                              New to us? <a href='#'>Sign Up</a>
+                              New to us? <NavLink to="/signup">Sign Up</NavLink>
                          </Message>
                     </Grid.Column>
                </Grid>
