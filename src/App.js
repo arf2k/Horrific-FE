@@ -7,6 +7,7 @@ import NavBar from './containers/NavBar.js';
 import MovieContainer from './containers/MovieContainer.js'
 import MyMovies from './components/MyMovies.js'
 import MovieShow from './components/MovieShow.js'
+import Signup from './components/Signup.js'
 
 const BASE_API = "http://localhost:3001/"
 
@@ -36,6 +37,7 @@ class App extends React.Component {
 
 
   loginHandler = (e) => {
+    e.preventDefault()
     const username = (e.target.username.value)
     const password = e.target.password.value
     let user = { username, password }
@@ -51,10 +53,33 @@ class App extends React.Component {
     fetch(BASE_API + 'login', configObj)
       .then(resp => resp.json())
       .then(data => {
+        console.log(data)
         localStorage.setItem("token", data.jwt)
         this.setState({ user: data.user })
       })
   }
+
+  signupHandler = (e, avatar) => {
+    e.preventDefault()
+    const username = (e.target.username.value)
+    const password = e.target.password.value
+    const passwordConfirmation = e.target.passwordConfirmation.value
+    let user = { username, password, avatar }
+    let configObj = {
+      method: "POST",
+      headers: {"accepts": "application/json",
+      "content-type": "application/json"},
+      body: JSON.stringify({user})
+    }
+    
+    fetch(BASE_API + 'users', configObj)
+    .then(resp => resp.json())
+    .then(data => {
+      localStorage.setItem("token", data.jwt)
+      this.setState({user: data.user})
+    })
+  }
+
 
   logout = () => {
     this.setState({user: null})
@@ -76,8 +101,10 @@ class App extends React.Component {
         <Switch>
             <Route path = "/movies/:movieId" render={(routerprops) => <MovieShow {...routerprops} /> } />
             <Route path = "/favorites" render={(routerprops) => <MyMovies {...routerprops} /> } />
-            <Route path="/login" render={(routerprops) => <Welcome {...routerprops} user={this.state.user}/> } />
+            <Route path="/login" render={(routerprops) => <Login {...routerprops} user={this.state.user} loginHandler={this.loginHandler}/> } />
+            <Route path="/signup" render={(routerprops) => <Signup {...routerprops}  signupHandler={this.signupHandler} /> } />
             <Route path="/movies" render={(routerprops) => <MovieContainer {...routerprops}/> }/>
+            <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} setUser={this.setUser} /> } />
        </Switch>
       </div>
     );

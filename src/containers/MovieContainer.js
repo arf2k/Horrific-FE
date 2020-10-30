@@ -24,18 +24,18 @@ class MovieContainer extends React.Component {
                })
           }
 
-          renderMovieClick = (id) => {
-              this.setState({chosenMovie : id })
-          }
+          // renderMovieClick = (id) => {
+          //     this.setState({chosenMovie : id })
+          // }
 
         
 
      render(){
-          console.log(this.state.chosenMovie)
+          // console.log(this.state.chosenMovie)
           return(
                <>
                <MovieList movies={this.state.api} clickHandler={this.renderMovieClick}/>
-               <MovieShow chosenMovie={this.state.chosenMovie}/>
+               {/* <MovieShow chosenMovie={this.state.chosenMovie}/> */}
                </>
            
           )

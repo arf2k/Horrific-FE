@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { NavLink} from 'react-router-dom'
-import { Button, Radio, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
-import styled from 'styled-components'
+import { Button, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
+
 
 
 function Signup(props){
@@ -39,12 +39,11 @@ function Signup(props){
              alert("Passwords Do Not Match")
          }else if (username === ""){
              alert("Must have a username")
-     //     }else if (avatar === ""){
-     //         alert("Must have an avatar")
+
          }
          
          else{
-          //    return props.signupHandler(e)
+             return props.signupHandler(e)
          }
      }
      let result = <></>
@@ -92,8 +91,7 @@ function Signup(props){
          </Grid.Column>
     </Grid> 
      </div>
-     }else{
-          props.history.push("/")
+    
    }
        return (
            result)

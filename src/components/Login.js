@@ -4,8 +4,8 @@ import {NavLink} from 'react-router-dom'
 
 function Login(props) {
 
-     const [username, setUsername] = useState("")
-     const [password, setPassword] = useState("")
+     const [username, setUsername] = useState('')
+     const [password, setPassword] = useState('')
 
      const changeHandler = (e) => {
           switch (e.target.name) {
@@ -16,7 +16,6 @@ function Login(props) {
                     setPassword(e.target.value)
                     break;
                default:
-
                     break;
           }
      }
@@ -28,7 +27,7 @@ function Login(props) {
                          <Header as='h2' color='teal' textAlign='center'>
                               <Image src='/logo.png' /> Log-in to your account
             </Header>
-                         <Form size='large' onSubmit={props.loginHandler}>
+                         <Form size='large' onSubmit={props.loginHandler} >
                               <Segment stacked>
                                    <Form.Input fluid icon='user' onChange={changeHandler} value={username} name="username" iconPosition='left' placeholder='Username' />
                                    <Form.Input
@@ -57,6 +56,6 @@ function Login(props) {
      }
      return (result)}
 
-    
+
 
 export default Login
