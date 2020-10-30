@@ -44,19 +44,19 @@ function Login(props) {
 
                                    <Button color='teal' fluid size='large'>
                                         Login
-                </Button>
-                              </Segment>
-                         </Form>
-                         <Message>
-                              New to us? <NavLink to="/signup">Sign Up</NavLink>
-                         </Message>
-                    </Grid.Column>
-               </Grid>
-               
+                                   </Button>
+                                   </Segment>
+                                        </Form>
+                                   <Message>
+                                   New to us? <NavLink to="/signup">Sign Up</NavLink>
+                               </Message>
+                         </Grid.Column>
+                    </Grid>
+            
           
      }
      return (result)}
 
-
+    
 
 export default Login
