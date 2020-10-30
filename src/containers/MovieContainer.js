@@ -1,12 +1,14 @@
 import React from 'react';
 import MovieList from '../components/MovieList.js'
+import MovieShow from '../components/MovieShow.js'
 
 class MovieContainer extends React.Component {
 
 
      state = {
           
-          api: []
+          api: [],
+          chosenMovie: []
      }
 
      componentDidMount = () => {
@@ -18,15 +20,24 @@ class MovieContainer extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
-                   
                     this.setState({ api: data.items} )
                })
           }
 
+          renderMovieClick = (id) => {
+              this.setState({chosenMovie : id })
+          }
+
+        
+
      render(){
-          console.log(this.state.api)
+          console.log(this.state.chosenMovie)
           return(
-               <MovieList movies={this.state.api} />
+               <>
+               <MovieList movies={this.state.api} clickHandler={this.renderMovieClick}/>
+               <MovieShow chosenMovie={this.state.chosenMovie}/>
+               </>
+           
           )
 
 

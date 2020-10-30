@@ -5,6 +5,7 @@ import Login from './components/Login.js';
 import Welcome from './components/Welcome.js';
 import NavBar from './containers/NavBar.js';
 import MovieContainer from './containers/MovieContainer.js'
+import MyMovies from './components/MyMovies.js'
 
 const BASE_API = "http://localhost:3001/"
 
@@ -72,6 +73,8 @@ class App extends React.Component {
       <div className="App">
         <NavBar logout={this.logout}/>
         <Switch>
+            <Route path = "/movies/:movieId" render={(routerprops) => <MovieContainer {...routerprops} /> } />
+            <Route path = "/favorites" render={(routerprops) => <MyMovies {...routerprops} user={this.state.user}/> } />
             <Route path="/login" render={(routerprops) => <Welcome {...routerprops} user={this.state.user}/> } />
             <Route path="/movies" render={(routerprops) => <MovieContainer {...routerprops} user={this.state.user} /> }/>
        </Switch>
