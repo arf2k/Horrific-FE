@@ -7,9 +7,9 @@ class MovieContainer extends React.Component {
 
 
      state = {
-          
+
           api: [],
-          favorite :[]
+  
      }
 
      componentDidMount = () => {
@@ -21,44 +21,42 @@ class MovieContainer extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
-                    
-                    this.setState({ api: data} )
+
+                    this.setState({ api: data })
                })
-          }
+     }
 
-          submitFavorite = (movieObj) => {
-               // this.setState({ favorite : movieObj})
+     submitFavorite = (movieObj) => {
+          // this.setState({ favorite : movieObj})
 
-               let token = localStorage.getItem("token")
-                    fetch("http://localhost:3001/users/favorites", {
-                      method: "POST",
-                      headers: {
-                        Authorization: `Bearer ${token}`,
-                        "Accepts": "application/json",
-                        "Content-type": "application/json"
-                      },
-                      body: JSON.stringify({ movie: movieObj, user : this.props.user})
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                         console.log(data)
-                    })
+          let token = localStorage.getItem("token")
+          fetch("http://localhost:3001/users/favorites", {
+               method: "POST",
+               headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Accepts": "application/json",
+                    "Content-type": "application/json"
+               },
+               body: JSON.stringify({ movie: movieObj, user: this.props.user })
+          })
+               .then(response => response.json())
+               .then(data => {console.log(data)})
                }
+     
 
-                    // this.props.history.push('/favorites')
-                   
-          
+   
 
-        
 
-     render(){
-          console.log(this.state.favorite)
-          return(
+
+
+
+     render() {
+          return (
                <>
-               <MovieList movies={this.state.api} submitFavorite={this.submitFavorite}/>
-               {/* <MyMovies movies={this.state.favorite}/> */}
+                    <MovieList movies={this.state.api} submitFavorite={this.submitFavorite} />
+
                </>
-           
+
           )
 
 

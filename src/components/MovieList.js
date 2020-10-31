@@ -8,17 +8,17 @@ class MovieList extends React.Component {
      renderMovieCards = () => {
           return this.props.movies.map(movie => <MovieCard key={movie.id} movie={movie} submitFavorite={this.props.submitFavorite} />)
      }
+ 
 
-     clickHandler = () => {
 
-     }
+
+   
 
      
      render() {
           return(
               <div>
                 {this.renderMovieCards()}
-
                </div>
           )
      }
