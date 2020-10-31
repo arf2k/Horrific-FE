@@ -1,12 +1,13 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 import styled from 'styled-components'
+import MovieCard from './MovieCard.js'
 
 class MyMovies extends React.Component {
 
-     state = {
-          favorites: []
-     }
+     // state = {
+     //      favorites: []
+     // }
      
      componentDidMount(){
          let token = localStorage.getItem("token")
@@ -21,6 +22,10 @@ class MyMovies extends React.Component {
           })
      }
 
+     // renderFavorites = () => {
+     //      return this.props.movies.map(movie => <MovieCard key={movie.id} movie={movie} />)
+
+     // }
 
      
      goBack = () => {
@@ -34,6 +39,7 @@ class MyMovies extends React.Component {
                <Back> <Button color='orange' onClick={this.goBack}> Back to Browse</Button> </Back>
           
              <h1>My Movies</h1>
+               {/* {this.renderFavorites()} */}
           </div>
                
      
