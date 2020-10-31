@@ -9,7 +9,12 @@ class MyMovies extends React.Component {
      }
      
      componentDidMount(){
-          fetch('http://localhost:3001/my_movies')
+         let token = localStorage.getItem("token")
+          fetch('http://localhost:3001/my_movies', {
+               method: "GET",
+               headers:
+                    { Authorization: `Bearer ${token}` }
+          })
           .then(resp => resp.json())
           .then(data => {
                console.log(data)
