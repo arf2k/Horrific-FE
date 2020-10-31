@@ -4,6 +4,20 @@ import styled from 'styled-components'
 
 class MyMovies extends React.Component {
 
+     state = {
+          favorites: []
+     }
+     
+     componentDidMount(){
+          fetch('http://localhost:3001/my_movies')
+          .then(resp => resp.json())
+          .then(data => {
+               console.log(data)
+          })
+     }
+
+
+     
      goBack = () => {
           this.props.history.goBack()
         }

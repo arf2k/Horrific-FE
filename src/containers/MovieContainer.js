@@ -8,7 +8,6 @@ class MovieContainer extends React.Component {
      state = {
           
           api: [],
-          chosenMovie: []
      }
 
      componentDidMount = () => {
@@ -20,21 +19,40 @@ class MovieContainer extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
-                    this.setState({ api: data.items} )
+                    
+                    this.setState({ api: data} )
                })
           }
 
-          // renderMovieClick = (id) => {
-          //     this.setState({chosenMovie : id })
-          // }
+          submitFavorite = (movieObj) => {
+              
+             console.log(movieObj)
+               let token = localStorage.getItem("token")
+                    fetch("http://localhost:3001/users/favorites", {
+                      method: "POST",
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Accepts": "application/json",
+                        "Content-type": "application/json"
+                      },
+                      body: JSON.stringify({ movie: movieObj, user : this.props.user})
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                         console.log(data)
+                    })
+               }
+
+                    // this.props.history.push('/favorites')
+                   
+          
 
         
 
      render(){
-          // console.log(this.state.chosenMovie)
           return(
                <>
-               <MovieList movies={this.state.api} clickHandler={this.renderMovieClick}/>
+               <MovieList movies={this.state.api} submitFavorite={this.submitFavorite}/>
                {/* <MovieShow chosenMovie={this.state.chosenMovie}/> */}
                </>
            

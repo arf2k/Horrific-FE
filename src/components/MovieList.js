@@ -6,7 +6,7 @@ class MovieList extends React.Component {
      
 
      renderMovieCards = () => {
-          return this.props.movies.map(movie => <MovieCard key={movie.id} movie={movie} clickHandler={this.props.clickHandler} />)
+          return this.props.movies.map(movie => <MovieCard key={movie.id} movie={movie} submitFavorite={this.props.submitFavorite} />)
      }
 
      clickHandler = () => {
@@ -18,6 +18,7 @@ class MovieList extends React.Component {
           return(
               <div>
                 {this.renderMovieCards()}
+
                </div>
           )
      }
