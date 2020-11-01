@@ -5,19 +5,14 @@ import { withRouter, useHistory } from 'react-router-dom';
 
 class MovieCard extends React.Component {
 
-     // state = {
-     //      clicked : false, 
-     //      pickedMovieId : ""
-     // }
+   
 
     clickHandler = (e) => {
      this.props.goToShow(this.props.movie)
-     // this.setState({clicked : true, pickedMovieId : this.props.movie.id})
-    }
+     this.props.history.push(`movies/${this.props.movie.id}`)
+}
    
-//     redirect = () => {
-//       this.state.clicked === true? <redirect to=(`/movies/${this.state.pickedMovieId}`) />
-//     }
+
 
     
     

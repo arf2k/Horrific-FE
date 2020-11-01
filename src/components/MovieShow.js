@@ -1,36 +1,50 @@
 import React, {useEffect, useState} from 'react'
-import { Form, TextArea, Button } from 'semantic-ui-react'
+import { Form, TextArea, Button, Card } from 'semantic-ui-react'
+import styled from 'styled-components'
 
 
 const MovieShow = (props) => {
   
      
-     // const[ movie, setMovie] = useState([])
+     const[ movie, setMovie] = useState([])
 
 
 
-     useEffect( () => {
+     // useEffect( () => {
+     //      console.log("heeeyyyy")
+     //      let token = localStorage.getItem("token")
+     //      fetch(`http://localhost:3001/movies/${props.chosenMovie.id}`, {
+     //           method: "GET",
+     //           headers:
+     //                { Authorization: `Bearer ${token}` }
+     //      })
+     //           .then(resp => resp.json())
+     //           .then(data => {
+     //                setMovie(data)
+     
+     //  })}, [props.chosenMovie.id])
+               
+     
+
+      useEffect( () => {
           console.log("heeeyyyy")
           let token = localStorage.getItem("token")
-          fetch(`http://localhost:3001/movies/${props.chosenMovie.id}`, {
+          fetch(`http://localhost:3001/movies/${props.match.params.movieId}`, {
                method: "GET",
                headers:
                     { Authorization: `Bearer ${token}` }
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
+                    setMovie(data)
      
-      })}, [props.chosenMovie.id])
-               
+      })}, [props.movieId])
      
 
-     
-     
-     
-     
-  
- 
+      const goBack = () => {
+          props.history.goBack()
+     }
+
 
 
      // submitReview = () => {
@@ -41,16 +55,24 @@ const MovieShow = (props) => {
      // const[name, setName] = useState("")
      
      
-     
 
      
 
 
           return (
-               
-                    <h1>Showpage</h1>
+     
+           <Back>  <Button color='red' onClick={goBack}> Back to Browse</Button>  </Back>
 
-                    /* <Form onSubmit={this.submitReview}>
+               // <div className="movieShow">
+               //      <h1>{movie.title}</h1>
+               
+               //      <img src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} />
+               
+               //      <h3>{movie.overview}</h3>
+               //  </div>
+                
+                   
+                 /* <Form onSubmit={this.submitReview}>
                          <TextArea placeholder='Write a review' name="review" value={this.state.review} onChange={this.changeHandler} />
                          <Button
                               content='Add Review'
@@ -58,7 +80,7 @@ const MovieShow = (props) => {
                               icon='pencil'
                               primary
                          />
-                    </Form> */
+                    </Form>    */
                
 
 
@@ -71,3 +93,7 @@ const MovieShow = (props) => {
 }
 
 export default MovieShow
+
+const Back = styled.div`
+text-align: right
+`

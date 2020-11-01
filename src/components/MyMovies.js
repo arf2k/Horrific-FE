@@ -35,7 +35,7 @@ class MyMovies extends React.Component {
 
           return (
                <div className="favePage">
-                    <Back> <Button color='orange' onClick={this.goBack}> Back to Browse</Button> </Back>
+                    <Back> <Button color='red' onClick={this.goBack}> Back to Browse</Button> </Back>
 
                     <h1>My Movies</h1>
                     <div className="movies" style={{ display: "list-item" }}>
