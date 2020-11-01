@@ -27,8 +27,8 @@ class MyMovies extends React.Component {
      }
 
 
-  
-     
+
+
      render() {
 
           const favorites = this.state.favorites
@@ -38,21 +38,16 @@ class MyMovies extends React.Component {
                     <Back> <Button color='orange' onClick={this.goBack}> Back to Browse</Button> </Back>
 
                     <h1>My Movies</h1>
-         <div className="movies" style={{display: "inline-flex" }}>
-                    {favorites.map(favorite =>  (
-             <Card key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />  
-           
-  
-             )
-          
-        )
-        }
-             
-      
+                    <div className="movies" style={{ display: "list-item" }}>
+                         {favorites.map(favorite => (
+                              <Card key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />))
+                         }
 
 
 
-             </div>
+
+
+                    </div>
                </div>
           )
 

@@ -1,42 +1,56 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
 
-class MovieShow extends React.Component {
+const MovieShow = (props) => {
+  
+     
+     // const[ movie, setMovie] = useState([])
 
 
-     state = {
-          review : ""
-     }
 
-     // componentDidMount = () => {
-     //      let token = localStorage.getItem("token")
-     //      fetch(`http://localhost:3001${this.props.location.pathname}`, {
-     //           method: "GET",
-     //           headers:
-     //                { Authorization: `Bearer ${token}` }
-     //      })
-     //           .then(resp => resp.json())
-     //           .then(data => {
-     //                console.log(data)
-     //           })
+     useEffect( () => {
+          console.log("heeeyyyy")
+          let token = localStorage.getItem("token")
+          fetch(`http://localhost:3001/movies/${props.chosenMovie.id}`, {
+               method: "GET",
+               headers:
+                    { Authorization: `Bearer ${token}` }
+          })
+               .then(resp => resp.json())
+               .then(data => {
+                    console.log(data)
+     
+      })}, [props.chosenMovie.id])
+               
+     
+
+     
+     
+     
+     
+  
+ 
+
+
+     // submitReview = () => {
+
      // }
 
-     submitReview = () => {
+     // changeHandler 
+     // const[name, setName] = useState("")
+     
+     
+     
 
-     }
+     
 
-     changeHandler = (e) =>{
-          this.setState({[e.target.name]: e.target.value})
-     }
 
-     render() {
-          console.log(this.props)
           return (
-               <>
+               
                     <h1>Showpage</h1>
 
-                    <Form onSubmit={this.submitReview}>
+                    /* <Form onSubmit={this.submitReview}>
                          <TextArea placeholder='Write a review' name="review" value={this.state.review} onChange={this.changeHandler} />
                          <Button
                               content='Add Review'
@@ -44,14 +58,14 @@ class MovieShow extends React.Component {
                               icon='pencil'
                               primary
                          />
-                    </Form>
-               </>
+                    </Form> */
+               
 
 
 
           )
 
-     }
+     
 
 
 }

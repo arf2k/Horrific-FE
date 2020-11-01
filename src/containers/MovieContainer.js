@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import MovieList from '../components/MovieList.js'
 import MovieShow from '../components/MovieShow.js'
 
 
-class MovieContainer extends React.Component {
+const MovieContainer = (props) => {
 
 
-     state = {
-
-          api: [],
-          chosenMovie: ""
   
-     }
 
-     componentDidMount = () => {
+        const[ api, setApi] = useState([])
+        const[chosenMovie, setChosenMovie] = useState(null)
+  
+
+
+     useEffect(() => {
           let token = localStorage.getItem("token")
           fetch('http://localhost:3001/movies', {
                method: "GET",
@@ -22,12 +22,13 @@ class MovieContainer extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
+                 setApi(data) }) 
+               }, []) 
 
-                    this.setState({ api: data })
-               })
-     }
 
-     submitFavorite = (movieObj) => {
+   
+
+     const submitFavorite = (movieObj) => {
 
           let token = localStorage.getItem("token")
           fetch("http://localhost:3001/users/favorites", {
@@ -37,34 +38,32 @@ class MovieContainer extends React.Component {
                     "Accepts": "application/json",
                     "Content-type": "application/json"
                },
-               body: JSON.stringify({ movie: movieObj, user: this.props.user })
+               body: JSON.stringify({ movie: movieObj, user: props.user })
           })
                .then(response => response.json())
                .then(data => {console.log(data)})
                }
      
 
-          goToShow = (movieId) => {
-               this.setState({chosenMovie : movieId})
+           const goToShow = (movieObj) => {
+          return  setChosenMovie(movieObj)
           }
 
-     
+      
 
 
-
-     render() {
-          console.log(this.state.chosenMovie)
+    
           return (
                <>
-                    <MovieList movies={this.state.api} submitFavorite={this.submitFavorite} goToShow={this.goToShow}  />
-                    <MovieShow chosenMovie={this.state.chosenMovie} allMovies={this.state.api} />
+                    <MovieList movies={api} submitFavorite={submitFavorite} goToShow={goToShow}  />
+                    {chosenMovie ? <MovieShow chosenMovie={chosenMovie}/> :null } 
 
                </>
 
           )
 
 
-     }
+     
 
 }
 export default MovieContainer 
