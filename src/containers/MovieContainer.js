@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieList from '../components/MovieList.js'
 import MovieShow from '../components/MovieShow.js'
-import MyMovies from '../components/MyMovies.js'
+
 
 class MovieContainer extends React.Component {
 
@@ -9,6 +9,7 @@ class MovieContainer extends React.Component {
      state = {
 
           api: [],
+          chosenMovie: ""
   
      }
 
@@ -27,7 +28,6 @@ class MovieContainer extends React.Component {
      }
 
      submitFavorite = (movieObj) => {
-          // this.setState({ favorite : movieObj})
 
           let token = localStorage.getItem("token")
           fetch("http://localhost:3001/users/favorites", {
@@ -44,16 +44,20 @@ class MovieContainer extends React.Component {
                }
      
 
-   
+          goToShow = (movieId) => {
+               this.setState({chosenMovie : movieId})
+          }
 
-
+     
 
 
 
      render() {
+          console.log(this.state.chosenMovie)
           return (
                <>
-                    <MovieList movies={this.state.api} submitFavorite={this.submitFavorite} />
+                    <MovieList movies={this.state.api} submitFavorite={this.submitFavorite} goToShow={this.goToShow}  />
+                    <MovieShow chosenMovie={this.state.chosenMovie} allMovies={this.state.api} />
 
                </>
 

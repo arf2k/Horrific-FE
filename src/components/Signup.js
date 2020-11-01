@@ -80,7 +80,7 @@ function Signup(props){
                      />
                          {invalidPassword ? <Message size="tiny" color='red'>Passwords do not match</Message> : null} 
  
-                     <Button color='teal' fluid size='large'>
+                     <Button color='red' fluid size='large'>
                         Get spooked!
            </Button>
                  </Segment>

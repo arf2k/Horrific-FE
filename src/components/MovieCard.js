@@ -1,24 +1,28 @@
 import React from 'react';
 import { Card, Grid, GridRow } from 'semantic-ui-react';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class MovieCard extends React.Component {
 
+    clickHandler = (e) => {
+     
+     this.props.goToShow(this.props.movie.id)
+     this.props.history.push(`movies/${this.props.movie.id}`)
+}
     
-
+    
  
-     // ; this.props.history.push(`/movies/${this.props.movie.id}`)
 
      render() {
           return (
                <Grid container columns={3}>
                     <Grid.Column>
-                         <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`}/>
+                         <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`} onClick={() => {this.clickHandler()}} />
                          <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px"}}>&#9760;</span>
                          <Card.Content>
                               <Card.Header>{this.props.movie.title}</Card.Header>
-                              <Card.Description>{this.props.movie.overview}</Card.Description>
+                              {/* <Card.Description>{this.props.movie.overview}</Card.Description> */}
                          </Card.Content>
                     </Grid.Column>
                </Grid>

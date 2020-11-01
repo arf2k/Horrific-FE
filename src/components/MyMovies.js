@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, Card } from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react';
 import styled from 'styled-components'
 
 
@@ -27,25 +27,7 @@ class MyMovies extends React.Component {
      }
 
 
-     // favoriteCard = () => {
-     //      const favorites = [this.state.favorites]
-     //    return (
-     //         <>
-     //         {favorites.map((favorite) => (
-     //    <Grid >
-     //    <Grid.Column>
-     //         <Card raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />
-     //         <Card.Content>
-     //              <Card.Header>{favorite.title}</Card.Header>
-     //              <Card.Description>{favorite.overview}</Card.Description>
-     //         </Card.Content>
-     //    </Grid.Column>
-     //    </Grid>   
-     //         ))}
-     //         </>
-     //    )
-     //    }
-     
+  
      
      render() {
 
@@ -56,26 +38,21 @@ class MyMovies extends React.Component {
                     <Back> <Button color='orange' onClick={this.goBack}> Back to Browse</Button> </Back>
 
                     <h1>My Movies</h1>
-                    
-                    {favorites.map((favorite) => (
-        <Grid >
-        <Grid.Column>
-             <Card raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />
-             <Card.Content>
-                  <Card.Header>{favorite.title}</Card.Header>
-                  <Card.Description>{favorite.overview}</Card.Description>
-             </Card.Content>
-        </Grid.Column>
-        </Grid>   
-             ))}
-            
+         <div className="movies" style={{display: "inline-flex" }}>
+                    {favorites.map(favorite =>  (
+             <Card key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />  
+           
+  
+             )
+          
         )
         }
-                    
+             
+      
 
 
 
-
+             </div>
                </div>
           )
 
