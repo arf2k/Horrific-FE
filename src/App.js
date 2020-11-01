@@ -99,7 +99,7 @@ class App extends React.Component {
       <div className="App">
         <NavBar logout={this.logout}/>
         <Switch>
-            <Route path = "/movies/:movieId" render={(routerprops) => <MovieShow {...routerprops} /> } />
+            <Route path = "/movies/:movieId" render={(routerprops) => <MovieShow {...routerprops} user={this.state.user} /> } />
             <Route path = "/favorites" render={(routerprops) => <MyMovies {...routerprops} user={this.state.user}/> } />
             <Route path="/login" render={(routerprops) => <Login {...routerprops} user={this.state.user} loginHandler={this.loginHandler}/> } />
             <Route path="/signup" render={(routerprops) => <Signup {...routerprops}  signupHandler={this.signupHandler} /> } />
