@@ -18,6 +18,7 @@ class MyMovies extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
+                    console.log(data)
                     this.setState({ favorites: data })
                })
      }
@@ -26,7 +27,7 @@ class MyMovies extends React.Component {
           this.props.history.goBack()
      }
 
-
+  
 
 
      render() {
@@ -40,7 +41,7 @@ class MyMovies extends React.Component {
                     <h1>My Movies</h1>
                     <div className="movies" style={{ display: "list-item" }}>
                          {favorites.map(favorite => (
-                              <Card key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />))
+                              <Card onClick={() => this.props.history.push(`/movies/${favorite.movie_id}`)}  key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />))
                          }
 
 

@@ -7,27 +7,12 @@ const MovieShow = (props) => {
   
      
      const[ movie, setMovie] = useState([])
+          const[reviewList, setReviewList] = useState([])
 
-
-
-     // useEffect( () => {
-     //      console.log("heeeyyyy")
-     //      let token = localStorage.getItem("token")
-     //      fetch(`http://localhost:3001/movies/${props.chosenMovie.id}`, {
-     //           method: "GET",
-     //           headers:
-     //                { Authorization: `Bearer ${token}` }
-     //      })
-     //           .then(resp => resp.json())
-     //           .then(data => {
-     //                setMovie(data)
-     
-     //  })}, [props.chosenMovie.id])
                
      
 
       useEffect( () => {
-          console.log("heeeyyyy")
           let token = localStorage.getItem("token")
           fetch(`http://localhost:3001/movies/${props.match.params.movieId}`, {
                method: "GET",
@@ -36,6 +21,7 @@ const MovieShow = (props) => {
           })
                .then(resp => resp.json())
                .then(data => {
+                    console.log(data)
                     setMovie(data)
      
       })}, [props.movieId])
@@ -58,20 +44,33 @@ const MovieShow = (props) => {
                          "Accepts": "application/json",
                          "Content-type": "application/json"
                     },
-                    body: JSON.stringify({ review: review, user: props.user })
+                    body: JSON.stringify({ review: review, user: props.user})
                })
                     .then(response => response.json())
-                    .then(data => {console.log(data)})
+                    .then(data => {
+                         console.log(data)
+                         setReviewList(data.review) 
+                    })
+                             
                     }
-     
+               
 
 
+               const getReviews = () => {
+                    let token = localStorage.getItem("token")
+               fetch(`http://localhost:3001/movies/${props.match.params.movieId}/my_reviews`, {
+                    method: "GET",
+                    headers: {
+                         Authorization: `Bearer ${token}`}
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log(data))       
+                    
+                    
+               }
 
-     
      const[review, setReview] = useState("")
 
-
-     console.log(review)
 
 
           return (
@@ -86,7 +85,7 @@ const MovieShow = (props) => {
                      <h3>{movie.overview}</h3>
                  </div>
                 
-                   
+              
                   <Form onSubmit={submitReview}>
                          <TextArea placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} />
                          <Button
@@ -96,9 +95,10 @@ const MovieShow = (props) => {
                               primary
                          />
                     </Form>    
+                  
+               <h1>Your Review</h1>
+               {/* <TextArea name="newReview" value={reviewList} /> */}
                </>
-
-
 
           )
 

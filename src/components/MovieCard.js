@@ -8,7 +8,7 @@ class MovieCard extends React.Component {
    
 
     clickHandler = (e) => {
-     this.props.goToShow(this.props.movie)
+     // this.props.goToShow(this.props.movie)
      this.props.history.push(`movies/${this.props.movie.id}`)
 }
    
@@ -26,7 +26,6 @@ class MovieCard extends React.Component {
                          <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px"}}>&#9760;</span>
                          <Card.Content>
                               <Card.Header>{this.props.movie.title}</Card.Header>
-                              {/* <Card.Description>{this.props.movie.overview}</Card.Description> */}
                          </Card.Content>
                     </Grid.Column>
                </Grid>
