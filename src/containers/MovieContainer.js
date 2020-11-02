@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import MovieList from '../components/MovieList.js'
 import MovieShow from '../components/MovieShow.js'
 
@@ -6,11 +6,11 @@ import MovieShow from '../components/MovieShow.js'
 const MovieContainer = (props) => {
 
 
-  
 
-        const[ api, setApi] = useState([])
-        const[chosenMovie, setChosenMovie] = useState(null)
-  
+
+     const [api, setApi] = useState([])
+     const [chosenMovie, setChosenMovie] = useState(null)
+
 
 
      useEffect(() => {
@@ -22,11 +22,12 @@ const MovieContainer = (props) => {
           })
                .then(resp => resp.json())
                .then(data => {
-                 setApi(data) }) 
-               }, []) 
+                    setApi(data)
+               })
+     }, [])
 
 
-   
+
 
      const submitFavorite = (movieObj) => {
 
@@ -41,29 +42,31 @@ const MovieContainer = (props) => {
                body: JSON.stringify({ movie: movieObj, user: props.user })
           })
                .then(response => response.json())
-               .then(data => {console.log(data)})
-               }
-     
-
-           const goToShow = (movieObj) => {
-          return  setChosenMovie(movieObj)
-          }
-
-      
+               .then(data => { console.log(data) })
+     }
 
 
-    
-          return (
-               <>
-                    <MovieList movies={api} submitFavorite={submitFavorite} goToShow={goToShow}  />
-                    {chosenMovie ? <MovieShow chosenMovie={chosenMovie}/> :null } 
-
-               </>
-
-          )
+     const goToShow = (movieObj) => {
+          return setChosenMovie(movieObj)
+     }
 
 
-     
+
+
+
+     return (
+          <>
+               <MovieList movies={api} submitFavorite={submitFavorite} goToShow={goToShow} />
+              
+
+               {chosenMovie ? <MovieShow chosenMovie={chosenMovie} /> : null}
+
+          </>
+
+     )
+
+
+
 
 }
 export default MovieContainer 

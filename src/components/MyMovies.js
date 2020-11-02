@@ -49,7 +49,7 @@ class MyMovies extends React.Component {
 
                      <h1>My Reviews</h1>
                     {reviews.map(review => (
-                         <p>{review.title} : {review.review} </p>
+                         <p key={review.id}>{review.title} : {review.review} </p>
                     ))} 
                     
 

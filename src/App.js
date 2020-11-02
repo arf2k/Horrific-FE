@@ -8,6 +8,7 @@ import MovieContainer from './containers/MovieContainer.js'
 import MyMovies from './components/MyMovies.js'
 import MovieShow from './components/MovieShow.js'
 import Signup from './components/Signup.js'
+import MovieList from './components/MovieList.js'
 
 const BASE_API = "http://localhost:3001/"
 
@@ -101,6 +102,7 @@ class App extends React.Component {
         <Switch>
             <Route path = "/movies/:movieId" render={(routerprops) => <MovieShow {...routerprops} user={this.state.user} /> } />
             <Route path = "/favorites" render={(routerprops) => <MyMovies {...routerprops} user={this.state.user}/> } />
+            <Route path = "/search" render={(routerprops) => <MovieList {...routerprops} /> } />
             <Route path="/login" render={(routerprops) => <Login {...routerprops} user={this.state.user} loginHandler={this.loginHandler}/> } />
             <Route path="/signup" render={(routerprops) => <Signup {...routerprops}  signupHandler={this.signupHandler} /> } />
             <Route path="/movies" render={(routerprops) => <MovieContainer {...routerprops} user={this.state.user}/> }/>

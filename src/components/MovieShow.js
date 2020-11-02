@@ -72,9 +72,10 @@ const MovieShow = (props) => {
 
      const[review, setReview] = useState("")
 
-
+   
 
           return (
+
      <>
            <Back>  <Button color='red' onClick={goBack}> Back to Browse</Button>  </Back>
 
@@ -98,9 +99,12 @@ const MovieShow = (props) => {
                     </Form>    
                   
                <h1>Reviews</h1>
-               {newReview? <Message size="huge">{newReview.review} {newReview.username}</Message> : styled={display: "none"}}
-               {receivedReview? <Message size="huge">{receivedReview.review} - {receivedReview.username}</Message> : null }
+                {/* {newReview? <Message size="huge">{newReview.review} {newReview.username}</Message> : null } */}
                
+                {receivedReview.map(review => (
+                         <Message size="huge">{review.review} - {review.username}</Message>
+                ))}
+
                </>
 
           )

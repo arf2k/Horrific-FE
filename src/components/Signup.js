@@ -29,9 +29,9 @@ function Signup(props){
          }
          
      }
-     // const radioHandler = (e, result) => {
-     //     setAvatar(result.value)
-     // }
+     const radioHandler = (e, result) => {
+         setAvatar(result.value)
+     }
      const invalidPassword = (password !== passwordConfirmation && password !== "" && passwordConfirmation !== "")
  
      const pwValidation = (e)=>{
@@ -90,6 +90,78 @@ function Signup(props){
              </Message>
          </Grid.Column>
     </Grid> 
+    <Avatars>
+        <Choose>
+        <Avatar src={'assets/avatars/MichaelMyers.jpg'}/>
+            <Radio
+                label='Michael Myers'
+                name='avatar'
+                value='assets/avatars/MichaelMyers.jpg'
+                    checked={avatar ==='assets/avatars/MichaelMyers.jpg'}
+                onChange={radioHandler}
+                style= {{fontSize:"18px", marginTop: "15px"}}
+            />
+            </Choose>
+            <Choose>
+        <Avatar src={'assets/avatars/frida.jpg'}/>
+                <Radio
+                    label='Frida Kahlo'
+                    name='avatar'
+                    value='assets/avatars/frida.jpg'
+                    checked={avatar === 'assets/avatars/frida.jpg'}
+                    onChange={radioHandler}
+                    style={{ fontSize: "18px", marginTop: "15px" }}
+                />
+            </Choose>
+            <Choose>
+        <Avatar src={'assets/avatars/monalisa.jpg'}/>
+               <Radio
+                    label='Mona Lisa'
+                    name='avatar'
+                    value='assets/avatars/monalisa.jpg'
+                    checked={avatar === 'assets/avatars/monalisa.jpg'}
+                    onChange={radioHandler}
+                    style={{ fontSize: "18px", marginTop: "15px" }}
+                />
+            </Choose>
+            <Choose>
+        <Avatar src={'assets/avatars/pearlearing.jpg'}/>
+                <Radio
+                    label='Pearl Earing'
+                    name='avatar'
+                    value='assets/avatars/pearlearing.jpg'
+                    checked={avatar==='assets/avatars/pearlearing.jpg'}
+                
+                onChange={radioHandler}
+                    style={{ fontSize: "18px", marginTop: "15px" }}
+                />
+            </Choose>
+            <Choose>
+        <Avatar src={'assets/avatars/picasso.jpg'}/>
+                <Radio
+                    label='Picasso'
+                    name='avatar'
+                    value='assets/avatars/picasso.jpg'
+                    checked={avatar ==='assets/avatars/picasso.jpg'}
+                
+                onChange={radioHandler}
+                    style={{ fontSize: "18px", marginTop: "15px" }}
+                />
+            </Choose>
+            <Choose>
+        <Avatar src={'assets/avatars/vangogh.jpeg'}/>
+                <Radio
+                    label='Van Gogh'
+                    name='avatar'
+                    value='assets/avatars/vangogh.jpeg'
+                    checked={avatar ==='assets/avatars/vangogh.jpeg'}
+                
+                onChange={radioHandler}
+                    style={{ fontSize: "18px", marginTop: "15px" }}
+                />
+            </Choose>
+    </Avatars>
+        <span style={{fontSize: "3em"}}>Choose Your Avatar</span
      </div>
     
    }
