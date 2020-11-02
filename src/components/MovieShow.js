@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Form, TextArea, Button, Card } from 'semantic-ui-react'
+import { Form, TextArea, Button, Card, Message } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 
@@ -7,9 +7,10 @@ const MovieShow = (props) => {
   
      
      const[ movie, setMovie] = useState([])
-          const[reviewList, setReviewList] = useState([])
 
-               
+     const[receivedReview, setReceivedReview] = useState([])   
+     
+     const[newReview, setNewReview] = useState([])
      
 
       useEffect( () => {
@@ -22,7 +23,8 @@ const MovieShow = (props) => {
                .then(resp => resp.json())
                .then(data => {
                     console.log(data)
-                    setMovie(data)
+                   setMovie(data.single_movie)
+                   setReceivedReview(data.reviews)
      
       })}, [props.movieId])
      
@@ -32,7 +34,6 @@ const MovieShow = (props) => {
      }
 
 
-          
      
            const submitReview = () => {
 
@@ -44,30 +45,30 @@ const MovieShow = (props) => {
                          "Accepts": "application/json",
                          "Content-type": "application/json"
                     },
-                    body: JSON.stringify({ review: review, user: props.user})
+                    body: JSON.stringify({ review: review, user: props.user, title: movie.title, username: props.user.username})
                })
                     .then(response => response.json())
                     .then(data => {
                          console.log(data)
-                         setReviewList(data.review) 
+                       
                     })
                              
                     }
                
 
 
-               const getReviews = () => {
-                    let token = localStorage.getItem("token")
-               fetch(`http://localhost:3001/movies/${props.match.params.movieId}/my_reviews`, {
-                    method: "GET",
-                    headers: {
-                         Authorization: `Bearer ${token}`}
-                    })
-                    .then(response => response.json())
-                    .then(data => console.log(data))       
+               // const getReviews = () => {
+               //      let token = localStorage.getItem("token")
+               // fetch(`http://localhost:3001/movies/${props.match.params.movieId}/my_reviews`, {
+               //      method: "GET",
+               //      headers: {
+               //           Authorization: `Bearer ${token}`}
+               //      })
+               //      .then(response => response.json())
+               //      .then(data => console.log(data))       
                     
                     
-               }
+               // }
 
      const[review, setReview] = useState("")
 
@@ -96,8 +97,10 @@ const MovieShow = (props) => {
                          />
                     </Form>    
                   
-               <h1>Your Review</h1>
-               {/* <TextArea name="newReview" value={reviewList} /> */}
+               <h1>Reviews</h1>
+               {newReview? <Message size="huge">{newReview.review} {newReview.username}</Message> : styled={display: "none"}}
+               {receivedReview? <Message size="huge">{receivedReview.review} - {receivedReview.username}</Message> : null }
+               
                </>
 
           )
