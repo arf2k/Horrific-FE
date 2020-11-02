@@ -18,7 +18,6 @@ class MyMovies extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
                     this.setState({ favorites: data })
                })
      }
