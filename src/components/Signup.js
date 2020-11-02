@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { NavLink} from 'react-router-dom'
-import { Button, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Icon, Message, Segment, Radio} from 'semantic-ui-react'
+import styled from 'styled-components'
 
 
 
@@ -103,46 +104,46 @@ function Signup(props){
             />
             </Choose>
             <Choose>
-        <Avatar src={'assets/avatars/frida.jpg'}/>
+        <Avatar src={'assets/avatars/Carrie.jpg'}/>
                 <Radio
-                    label='Frida Kahlo'
+                    label='Carrie'
                     name='avatar'
-                    value='assets/avatars/frida.jpg'
-                    checked={avatar === 'assets/avatars/frida.jpg'}
+                    value='assets/avatars/Carrie.jpg'
+                    checked={avatar === 'assets/avatars/Carrie.jpg'}
                     onChange={radioHandler}
                     style={{ fontSize: "18px", marginTop: "15px" }}
                 />
             </Choose>
             <Choose>
-        <Avatar src={'assets/avatars/monalisa.jpg'}/>
+        <Avatar src={'assets/avatars/Jason.jpg'}/>
                <Radio
-                    label='Mona Lisa'
+                    label='Jason Voorhees'
                     name='avatar'
-                    value='assets/avatars/monalisa.jpg'
-                    checked={avatar === 'assets/avatars/monalisa.jpg'}
+                    value='assets/avatars/jason.jpg'
+                    checked={avatar === 'assets/avatars/jason.jpg'}
                     onChange={radioHandler}
                     style={{ fontSize: "18px", marginTop: "15px" }}
                 />
             </Choose>
             <Choose>
-        <Avatar src={'assets/avatars/pearlearing.jpg'}/>
+        <Avatar src={'assets/avatars/Freddy.jpg'}/>
                 <Radio
-                    label='Pearl Earing'
+                    label='Freddy Krueger'
                     name='avatar'
-                    value='assets/avatars/pearlearing.jpg'
-                    checked={avatar==='assets/avatars/pearlearing.jpg'}
+                    value='assets/avatars/Freddy.jpg'
+                    checked={avatar==='assets/avatars/Freddy.jpg'}
                 
                 onChange={radioHandler}
                     style={{ fontSize: "18px", marginTop: "15px" }}
                 />
             </Choose>
             <Choose>
-        <Avatar src={'assets/avatars/picasso.jpg'}/>
+        <Avatar src={'assets/avatars/Pinhead.jpg'}/>
                 <Radio
-                    label='Picasso'
+                    label='Pinhead'
                     name='avatar'
-                    value='assets/avatars/picasso.jpg'
-                    checked={avatar ==='assets/avatars/picasso.jpg'}
+                    value='assets/avatars/Pinhead.jpg'
+                    checked={avatar ==='assets/avatars/Pinhead.jpg'}
                 
                 onChange={radioHandler}
                     style={{ fontSize: "18px", marginTop: "15px" }}
@@ -161,7 +162,7 @@ function Signup(props){
                 />
             </Choose>
     </Avatars>
-        <span style={{fontSize: "3em"}}>Choose Your Avatar</span
+        <span style={{fontSize: "3em"}}>Pick your Villain </span>
      </div>
     
    }
@@ -172,3 +173,24 @@ function Signup(props){
 
 
  export default Signup
+
+ const Avatars = styled.div`
+    margin: 170px auto;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    flex-wrap: wrap;
+    align-content: stretch;
+`
+const Choose = styled.div`
+`
+
+const Avatar = styled.img`
+    display:block;
+    width: 160px;
+    height: 220px;
+    z-index: 10;
+    position: relative;
+    `

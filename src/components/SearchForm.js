@@ -5,7 +5,7 @@ function SearchForm(props) {
      return (
       <>
      <Segment textAlign="right">
-     <Input icon='search' type="text" placeholder='Search Movies' value={props.searchTerm} onChange={props.searchChangeHandler} />
+     <Input icon='search' type="text" name="search" placeholder='Search Movies' value={props.searchTerm} onChange={props.searchChangeHandler} />
      </Segment>
      </>
      )
