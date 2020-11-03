@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'semantic-ui-react';
+import { Button, Card, Icon } from 'semantic-ui-react';
 import styled from 'styled-components'
 
 
@@ -7,7 +7,8 @@ class MyMovies extends React.Component {
 
      state = {
           favorites: [],
-          reviews: []
+          reviews: [],
+          iconShown: false 
      }
 
      componentDidMount() {
@@ -28,35 +29,53 @@ class MyMovies extends React.Component {
           this.props.history.goBack()
      }
 
+  deleteFavorite = (favoriteId) => {
+       let token= localStorage.getItem("token")
+       fetch(`http://localhost:3001/users/favorites/${favoriteId}`, {
+            method: "DELETE",
+            headers: 
+            {Authorization: `Bearer ${token}`}
+       })
+       .then(resp => resp.json())
+       .then(data => {
+            console.log(data)
+       })
+  }
 
 
 
-
+     // onMouseOver={this.showDelete} onMouseLeave={this.normal} 
      render() {
 
           const favorites = this.state.favorites
           const reviews = this.state.reviews
 
           return (
-               <div className="favePage">
+          <>
+               <div className="favePage"> 
                     <Back> <Button color='red' onClick={this.goBack}> Back to Browse</Button> </Back>
 
                     <h1>My Movies</h1>
-                    <div className="movies" style={{ display: "list-item" }}>
-                         {favorites.map(favorite => (
-                              <Card onClick={() => this.props.history.push(`/movies/${favorite.movie_id}`)}  key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} />))
+                    <div className="movies" style={{ display: "inline-flex" }} >
+                         {favorites.map(favorite => ( 
+                              <> <i class="small delete icon" onClick={() => this.deleteFavorite(favorite.id)} />
+                             <Card onClick={() => this.props.history.push(`/movies/${favorite.movie_id}`)}  key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`}  /> </>))
+                             
                          }
-
-                     <h1>My Reviews</h1>
-                    {reviews.map(review => (
-                         <p key={review.id}>{review.title} : {review.review} </p>
-                    ))} 
-                    
-
-
+                   
+                 
+                  
 
                     </div>
-               </div>
+
+                    <h1>My Reviews</h1>
+                    {reviews.map(review => (
+                         <p key={review.id}>{review.title} : {review.review} </p>
+                    ))}
+
+                    </div>
+                 
+                    </>
           )
 
 

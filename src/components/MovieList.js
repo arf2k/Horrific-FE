@@ -26,7 +26,6 @@ class MovieList extends React.Component {
 
      
      render() {
-          console.log(this.state.searchTerm)
           return(
               <div>
                <SearchForm searchTerm={this.state.searchTerm} searchChangeHandler={this.searchChangeHandler} />    
