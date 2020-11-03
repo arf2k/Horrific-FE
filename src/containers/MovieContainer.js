@@ -12,7 +12,6 @@ const MovieContainer = (props) => {
      const [chosenMovie, setChosenMovie] = useState(null)
 
 
-
      useEffect(() => {
           let token = localStorage.getItem("token")
           fetch('http://localhost:3001/movies', {
@@ -22,6 +21,7 @@ const MovieContainer = (props) => {
           })
                .then(resp => resp.json())
                .then(data => {
+                    // console.log(data)
                     setApi(data)
                })
      }, [])
@@ -51,10 +51,10 @@ const MovieContainer = (props) => {
      }
 
 
-
-
+     console.log(api)
 
      return (
+          
           <>
                <MovieList movies={api} submitFavorite={submitFavorite} goToShow={goToShow} />
               

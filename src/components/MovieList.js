@@ -8,12 +8,15 @@ class MovieList extends React.Component {
           searchTerm: ""
      }
 
+
      // renderMovieCards = () => {
+     //      debugger
      //      return this.props.movies.map(movie => <MovieCard key={movie.id} movie={movie} submitFavorite={this.props.submitFavorite} goToShow={this.props.goToShow} />)
      // }
  
      renderSearch = () => {
-          return this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(movie => <MovieCard key={movie.id} movie={movie} submitFavorite={this.props.submitFavorite} goToShow={this.props.goToShow} />)
+        
+          return this.props.movies.filter(movie =>  movie.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(movie => <MovieCard key={movie.id} movie={movie} submitFavorite={this.props.submitFavorite} goToShow={this.props.goToShow} />)
      }
 
    searchChangeHandler = (e) => {
@@ -23,6 +26,7 @@ class MovieList extends React.Component {
 
      
      render() {
+          console.log(this.state.searchTerm)
           return(
               <div>
                <SearchForm searchTerm={this.state.searchTerm} searchChangeHandler={this.searchChangeHandler} />    

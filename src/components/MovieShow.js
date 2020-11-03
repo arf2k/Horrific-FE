@@ -102,7 +102,7 @@ const MovieShow = (props) => {
                 {/* {newReview? <Message size="huge">{newReview.review} {newReview.username}</Message> : null } */}
                
                 {receivedReview.map(review => (
-                         <Message size="huge">{review.review} - {review.username}</Message>
+                         <Message key={review.id} size="huge">{review.review} - {review.username}</Message>
                 ))}
 
                </>
