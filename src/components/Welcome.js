@@ -9,7 +9,7 @@ class Welcome extends React.Component {
      render(){
 
           return(
-               this.props.user? <h1>Hellooooo</h1>: <Login history={this.props.history} loginHandler={this.props.loginHandler}/> 
+               this.props.user? <h1>Hellooooo {this.props.user.username} !</h1>: <Login history={this.props.history} loginHandler={this.props.loginHandler}/> 
 
           )
      }
