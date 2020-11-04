@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Form, TextArea, Button, Card, Message, Image } from 'semantic-ui-react'
+import { Form, TextArea, Button, Card, Message, Image, Comment } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 
@@ -77,6 +77,7 @@ const MovieShow = (props) => {
           return (
 
                <>
+               {/* <Background> */}
            <Back>  <Button color='red' class="small icon backward" onClick={goBack}> Rewind</Button>  </Back>
 
                <div className="movieShow">
@@ -94,18 +95,24 @@ const MovieShow = (props) => {
                               content='Add Review'
                               labelPosition='right'
                               icon='pencil'
-                              primary
+                              color='red'
                          />
                     </Form>    
                   
                 <h1>Reviews</h1>
                
                 {receivedReview.map(review => (
-                     
-                       <>  <Message key={review.id} size="massive">{review.review} - {review.username} <img src={review.avatar}/></Message>
-                         <i class="small delete icon" onClick={() => deleteReview(review.id)}/></>
+                         <>
+                         <CommentFrame>
+                         <Comment>
+                         <Comment.Text  key={review.id} >{review.review} - {review.username} </Comment.Text>
+                          <img src={`/${review.avatar}`} style={{ borderRadius: "20px" }} width="75px"/>
+                         </Comment>
+                         <i class="small delete icon" onClick={() => deleteReview(review.id)}/>
+                         </CommentFrame>
+                         </>
                 ))}
-
+{/* </Background> */}
 </>
 
           )
@@ -120,3 +127,17 @@ export default MovieShow
 const Back = styled.div`
 text-align: right
 `
+
+const CommentFrame = styled.div`
+border-color: red;
+border-style: inset;
+border-width: 15px;
+width: 350px;
+background-color: #ffe;
+margin: 0px auto;
+display: inline-flex;
+align-items: flex-end;
+`
+// const Background = styled.div`
+// background-color: black;
+// `

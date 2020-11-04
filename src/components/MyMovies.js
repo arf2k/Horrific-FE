@@ -61,11 +61,16 @@ class MyMovies extends React.Component {
      }
 
 
+// showDelete = (e) => {
+//      e.target.style.color = "red"
+// }
+
+// normal = (e) => {
+//      e.target.style.color = "black"
+// }
 
 
-
-
-     // onMouseOver={this.showDelete} onMouseLeave={this.normal} 
+     // 
      render() {
 
           const favorites = this.state.favorites
@@ -73,13 +78,14 @@ class MyMovies extends React.Component {
 
           return (
                <>
+               {/* <Background> */}
                     <div className="favePage">
                          <Back> <Button color='red' icon="fast backward" onClick={this.goBack}> Rewind </Button> </Back>
 
-                         <h1>My Movies</h1>
+                         <h1 style={{color: "red"}}>My Movies</h1>
                          <div className="movies" style={{ display: "inline-flex" }} >
                               {favorites.map(favorite => (
-                                   <> <i class="small delete icon" onClick={() => this.deleteFavorite(favorite.id)} />
+                                   <> <i class="small delete icon"  onClick={() => this.deleteFavorite(favorite.id)} />  
                                         <Card onClick={() => this.props.history.push(`/movies/${favorite.movie_id}`)} key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} /> </>))
 
                               }
@@ -89,15 +95,15 @@ class MyMovies extends React.Component {
 
                          </div>
 
-                         <h1>My Reviews</h1>
+                         <h1 style={{color: "red"}}>My Reviews</h1>
 
                          {reviews.map(review => (
-                              <p onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </p>
+                              <p style={{color: "black"}} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </p>
 
                          ))}
 
                     </div>
-
+                              {/* </Background> */}
                </>
           )
 
@@ -110,4 +116,10 @@ export default MyMovies
 
 const Back = styled.div`
 text-align: right
+`
+
+const Background = styled.div`
+background-color: black;
+height: 100vh;
+
 `
