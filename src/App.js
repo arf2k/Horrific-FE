@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config()
 import './App.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -9,7 +10,8 @@ import MyMovies from './components/MyMovies.js'
 import MovieShow from './components/MovieShow.js'
 import Signup from './components/Signup.js'
 import MovieList from './components/MovieList.js'
-import VideoPlayer from './containers/VideoPlayer.js'
+import VideoPlayer from './components/VideoPlayer.js'
+import VideoContainer from './containers/VideoContainer.js'
 
 const BASE_API = "http://localhost:3001/"
 

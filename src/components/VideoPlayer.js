@@ -15,12 +15,17 @@ class VideoPlayer extends React.Component {
                  url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
                  width= '50%'
                  height='50%'
+                 controls={true}
                  />
                </PlayerWrapper>
              
 
-</>
+               https://youtube.googleapis.com/youtube/v3/search?order=viewCount&q=skateboarding%20dog&type=video&videoDefinition=high&key=[YOUR_API_KEY] 
 
+
+        
+</>
+``
 
           )
 
@@ -34,4 +39,5 @@ export default VideoPlayer
 const PlayerWrapper = styled.div`
 position: relative;
 padding-top: 56.25%;
+
 `

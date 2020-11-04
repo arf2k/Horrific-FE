@@ -41,7 +41,7 @@ function Login(props) {
                                         value={password}
                                    />
 
-                                   <Button color='black' fluid size='large'>
+                                   <Button color='' fluid size='large'>
                                         Login
                                    </Button>
                                    </Segment>
