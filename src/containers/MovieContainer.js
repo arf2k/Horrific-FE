@@ -51,7 +51,6 @@ const MovieContainer = (props) => {
      }
 
 
-     console.log(api)
 
      return (
           

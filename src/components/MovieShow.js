@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Form, TextArea, Button, Card, Message } from 'semantic-ui-react'
+import { Form, TextArea, Button, Card, Message, Image } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 
@@ -57,27 +57,27 @@ const MovieShow = (props) => {
                
 
 
-               // const getReviews = () => {
-               //      let token = localStorage.getItem("token")
-               // fetch(`http://localhost:3001/movies/${props.match.params.movieId}/my_reviews`, {
-               //      method: "GET",
-               //      headers: {
-               //           Authorization: `Bearer ${token}`}
-               //      })
-               //      .then(response => response.json())
-               //      .then(data => console.log(data))       
-                    
-                    
-               // }
-
      const[review, setReview] = useState("")
 
-   
+    const deleteReview = (reviewId) => {
+          let token= localStorage.getItem("token")
+          fetch(`http://localhost:3001/movies/${props.match.params.movieId}/reviews/${reviewId}`, {
+               method: "DELETE",
+               headers: 
+               {Authorization: `Bearer ${token}`}
+          })
+          .then(resp => resp.json())
+          .then(data => {console.log(data)
+        })
+     }
 
+                    
+                    
+ 
           return (
 
-     <>
-           <Back>  <Button color='red' onClick={goBack}> Back to Browse</Button>  </Back>
+               <>
+           <Back>  <Button color='red' class="small icon backward" onClick={goBack}> Rewind</Button>  </Back>
 
                <div className="movieShow">
                     <h1>{movie.title}</h1>
@@ -98,21 +98,22 @@ const MovieShow = (props) => {
                          />
                     </Form>    
                   
-               <h1>Reviews</h1>
-                {/* {newReview? <Message size="huge">{newReview.review} {newReview.username}</Message> : null } */}
+                <h1>Reviews</h1>
                
                 {receivedReview.map(review => (
-                         <Message key={review.id} size="huge">{review.review} - {review.username}</Message>
+                     
+                       <>  <Message key={review.id} size="massive">{review.review} - {review.username} <img src={review.avatar}/></Message>
+                         <i class="small delete icon" onClick={() => deleteReview(review.id)}/></>
                 ))}
 
-               </>
+</>
 
           )
+              
+                }    
+                
 
-     
 
-
-}
 
 export default MovieShow
 
