@@ -23,21 +23,24 @@ class MovieCard extends React.Component {
       
           return (
                <Background>
-                <Grid container columns={3}>
-                     <Grid.Column> 
-           
+                    <CardWrapper>
+                  {/* /* <Grid container columns={3}> 
+                     <Grid.Column>   */ }
+            
                       
                           <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`} onClick={() => {this.clickHandler()}} />
                          <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px", color: "red"}}>&#9760;</span>
                          <Card.Content>
                               <Card.Header style={{color: "white"}}>{this.props.movie.title}</Card.Header>
                          </Card.Content> 
+                         
                 
                         
-              </Grid.Column> 
-                </Grid> 
-             
+              {/* /* </Grid.Column> 
+                </Grid>   */ }
+             </CardWrapper>
                 </Background>
+                
 
           )
 
@@ -48,4 +51,14 @@ export default withRouter(MovieCard)
 
 const Background = styled.div`
 background-color: black;
+`
+
+const CardWrapper = styled.div`
+width: 100%;
+display: inline-flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-between
+
+
 `
