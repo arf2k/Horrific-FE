@@ -9,6 +9,7 @@ import MyMovies from './components/MyMovies.js'
 import MovieShow from './components/MovieShow.js'
 import Signup from './components/Signup.js'
 import MovieList from './components/MovieList.js'
+import VideoPlayer from './containers/VideoPlayer.js'
 
 const BASE_API = "http://localhost:3001/"
 
@@ -108,6 +109,7 @@ class App extends React.Component {
             <Route path="/login" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler}/> } />
             <Route path="/signup" render={(routerprops) => <Signup {...routerprops}  signupHandler={this.signupHandler} /> } />
             <Route path="/movies" render={(routerprops) => <MovieContainer {...routerprops} user={this.state.user}/> }/>
+            <Route path="/video_player" render= {(routerprops => <VideoPlayer {...routerprops} user={this.state.user} />)}/>
             <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} setUser={this.setUser} /> } />
        </Switch>
        :

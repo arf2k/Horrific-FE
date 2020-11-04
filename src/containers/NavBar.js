@@ -20,6 +20,7 @@ class NavBar extends React.Component {
      const {activeItem} = this.state
        
                return(
+                    
                     <div className='pusher'>
                         <div className='full height'>
                             <div className='toc'>
@@ -72,11 +73,19 @@ class NavBar extends React.Component {
                                              active={activeItem === 'My Gallery'}
                                              onClick={this.handleItemClick}
                                              />   
+                                        <Menu.Item
+                                             name='Community Videos'
+                                             as={Link}
+                                             to="/video_player"
+                                             active={activeItem === 'Community Videos'}
+                                             onClick={this.handleItemClick}
+                                             />   
                                         </Menu>
+
                                     </div>
                               </div>
                          </div>
-                               
+                           
                )
      }
 
