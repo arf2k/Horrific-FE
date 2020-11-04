@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config()
+
 import './App.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -14,6 +14,7 @@ import VideoPlayer from './components/VideoPlayer.js'
 import VideoContainer from './containers/VideoContainer.js'
 
 const BASE_API = "http://localhost:3001/"
+const dotenv = require('dotenv').config()
 
 class App extends React.Component {
 

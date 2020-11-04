@@ -28,7 +28,7 @@ class MyMovies extends React.Component {
      componentDidUpdate(prevState) {
           if (this.state.favorites !== prevState.favorites) {
                let token = localStorage.getItem("token")
-               fetch('http://localhost:3001/my_movies', {
+              fetch('http://localhost:3001/my_movies', {
                     method: "GET",
                     headers:
                          { Authorization: `Bearer ${token}` }

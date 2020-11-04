@@ -2,7 +2,28 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components'
 
+let searchTerm = "horrormovie"
+let api_key = process.env.REACT_APP_YT_API_KEY
+
 class VideoPlayer extends React.Component {
+
+     state= {
+          videoId : ""
+     }
+
+
+     componentDidMount() {
+          fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${api_key}`, {
+               method: "GET",
+               header: 'Accept: application/json'
+          })
+          .then(resp => resp.json())
+          .then(data =>{
+               this.setState({videoId : data.items[0].id.videoId})
+          })
+     }
+
+
 
      render(){
           return(
@@ -12,7 +33,7 @@ class VideoPlayer extends React.Component {
                <PlayerWrapper>
                <ReactPlayer
                  style={{position: "absolute", top: "0", left: "0"}}
-                 url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                 url={`https://www.youtube.com/watch?v=${this.state.videoId}`}
                  width= '50%'
                  height='50%'
                  controls={true}
@@ -20,12 +41,13 @@ class VideoPlayer extends React.Component {
                </PlayerWrapper>
              
 
-               https://youtube.googleapis.com/youtube/v3/search?order=viewCount&q=skateboarding%20dog&type=video&videoDefinition=high&key=[YOUR_API_KEY] 
+      
+     
 
 
         
 </>
-``
+
 
           )
 
