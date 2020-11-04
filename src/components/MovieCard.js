@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, GridRow } from 'semantic-ui-react';
+import { Card, Grid, Container} from 'semantic-ui-react';
 import styled from 'styled-components';
 import { withRouter, useHistory } from 'react-router-dom';
 
@@ -13,23 +13,30 @@ class MovieCard extends React.Component {
 }
    
 
-
+   
     
     
  
 
      render() {
+
+      
           return (
-               <Grid container columns={3}>
-                    <Grid.Column>
-                         <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`} onClick={() => {this.clickHandler()}} />
+               
+                <Grid container columns={3}>
+                     <Grid.Column> 
+           
+                      
+                          <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`} onClick={() => {this.clickHandler()}} />
                          <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px"}}>&#9760;</span>
                          <Card.Content>
                               <Card.Header>{this.props.movie.title}</Card.Header>
-                         </Card.Content>
-                    </Grid.Column>
-               </Grid>
-          
+                         </Card.Content> 
+                
+                        
+              </Grid.Column> 
+                </Grid> 
+             
 
 
           )
@@ -39,7 +46,3 @@ class MovieCard extends React.Component {
 
 export default withRouter(MovieCard)
 
-const MyCards = styled.div`
-display: list-item,
-
-`
