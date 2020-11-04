@@ -35,11 +35,7 @@ class MovieList extends React.Component {
                <SearchForm searchTerm={this.state.searchTerm} searchChangeHandler={this.searchChangeHandler} />    
                 {/* {this.renderMovieCards()} */}
            <MyContainer>
-                          {/* <Grid columns={3}> 
-                     <Grid.Column>    */}
                 {this.renderSearch()}
-              {/* </Grid.Column>
-              </Grid> */}
               </MyContainer>
  
                </Background>
@@ -62,5 +58,7 @@ flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
 align-content: center;
+margin-top: 10vh;
+margin-left: 15vw;
 
 `

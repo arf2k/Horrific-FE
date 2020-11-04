@@ -24,14 +24,13 @@ class MovieCard extends React.Component {
           return (
                <Background>
                     <CardWrapper>
-                  {/* /* <Grid container columns={3}> 
-                     <Grid.Column>   */ }
+                
             
                       
                           <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`} onClick={() => {this.clickHandler()}} />
                          <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px", color: "red"}}>&#9760;</span>
                          <Card.Content>
-                              <Card.Header style={{color: "white"}}>{this.props.movie.title}</Card.Header>
+                              {/* <Card.Header style={{color: "white"}}>{this.props.movie.title}</Card.Header> */}
                          </Card.Content> 
                          
                 
