@@ -56,7 +56,7 @@ class VideoContainer extends React.Component {
      render() {
           return (
                <>
-                    <p>hello</p>
+                    <p>inside the video container</p>
 
                     <Segment textAlign="right" inverted color="black">
                          <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={this.keyDown} value={this.state.searchTerm} onChange={this.searchChange} />
@@ -70,7 +70,7 @@ class VideoContainer extends React.Component {
               (this.state.videoList.length === 0
              ? <p>No results</p>
              : ( */}
-            
+            Choose a video title to play
                  {this.state.videoList.map(item => (
                    <ul key={item.id.videoId}>
                      <div>
@@ -98,33 +98,7 @@ class VideoContainer extends React.Component {
 
 
 
-     //     {videoList &&
-     //       (videoList.length === 0
-     //         ? <p>No results</p>
-     //         : (
-     //           <ul className="items">
-     //             {videoList.map(item => (
-     //               <li className="item" key={item.id}>
-     //                 <div>
-     //                   <b><a href={item.link}>{item.title}</a></b>
-     //                   <p>{item.description}</p>
-     //                 </div>
-     //                 <ul className="meta">
-     //                   <li>By: <a href={item.author.ref}>{item.author.name}</a></li>
-     //                   <li>Views: {item.views}</li>
-     //                   <li>Duration: {item.duration}</li>
-     //                   <li>Uploaded: {item.uploaded_at}</li>
-     //                 </ul>
-     //                 <img alt="" src={item.thumbnail} />
-     //               </li>
-     //             ))}
-     //           </ul>
-     //         )
-     //       )
-     //     }
-     //   </div>
-     //      );
-     //    }
+
 
 
 }

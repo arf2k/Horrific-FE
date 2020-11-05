@@ -17,7 +17,7 @@ class VideoPlayer extends React.Component {
      render(){
           return(
              <>
-               <h1>Community Videos</h1>
+               <h1>Community Videos- inside the videoplayer</h1>
                
                <PlayerWrapper>
                <ReactPlayer

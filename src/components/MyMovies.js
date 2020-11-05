@@ -25,19 +25,20 @@ class MyMovies extends React.Component {
                })
      }
 
-     componentDidUpdate(prevState) {
-          if (this.state.favorites !== prevState.favorites) {
-               let token = localStorage.getItem("token")
-              fetch('http://localhost:3001/my_movies', {
-                    method: "GET",
-                    headers:
-                         { Authorization: `Bearer ${token}` }
-               })
-                    .then(resp => resp.json())
-                    .then(data => {
-                         this.setState({ favorites: data.favorites, reviews: data.reviews })
-                    })
-          }
+
+                  
+     updateFavorites  () {
+          let token = localStorage.getItem("token")
+     fetch('http://localhost:3001/my_movies', {
+          method: "GET",
+          headers:
+               { Authorization: `Bearer ${token}` }
+     })
+          .then(resp => resp.json())
+          .then(data => {
+               console.log(data)
+               this.setState({ favorites: data.favorites})
+          })
      }
 
 
@@ -56,6 +57,7 @@ class MyMovies extends React.Component {
                .then(resp => resp.json())
                .then(data => {
                     console.log(data)
+                    this.updateFavorites()
                     // window.alert("movie deleted")
                })
      }
