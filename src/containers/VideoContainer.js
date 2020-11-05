@@ -11,14 +11,15 @@ class VideoContainer extends React.Component {
      state = {
       
           searchTerm: "",
-          videoList: []
+          videoList: [],
+          videoPick: ""
 
      }
 
 
 
      searchYoutube() {
-          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${this.state.searchTerm}&key=${api_key}`, {
+          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${this.state.searchTerm}&key=${api_key}`, {
                method: "GET",
                header: 'Accept: application/json'
           })
@@ -46,9 +47,13 @@ class VideoContainer extends React.Component {
      }
 
 
+     chooseVideo = (item) => {
+        this.setState({videoPick: item.id.videoId})
+     } 
+
+
 
      render() {
-          console.log(this.state.videoList)
           return (
                <>
                     <p>hello</p>
@@ -57,7 +62,33 @@ class VideoContainer extends React.Component {
                          <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={this.keyDown} value={this.state.searchTerm} onChange={this.searchChange} />
                     </Segment>
                     {/* <VideoSearch searchChange={this.searchChange} searchTerm={this.state.searchTerm} keyDown={this.keyDown}/> */}
-                    <VideoPlayer videoId1={this.state.videoId} videoId2={this.state.videoId2} videoId3={this.state.videoId} nextVideo={this.nextVideo}/>
+                    <VideoPlayer videoPick={this.state.videoPick}/>
+
+<div>
+     <>
+            {/* {this.state.videoList &&
+              (this.state.videoList.length === 0
+             ? <p>No results</p>
+             : ( */}
+            
+                 {this.state.videoList.map(item => (
+                   <ul key={item.id.videoId}>
+                     <div>
+                       <b onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
+                     
+                     </div>
+                     <img  alt="" src={item.snippet.thumbnails.default.url}/>
+                     </ul>
+                    
+                 ))}
+                     </>
+                   </div> 
+                
+     
+           
+         
+
+
 
 
                </>
