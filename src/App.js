@@ -14,7 +14,7 @@ import VideoPlayer from './components/VideoPlayer.js'
 import VideoContainer from './containers/VideoContainer.js'
 
 const BASE_API = "http://localhost:3001/"
-const dotenv = require('dotenv').config()
+
 
 class App extends React.Component {
 
@@ -112,7 +112,7 @@ class App extends React.Component {
             <Route path="/login" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler}/> } />
             <Route path="/signup" render={(routerprops) => <Signup {...routerprops}  signupHandler={this.signupHandler} /> } />
             <Route path="/movies" render={(routerprops) => <MovieContainer {...routerprops} user={this.state.user}/> }/>
-            <Route path="/video_player" render= {(routerprops => <VideoPlayer {...routerprops} user={this.state.user} />)}/>
+            <Route path="/video_player" render= {(routerprops => <VideoContainer {...routerprops} user={this.state.user} />)}/>
             <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} setUser={this.setUser} /> } />
        </Switch>
        :

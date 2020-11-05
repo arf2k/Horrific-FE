@@ -1,35 +1,64 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import VideoPlayer from '../components/VideoPlayer.js'
+import VideoSearch from '../components/VideoSearch.js'
 
 let searchTerm = "horrormovie"
 let api_key = process.env.REACT_APP_YT_API_KEY
 class VideoContainer extends React.Component {
 
-   
+
+     state = {
+          videoId: "",
+          searchTerm: ""
+     }
+
+
+
      componentDidMount() {
           fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${api_key}`, {
                method: "GET",
                header: 'Accept: application/json'
           })
-          .then(resp => resp.json())
-          .then(data =>{
-               console.log(data)
-          })
+               .then(resp => resp.json())
+               .then(data => {
+                    console.log(data)
+               })
      }
 
-render() {
 
-   
-     return(
-<p>hello</p>
+     searchChangeHandler = (e) => {
+
+          this.setState({searchTerm : e.target.value})
+     }
 
 
 
-     )
-}
+     render() {
 
- 
-          
+
+          return (
+               <>
+               <p>hello</p>
+               <VideoSearch searchChangeHandler={this.searchChangeHandler} searchTerm={this.state.searchTerm}/>
+               <VideoPlayer videoId={this.state.videoId}/>
+
+
+</>
+          )
+     }
+
+     // componentDidMount() {
+     //      fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${api_key}`, {
+     //           method: "GET",
+     //           header: 'Accept: application/json'
+     //      })
+     //           .then(resp => resp.json())
+     //           .then(data => {
+     //                this.setState({ videoId: data.items[3].id.videoId })
+     //           })
+     // }
+
+
      // const [query, setQuery] = React.useState('European history');
      // const [list, setList] = React.useState(null);
      // const search = (e) => {
@@ -67,10 +96,10 @@ render() {
      //       )
      //     }
      //   </div>
-//      );
-//    }
+     //      );
+     //    }
 
 
-     }
+}
 
 export default VideoContainer
