@@ -1,82 +1,78 @@
-import React, { useEffect } from 'react'
-import VideoPlayer from '../components/VideoPlayer.js'
-import VideoSearch from '../components/VideoSearch.js'
+import React, { useEffect } from 'react';
+import VideoPlayer from '../components/VideoPlayer.js';
+import {Segment, Input} from 'semantic-ui-react'
 
-let searchTerm = "horrormovie"
+
+
 let api_key = process.env.REACT_APP_YT_API_KEY
 class VideoContainer extends React.Component {
 
 
      state = {
-          videoId: "",
-          searchTerm: ""
+      
+          searchTerm: "",
+          videoList: []
+
      }
 
 
 
-     componentDidMount() {
-          fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${api_key}`, {
+     searchYoutube() {
+          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${this.state.searchTerm}&key=${api_key}`, {
                method: "GET",
                header: 'Accept: application/json'
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
+                    this.setState({videoList: data.items})
                })
      }
 
 
-     searchChangeHandler = (e) => {
+   
 
-          this.setState({searchTerm : e.target.value})
+
+     searchChange = (e) => {
+          this.setState({ searchTerm: e.target.value })
+     }
+
+     keyDown = (e) => {
+          if (e.keyCode === 13) {
+         
+               this.searchYoutube()
+
+
+          }
      }
 
 
 
      render() {
-
-
+          console.log(this.state.videoList)
           return (
                <>
-               <p>hello</p>
-               <VideoSearch searchChangeHandler={this.searchChangeHandler} searchTerm={this.state.searchTerm}/>
-               <VideoPlayer videoId={this.state.videoId}/>
+                    <p>hello</p>
+
+                    <Segment textAlign="right" inverted color="black">
+                         <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={this.keyDown} value={this.state.searchTerm} onChange={this.searchChange} />
+                    </Segment>
+                    {/* <VideoSearch searchChange={this.searchChange} searchTerm={this.state.searchTerm} keyDown={this.keyDown}/> */}
+                    <VideoPlayer videoId1={this.state.videoId} videoId2={this.state.videoId2} videoId3={this.state.videoId} nextVideo={this.nextVideo}/>
 
 
-</>
+               </>
           )
      }
 
-     // componentDidMount() {
-     //      fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${api_key}`, {
-     //           method: "GET",
-     //           header: 'Accept: application/json'
-     //      })
-     //           .then(resp => resp.json())
-     //           .then(data => {
-     //                this.setState({ videoId: data.items[3].id.videoId })
-     //           })
-     // }
 
 
-     // const [query, setQuery] = React.useState('European history');
-     // const [list, setList] = React.useState(null);
-     // const search = (e) => {
-     //   e.preventDefault();
-     //   searchYouTube(query).then(setList);
-     // };
-     // return (
-     //   <div className="app">
-     //     <form onSubmit={search}>
-     //       <input autoFocus value={query} onChange={e => setQuery(e.target.value)} />
-     //       <button>Search YouTube</button>
-     //     </form>
-     //     {list &&
-     //       (list.length === 0
+
+     //     {videoList &&
+     //       (videoList.length === 0
      //         ? <p>No results</p>
      //         : (
      //           <ul className="items">
-     //             {list.map(item => (
+     //             {videoList.map(item => (
      //               <li className="item" key={item.id}>
      //                 <div>
      //                   <b><a href={item.link}>{item.title}</a></b>
