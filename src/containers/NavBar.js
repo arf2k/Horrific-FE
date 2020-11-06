@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Menu}  from 'semantic-ui-react'
 
+
+let skull = <p>;</p>
 class NavBar extends React.Component {
 
     state = {
@@ -60,7 +62,7 @@ class NavBar extends React.Component {
                                              />
                                              
                                              <Menu.Item
-                                             name='Browse Movies'
+                                             name={`Browse Movies ${skull}`}
                                              as={Link}
                                              to="/movies"
                                              active={activeItem === 'Browse Movies'}
@@ -93,3 +95,5 @@ class NavBar extends React.Component {
 
 
 export default NavBar
+
+

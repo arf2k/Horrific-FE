@@ -20,7 +20,6 @@ class MyMovies extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
                     this.setState({ favorites: data.favorites, reviews: data.reviews })
                })
      }
@@ -36,7 +35,6 @@ class MyMovies extends React.Component {
      })
           .then(resp => resp.json())
           .then(data => {
-               console.log(data)
                this.setState({ favorites: data.favorites})
           })
      }
@@ -56,11 +54,11 @@ class MyMovies extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
                     this.updateFavorites()
-                    // window.alert("movie deleted")
                })
      }
+                    
+     
 
 
      // showDelete = (e) => {

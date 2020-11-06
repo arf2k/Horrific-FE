@@ -25,6 +25,7 @@ class VideoContainer extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
+                    console.log(data)
                     this.setState({videoList: data.items})
                })
      }
@@ -64,7 +65,7 @@ class VideoContainer extends React.Component {
                     {/* <VideoSearch searchChange={this.searchChange} searchTerm={this.state.searchTerm} keyDown={this.keyDown}/> */}
                     <VideoPlayer videoPick={this.state.videoPick}/>
 
-<div>
+<div className="vidGallery" style={{display: "inline-flex"}} >
      <>
             {/* {this.state.videoList &&
               (this.state.videoList.length === 0
@@ -73,7 +74,7 @@ class VideoContainer extends React.Component {
             Choose a video title to play
                  {this.state.videoList.map(item => (
                    <ul key={item.id.videoId}>
-                     <div>
+                     <div >
                        <b onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
                      
                      </div>

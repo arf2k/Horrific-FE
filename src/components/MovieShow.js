@@ -10,8 +10,9 @@ const MovieShow = (props) => {
 
      const[receivedReview, setReceivedReview] = useState([])   
      
-     const[newReview, setNewReview] = useState([])
+     // const[newReview, setNewReview] = useState([])
      
+     // const[updateReview, setReviewUpdate] = useState([])
 
       useEffect( () => {
           let token = localStorage.getItem("token")
@@ -26,7 +27,7 @@ const MovieShow = (props) => {
                    setMovie(data.single_movie)
                    setReceivedReview(data.reviews)
      
-      })}, [props.movieId])
+      })}, [props.movieId, receivedReview])
      
 
       const goBack = () => {
@@ -49,13 +50,28 @@ const MovieShow = (props) => {
                })
                     .then(response => response.json())
                     .then(data => {
-                         console.log(data)
+                        console.log(data)
+                         // updateSubmit()
                        
                     })
                              
                     }
                
+     // const updateSubmit = () => {
+     //      let token = localStorage.getItem("token")
+     //      fetch(`http://localhost:3001/movies/${props.match.params.movieId}/reviews`, {
+     //           method: "GET",
+     //           headers:
+     //                { Authorization: `Bearer ${token}` }
+     //      })
+     //           .then(resp => resp.json())
+     //           .then(data => {
+     //                setReviewUpdate(data.reviews)
+     //           })
+     //      }
 
+
+     
 
      const[review, setReview] = useState("")
 
@@ -77,7 +93,6 @@ const MovieShow = (props) => {
           return (
 
                <>
-               {/* <Background> */}
            <Back>  <Button color='red' class="small icon backward" onClick={goBack}> Rewind</Button>  </Back>
 
                <div className="movieShow">
@@ -101,7 +116,8 @@ const MovieShow = (props) => {
                   
                 <h1>Reviews</h1>
                
-                {receivedReview.map(review => (
+                {
+                     receivedReview.map(review => (
                          <>
                          <CommentFrame>
                          <Comment>
@@ -109,10 +125,32 @@ const MovieShow = (props) => {
                           <img src={`/${review.avatar}`} style={{ borderRadius: "20px" }} width="75px"/>
                          </Comment>
                          <i class="small delete icon" onClick={() => deleteReview(review.id)}/>
-                         </CommentFrame>
-                         </>
-                ))}
-{/* </Background> */}
+                         </CommentFrame> </>
+                        ))} 
+                        
+                     
+          
+                         
+                    {/* {updateReview.review? 
+                            <>
+                            <CommentFrame>
+                             <Comment>
+                             <Comment.Text  key={updateReview.id} >{updateReview.review} - {updateReview.username} </Comment.Text>
+                              <img src={`/${updateReview.avatar}`} style={{ borderRadius: "20px" }} width="75px"/>
+                             </Comment>
+                             <i class="small delete icon" onClick={() => deleteReview(updateReview.id)}/>
+                             </CommentFrame> </>
+                             
+                       : null } */}
+                    
+                   
+
+                     
+                         
+                         
+                         
+
+
 </>
 
           )
