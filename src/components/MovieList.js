@@ -11,10 +11,7 @@ class MovieList extends React.Component {
      }
 
 
-     // renderMovieCards = () => {
-     //      debugger
-     //      return this.props.movies.map(movie => <MovieCard key={movie.id} movie={movie} submitFavorite={this.props.submitFavorite} goToShow={this.props.goToShow} />)
-     // }
+     
  
      renderSearch = () => {
         
@@ -33,7 +30,6 @@ class MovieList extends React.Component {
                <Background>
                 
                <SearchForm searchTerm={this.state.searchTerm} searchChangeHandler={this.searchChangeHandler} />    
-                {/* {this.renderMovieCards()} */}
            <MyContainer>
                 {this.renderSearch()}
               </MyContainer>

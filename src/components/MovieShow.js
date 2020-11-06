@@ -1,6 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import { Form, TextArea, Button, Card, Message, Image, Comment } from 'semantic-ui-react'
+import React, {useEffect, useState} from 'react';
+import { Form, TextArea, Button, Card, Message, Image, Comment, Icon } from 'semantic-ui-react';
+import ReactPlayer from 'react-player';
 import styled from 'styled-components'
+
+let api_key = process.env.REACT_APP_YT_API_KEY
 
 
 const MovieShow = (props) => {
@@ -9,10 +12,12 @@ const MovieShow = (props) => {
      const[ movie, setMovie] = useState([])
 
      const[receivedReview, setReceivedReview] = useState([])   
-     
-     // const[newReview, setNewReview] = useState([])
-     
-     // const[updateReview, setReviewUpdate] = useState([])
+
+     const[videoList, setVideoList] = useState([])
+
+     const[videoPick, setVideoPick] = useState([])
+
+     const[review, setReview] = useState("")
 
       useEffect( () => {
           let token = localStorage.getItem("token")
@@ -23,19 +28,16 @@ const MovieShow = (props) => {
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
                    setMovie(data.single_movie)
                    setReceivedReview(data.reviews)
      
-      })}, [props.movieId, receivedReview])
-     
-
-      const goBack = () => {
-          props.history.goBack()
-     }
+      })}, [props.movieId])
 
 
-     
+
+     //  setmovieId on mount 
+
+
            const submitReview = () => {
 
                let token = localStorage.getItem("token")
@@ -50,30 +52,12 @@ const MovieShow = (props) => {
                })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data)
-                         // updateSubmit()
+                       console.log(data)
                        
                     })
                              
                     }
-               
-     // const updateSubmit = () => {
-     //      let token = localStorage.getItem("token")
-     //      fetch(`http://localhost:3001/movies/${props.match.params.movieId}/reviews`, {
-     //           method: "GET",
-     //           headers:
-     //                { Authorization: `Bearer ${token}` }
-     //      })
-     //           .then(resp => resp.json())
-     //           .then(data => {
-     //                setReviewUpdate(data.reviews)
-     //           })
-     //      }
-
-
-     
-
-     const[review, setReview] = useState("")
+                    
 
     const deleteReview = (reviewId) => {
           let token= localStorage.getItem("token")
@@ -87,7 +71,31 @@ const MovieShow = (props) => {
         })
      }
 
-                    
+
+     const searchYoutube = () => {
+          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${movie.title}&key=${api_key}`, {
+               method: "GET",
+               header: 'Accept: application/json'
+          })
+               .then(resp => resp.json())
+               .then(data => {
+                    console.log(data)
+                    setVideoList(data.items)
+               })
+     }
+
+
+      const chooseVideo = (item) => {
+          setVideoPick(item.id.videoId)
+      }    
+      
+      const clickSearch = () => {
+           searchYoutube()
+      }
+
+      const goBack = () => {
+          props.history.goBack()
+     }
                     
  
           return (
@@ -111,11 +119,12 @@ const MovieShow = (props) => {
                               labelPosition='right'
                               icon='pencil'
                               color='red'
+                              position="right"
                          />
                     </Form>    
                   
                 <h1>Reviews</h1>
-               
+               <div className="reviewsdiv">
                 {
                      receivedReview.map(review => (
                          <>
@@ -128,7 +137,7 @@ const MovieShow = (props) => {
                          </CommentFrame> </>
                         ))} 
                         
-                     
+                        </div>
           
                          
                     {/* {updateReview.review? 
@@ -142,11 +151,33 @@ const MovieShow = (props) => {
                              </CommentFrame> </>
                              
                        : null } */}
+                       <div className="buttondiv">
                     
-                   
+     <Button onClick={clickSearch} icon labelPosition='left'>Choose Videos<Icon name='play' /></Button> </div>
 
+              <div className="viddiv">
+               <ReactPlayer
+                 style={{position: "absolute", top: "0", right: "0", paddingTop: "56.25%"}}
+                 url= {`https://www.youtube.com/watch?v=${videoPick}`}
+                 width= '50%'
+                 height='50%'
+                 controls={true}
+                 />
+          </div>
+               
+               <div className="vidGallery" style={{display: "inline-flex"}} >
+             Click a video title to play
+                 {videoList.map(item => (
+                   <ul key={item.id.videoId}>
+                     <div >
+                       <b onClick={() => chooseVideo(item)}>{item.snippet.title}</b>
                      
-                         
+                     </div>
+                     <img  alt="" src={item.snippet.thumbnails.default.url}/>
+                     </ul>
+                    
+                 ))}
+                    </div>     
                          
                          
 
@@ -179,3 +210,5 @@ align-items: flex-end;
 // const Background = styled.div`
 // background-color: black;
 // `
+
+

@@ -59,18 +59,6 @@ class MyMovies extends React.Component {
      }
                     
      
-
-
-     // showDelete = (e) => {
-     //      e.target.style.color = "red"
-     // }
-
-     // normal = (e) => {
-     //      e.target.style.color = "black"
-     // }
-
-
-     // 
      render() {
 
           const favorites = this.state.favorites
@@ -78,20 +66,17 @@ class MyMovies extends React.Component {
 
           return (
                <>
-
-                    <Back> <Button color='red' icon="fast backward" onClick={this.goBack}> Rewind </Button> </Back>
+ 
+                    <Back> <Button icon="fast backward" labelPosition="right" color='red'  icon="fast backward" onClick={this.goBack}> Rewind </Button> </Back>
 
                     <h1 style={{ color: "red" }}>My Movies</h1>
                     <MyContainer>
-
+                   
                          {favorites.map(favorite => (
                               <> <i class="small delete icon" onClick={() => this.deleteFavorite(favorite.id)} />
                                    <Card onClick={() => this.props.history.push(`/movies/${favorite.movie_id}`)} key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} /> </>))
 
                          }
-
-
-
 
                     </MyContainer>
 
@@ -132,5 +117,16 @@ justify-content: center;
 align-content: center;
 margin-top: 10vh;
 margin-left: 15vw;
+
+`
+
+
+const CardWrapper = styled.div`
+width: 100%;
+display: inline-flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-between
+
 
 `
