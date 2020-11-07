@@ -111,25 +111,26 @@ const MovieShow = (props) => {
                <Background>
            <Back>  <Button color='red' class="small icon backward" onClick={goBack}> Rewind</Button>  </Back>
 
-               <div className="movieShow">
-                    <h1>{movie.title}</h1>
-               
+                <div className="movieShow">
+                    {/* <h1>{movie.title}</h1> 
+                */}
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                
                      <h3 style={{color: "red", width: "800px", margin: "auto"}}>{movie.overview}</h3>
                  </div>
                 
               
-                  <Form onSubmit={submitReview}>
-                     {{show}? < TextArea  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> : {hide}  }
-                         <Button
+                  <Form >
+                     < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
+                    </Form>    
+                    <Button
+                              onClick={submitReview}
                               content='Add Review'
                               labelPosition='right'
                               icon='pencil'
                               color='red'
                               position="right"
                          />
-                    </Form>    
                   
                 <h1>Reviews</h1>
                <div className="reviewsdiv">
@@ -139,7 +140,7 @@ const MovieShow = (props) => {
                          <CommentFrame>
                          <Comment >
                          <Comment.Text  key={review.id} >{review.review} - {review.username} </Comment.Text>
-                          <img src={`/${review.avatar}`} style={{ borderRadius: "20px" }} width="75px"/>
+                          <img src={`/${review.avatar}`} style={{display: "flex"}} width="75px"/>
                          </Comment>
                          <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
                          </CommentFrame> </>
@@ -213,10 +214,12 @@ border-color: red;
 border-style: ridge;
 border-width: 5px;
 width: 500px;
+height: 160px;
 background-color: gray;
 margin: 0px auto;
 display: inline-flex;
 align-items: flex-end;
+
 `
 const Background = styled.div`
 background-color: black;

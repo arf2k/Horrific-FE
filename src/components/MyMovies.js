@@ -66,8 +66,8 @@ class MyMovies extends React.Component {
 
           return (
                <>
- 
-                    <Back> <Button icon="fast backward" labelPosition="right" color='red'  icon="fast backward" onClick={this.goBack}> Rewind </Button> </Back>
+ <Background>
+                    <Back> <Button labelPosition="right" color='red'  icon="fast backward" onClick={this.goBack}> Rewind </Button> </Back>
 
                     <h1 style={{ color: "red" }}>My Movies</h1>
                     <MyContainer>
@@ -83,11 +83,11 @@ class MyMovies extends React.Component {
                     <h1 style={{ color: "red" }}>My Reviews</h1>
 
                     {reviews.map(review => (
-                         <p style={{ color: "black" }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </p>
+                         <p style={{ color: "red" }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </p>
 
                     ))}
 
-
+</Background>
 
                </>
           )
@@ -104,8 +104,7 @@ text-align: right
 `
 
 const Background = styled.div`
-background-color: black;
-height: 100vh;
+background-color: black
 
 `
 

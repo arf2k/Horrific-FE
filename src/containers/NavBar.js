@@ -62,7 +62,7 @@ class NavBar extends React.Component {
                                              />
                                              
                                              <Menu.Item
-                                             name={`Browse Movies ${skull}`}
+                                             name='Browse Movies'
                                              as={Link}
                                              to="/movies"
                                              active={activeItem === 'Browse Movies'}

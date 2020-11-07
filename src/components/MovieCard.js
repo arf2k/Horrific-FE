@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Grid, Container} from 'semantic-ui-react';
 import styled from 'styled-components';
 import { withRouter, useHistory } from 'react-router-dom';
+import {NavLink} from 'react-router-dom'
 
 class MovieCard extends React.Component {
 
@@ -28,15 +29,13 @@ class MovieCard extends React.Component {
             
                       
                           <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`} onClick={() => {this.clickHandler()}} />
-                         <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px", color: "red", marginTop: "5px"}}>&#9760;</span>
+                        <NavLink to='/favorites'> <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px", color: "red", marginTop: "5px"}}>&#9760;</span></NavLink>
                          <Card.Content>
-                              {/* <Card.Header style={{color: "white"}}>{this.props.movie.title}</Card.Header> */}
                          </Card.Content> 
                          
                 
                         
-              {/* /* </Grid.Column> 
-                </Grid>   */ }
+            
              </CardWrapper>
                 </Background>
                 
