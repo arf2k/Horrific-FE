@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MovieList from '../components/MovieList.js'
 import MovieShow from '../components/MovieShow.js'
+import styled from 'styled-components'
 
 
 const MovieContainer = (props) => {
@@ -53,13 +54,15 @@ const MovieContainer = (props) => {
 
 
      return (
-          
           <>
-               <MovieList movies={api} submitFavorite={submitFavorite} goToShow={goToShow} />
+
+          <Background>          
+                         <MovieList movies={api} submitFavorite={submitFavorite} goToShow={goToShow} />
               
 
                {chosenMovie ? <MovieShow chosenMovie={chosenMovie} /> : null}
 
+               </Background>
           </>
 
      )
@@ -69,3 +72,9 @@ const MovieContainer = (props) => {
 
 }
 export default MovieContainer 
+
+
+const Background = styled.div`
+background-color: black;
+height: 200vh;
+`

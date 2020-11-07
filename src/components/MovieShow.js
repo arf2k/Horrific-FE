@@ -97,23 +97,31 @@ const MovieShow = (props) => {
           props.history.goBack()
      }
                     
+     const hide = (e) => {
+          e.target.style.display = "none"
+     }
+
+     const show = (e) => {
+          e.target.style.display = "block"
+     }
  
           return (
 
                <>
+               <Background>
            <Back>  <Button color='red' class="small icon backward" onClick={goBack}> Rewind</Button>  </Back>
 
                <div className="movieShow">
                     <h1>{movie.title}</h1>
                
-                    <img src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} />
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                
-                     <h3>{movie.overview}</h3>
+                     <h3 style={{color: "red", width: "800px", margin: "auto"}}>{movie.overview}</h3>
                  </div>
                 
               
                   <Form onSubmit={submitReview}>
-                         <TextArea placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} />
+                     {{show}? < TextArea  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> : {hide}  }
                          <Button
                               content='Add Review'
                               labelPosition='right'
@@ -129,11 +137,11 @@ const MovieShow = (props) => {
                      receivedReview.map(review => (
                          <>
                          <CommentFrame>
-                         <Comment>
+                         <Comment >
                          <Comment.Text  key={review.id} >{review.review} - {review.username} </Comment.Text>
                           <img src={`/${review.avatar}`} style={{ borderRadius: "20px" }} width="75px"/>
                          </Comment>
-                         <i class="small delete icon" onClick={() => deleteReview(review.id)}/>
+                         <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
                          </CommentFrame> </>
                         ))} 
                         
@@ -154,23 +162,26 @@ const MovieShow = (props) => {
                        <div className="buttondiv">
                     
      <Button onClick={clickSearch} icon labelPosition='left'>Choose Videos<Icon name='play' /></Button> </div>
-
-              <div className="viddiv">
+         <FilmContainer> 
+          <FilmBox>
+          <PlayerWrapper>
                <ReactPlayer
-                 style={{position: "absolute", top: "0", right: "0", paddingTop: "56.25%"}}
+               style={{position: "absolute", top: "0", left: "0", transform: "none"}}
                  url= {`https://www.youtube.com/watch?v=${videoPick}`}
-                 width= '50%'
-                 height='50%'
+                 width= '100%'
+                 height= '100%'
                  controls={true}
                  />
-          </div>
+               </PlayerWrapper>
+          </FilmBox>
+          </FilmContainer>
                
                <div className="vidGallery" style={{display: "inline-flex"}} >
              Click a video title to play
                  {videoList.map(item => (
                    <ul key={item.id.videoId}>
-                     <div >
-                       <b onClick={() => chooseVideo(item)}>{item.snippet.title}</b>
+                     <div style={{color: "red"}} >
+                       <b  onClick={() => chooseVideo(item)}>{item.snippet.title} </b>
                      
                      </div>
                      <img  alt="" src={item.snippet.thumbnails.default.url}/>
@@ -180,7 +191,7 @@ const MovieShow = (props) => {
                     </div>     
                          
                          
-
+                    </Background>
 
 </>
 
@@ -199,16 +210,36 @@ text-align: right
 
 const CommentFrame = styled.div`
 border-color: red;
-border-style: inset;
-border-width: 15px;
-width: 350px;
-background-color: #ffe;
+border-style: ridge;
+border-width: 5px;
+width: 500px;
+background-color: gray;
 margin: 0px auto;
 display: inline-flex;
 align-items: flex-end;
 `
-// const Background = styled.div`
-// background-color: black;
-// `
+const Background = styled.div`
+background-color: black;
+`
 
 
+const PlayerWrapper = styled.div`
+margin: auto;
+position: relative;
+padding-top: 56.25%;
+`
+
+const FilmBox = styled.div`
+height: 500px;
+width: 100%;
+max-width: 800px;
+`
+
+const FilmContainer = styled.div`
+width: 100%
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+
+`
