@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Menu}  from 'semantic-ui-react'
 
 
-let skull = <p>;</p>
 class NavBar extends React.Component {
 
     state = {

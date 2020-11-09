@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import VideoPlayer from '../components/VideoPlayer.js';
 import {Segment, Input} from 'semantic-ui-react'
+
 
 
 
@@ -52,9 +53,14 @@ class VideoContainer extends React.Component {
         this.setState({videoPick: item.id.videoId})
      } 
 
+     hide = (e) => {
+          e.target.style.display = "none"
+     }
+
 
 
      render() {
+          console.log(this.state.videoPick)
           return (
                <>
                     <p>inside the video container</p>
@@ -62,16 +68,16 @@ class VideoContainer extends React.Component {
                     <Segment textAlign="right" inverted color="black">
                          <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={this.keyDown} value={this.state.searchTerm} onChange={this.searchChange} />
                     </Segment>
-                    {/* <VideoSearch searchChange={this.searchChange} searchTerm={this.state.searchTerm} keyDown={this.keyDown}/> */}
-                    <VideoPlayer videoPick={this.state.videoPick}/>
+                    <VideoPlayer videoPick={this.state.videoPick} user={this.props.user}/>
 
-<div className="vidGallery" style={{display: "inline-flex"}} >
-     <>
+     
             {/* {this.state.videoList &&
               (this.state.videoList.length === 0
              ? <p>No results</p>
              : ( */}
-            Choose a video title to play
+
+<>
+               <div className="vidGallery" style={{display: "inline-flex"}}> 
                  {this.state.videoList.map(item => (
                    <ul key={item.id.videoId}>
                      <div >
@@ -80,10 +86,15 @@ class VideoContainer extends React.Component {
                      </div>
                      <img  alt="" src={item.snippet.thumbnails.default.url}/>
                      </ul>
+                 
                     
                  ))}
-                     </>
-                   </div> 
+                 </div>
+
+                 </>
+              
+                     
+                   
                 
      
            
@@ -105,3 +116,5 @@ class VideoContainer extends React.Component {
 }
 
 export default VideoContainer
+
+

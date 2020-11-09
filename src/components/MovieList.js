@@ -2,7 +2,6 @@ import React from 'react';
 import MovieCard from './MovieCard.js'
 import SearchForm from './SearchForm.js'
 import styled from 'styled-components'
-import { Grid, Container } from 'semantic-ui-react'
 
 class MovieList extends React.Component {
      

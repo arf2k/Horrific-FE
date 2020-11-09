@@ -58,7 +58,7 @@ function Signup(props) {
                 <div>Welcome!</div>
                 <Grid textAlign='center' style={{ marginTop: '13vh' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='teal' textAlign='center'>
+                        <Header as='h2' color='red' textAlign='center'>
                             <Icon name="pencil" /> Sign Up!
                         </Header>
                         <Form size='large' onSubmit={pwValidation}>

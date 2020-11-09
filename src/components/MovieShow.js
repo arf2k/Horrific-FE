@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 let api_key = process.env.REACT_APP_YT_API_KEY
 
-
+// class MovieShow extends React.Component {
 const MovieShow = (props) => {
   
      
@@ -18,6 +18,13 @@ const MovieShow = (props) => {
      const[videoPick, setVideoPick] = useState([])
 
      const[review, setReview] = useState("")
+     
+     // state= {
+     //      movie : [],
+     //      receivedReview : [],
+     //      review: ""
+
+     // }
 
       useEffect( () => {
           let token = localStorage.getItem("token")
@@ -33,9 +40,25 @@ const MovieShow = (props) => {
      
       })}, [props.movieId])
 
+//      componentDidMount ()  {
+//           let token = localStorage.getItem("token")
+//           fetch(`http://localhost:3001/movies/${this.props.match.params.movieId}`, {
+//                method: "GET",
+//                headers:
+//                     { Authorization: `Bearer ${token}` }
+//           })
+//                .then(resp => resp.json())
+//                .then(data => {
+//                     console.log(data)
+//                    this.setState({movie: data.single_movie})
+//                   this.setState({receivedReview: data.reviews})
+     
+//      })
+// }
 
 
-     //  setmovieId on mount 
+
+
 
 
            const submitReview = () => {
@@ -58,6 +81,44 @@ const MovieShow = (props) => {
                              
                     }
                     
+                    
+
+                    // submitReview(){
+                
+                    //      let token = localStorage.getItem("token")
+                    //      fetch(`http://localhost:3001/movies/${this.state.movie.id}/reviews`, {
+                    //           method: "POST",
+                    //           headers: {
+                    //                Authorization: `Bearer ${token}`,
+                    //                "Accepts": "application/json",
+                    //                "Content-type": "application/json"
+                    //           },
+                    //           body: JSON.stringify({ review: this.state.review, user: this.props.user, title: this.state.movie.title, username: this.props.user.username})
+                    //      })
+                    //           .then(response => response.json())
+                    //           .then(data => {
+                    //              console.log(data)
+                    //                this.update()
+                                 
+                    //           })
+                                   
+                    //           }
+
+
+                    //           update () {
+                    //                let token = localStorage.getItem("token")
+                    //           fetch(`http://localhost:3001/movies/${this.state.movie.id}`, {
+                    //                method: "GET",
+                    //                headers:
+                    //                     { Authorization: `Bearer ${token}` }
+                    //           })
+                    //                .then(resp => resp.json())
+                    //                .then(data => {
+                    //                     this.setState({ movie: data.single_movie, review: data.reviews})
+                    //                })
+                    //           }
+                              
+
 
     const deleteReview = (reviewId) => {
           let token= localStorage.getItem("token")
@@ -70,6 +131,22 @@ const MovieShow = (props) => {
           .then(data => {console.log(data)
         })
      }
+
+
+     // deleteReview = (reviewId) => {
+     //      let token= localStorage.getItem("token")
+     //      fetch(`http://localhost:3001/movies/${this.props.match.params.movieId}/reviews/${reviewId}`, {
+     //           method: "DELETE",
+     //           headers: 
+     //           {Authorization: `Bearer ${token}`}
+     //      })
+     //      .then(resp => resp.json())
+     //      .then(data => {console.log(data)
+     //           this.update()
+     //    })
+     // }
+
+
 
 
      const searchYoutube = () => {
@@ -97,110 +174,139 @@ const MovieShow = (props) => {
           props.history.goBack()
      }
                     
-     const hide = (e) => {
-          e.target.style.display = "none"
-     }
 
-     const show = (e) => {
-          e.target.style.display = "block"
-     }
  
+     // changeHandler = (e) => {
+
+     //           this.setState({review : e.target.value})
+     //      }
+
+     
+     // render() {
+
           return (
 
                <>
-               <Background>
-           <Back>  <Button color='red' class="small icon backward" onClick={goBack}> Rewind</Button>  </Back>
+                <Background>
+           <Back>  <Button color='red' onClick={goBack}> Rewind</Button>  </Back>
 
-                <div className="movieShow">
-                    {/* <h1>{movie.title}</h1> 
-                */}
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                 <div className="movieShow">
+                     <h1>{movie.title}</h1> 
+          
+                    <img alt="" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                
-                     <h3 style={{color: "red", width: "800px", margin: "auto"}}>{movie.overview}</h3>
-                 </div>
+                      <h3 style={{color: "red", width: "800px", margin: "auto"}}>{movie.overview}</h3>
+                 </div> 
                 
               
-                  <Form >
-                     < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
+                     <Form >
+                 < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
                     </Form>    
-                    <Button
-                              onClick={submitReview}
-                              content='Add Review'
-                              labelPosition='right'
-                              icon='pencil'
+                          <Button  
+                               onClick={submitReview}
+                               content='Add Review'
+                               labelPosition='right'
+                               icon='pencil'
                               color='red'
                               position="right"
-                         />
-                  
-                <h1>Reviews</h1>
-               <div className="reviewsdiv">
-                {
-                     receivedReview.map(review => (
-                         <>
-                         <CommentFrame>
-                         <Comment >
+                          /> 
+
+  
+                          {/* <Form movie={this.state.movie.id} >
+                         < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Write a review' name="review" value={this.state.review} onChange={this.changeHandler} /> 
+                        </Form>    
+                        <Button
+                                  onClick={this.submitReview}
+                                  content='Add Review'
+                                  labelPosition='right'
+                                  icon='pencil'
+                                  color='red'
+                                  position="right"
+                                  movie={this.state.movie.id}
+                             />  */}
+
+
+                   
+                 <h1>Reviews</h1>
+                <div className="reviewsdiv">
+                 { 
+                      receivedReview.map(review => (
+                          <>
+                          <CommentFrame>
+                     <Comment >
                          <Comment.Text  key={review.id} >{review.review} - {review.username} </Comment.Text>
-                          <img src={`/${review.avatar}`} style={{display: "flex"}} width="75px"/>
+                          <img alt="" src={`/${review.avatar}`} style={{display: "flex"}} width="75px"/>
                          </Comment>
-                         <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
+                          <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
                          </CommentFrame> </>
-                        ))} 
+                         ))} 
                         
-                        </div>
+                        </div> 
+
+
+            
+                        {/* <h1>Reviews</h1>
+                        <div className="reviewsdiv">
+                         {
+                              this.state.receivedReview.map(review => (
+                                  <>
+                                  <CommentFrame>
+                                  <Comment >
+                                  <Comment.Text  key={review.id} >{review.review} - {review.username} </Comment.Text>
+                                   <img src={`/${review.avatar}`} style={{display: "flex"}} width="75px"/>
+                                  </Comment>
+                                  <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => this.deleteReview(review.id)}/>
+                                  </CommentFrame> </>
+                                 ))} 
+                                 
+                                 </div> */}
+
+
+
+
           
                          
-                    {/* {updateReview.review? 
-                            <>
-                            <CommentFrame>
-                             <Comment>
-                             <Comment.Text  key={updateReview.id} >{updateReview.review} - {updateReview.username} </Comment.Text>
-                              <img src={`/${updateReview.avatar}`} style={{ borderRadius: "20px" }} width="75px"/>
-                             </Comment>
-                             <i class="small delete icon" onClick={() => deleteReview(updateReview.id)}/>
-                             </CommentFrame> </>
-                             
-                       : null } */}
-                       <div className="buttondiv">
+              
                     
-     <Button onClick={clickSearch} icon labelPosition='left'>Choose Videos<Icon name='play' /></Button> </div>
+       <div className="buttondiv"> <Button onClick={clickSearch} icon labelPosition='left'>Clips & Trailers<Icon name='play' /></Button> </div>
          <FilmContainer> 
-          <FilmBox>
-          <PlayerWrapper>
-               <ReactPlayer
-               style={{position: "absolute", top: "0", left: "0", transform: "none"}}
-                 url= {`https://www.youtube.com/watch?v=${videoPick}`}
-                 width= '100%'
-                 height= '100%'
+           <FilmBox>
+           <PlayerWrapper>
+               <ReactPlayer 
+                style={{position: "absolute", top: "0", left: "0", transform: "none"}}
+                  url= {`https://www.youtube.com/watch?v=${videoPick}`}
+                  width= '100%'
+                  height= '100%'
                  controls={true}
-                 />
-               </PlayerWrapper>
-          </FilmBox>
-          </FilmContainer>
+                  />
+                </PlayerWrapper>
+           </FilmBox>
+          </FilmContainer> 
                
-               <div className="vidGallery" style={{display: "inline-flex"}} >
-             Click a video title to play
-                 {videoList.map(item => (
-                   <ul key={item.id.videoId}>
-                     <div style={{color: "red"}} >
-                       <b  onClick={() => chooseVideo(item)}>{item.snippet.title} </b>
+                <div className="vidGallery" style={{display: "inline-flex"}} >
+              Click a video title to play
+                  {videoList.map(item => (
+                    <ul key={item.id.videoId}>
+                      <div style={{color: "red"}} >
+                        <b  onClick={() => chooseVideo(item)}>{item.snippet.title} </b>
                      
-                     </div>
-                     <img  alt="" src={item.snippet.thumbnails.default.url}/>
-                     </ul>
+                      </div>
+                    <img  alt="" src={item.snippet.thumbnails.default.url}/>
+                      </ul>
                     
                  ))}
-                    </div>     
+                    </div>      
                          
                          
-                    </Background>
+                     </Background> 
 
 </>
 
-          )
+          )   
               
-                }    
-                
-
+                  }
+               
+     
 
 
 export default MovieShow
