@@ -192,17 +192,46 @@ const MovieShow = (props) => {
                 <Background>
            <Back>  <Button color='red' onClick={goBack}> Rewind</Button>  </Back>
 
-                 <div className="movieShow">
-                     {/* <h1>{movie.title}</h1>  */}
+               <div className="movieandreviews" style={{display: "flex", justifyContent: "center"}}>
+                 <div className="movieShow" style={{marginLeft: "150px"}} >
+               
           
                     <img alt="" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                
-                      <h3 style={{color: "red", width: "800px", margin: "auto"}}>{movie.overview}</h3>
-                 </div> 
+                      <h3 style={{color: "red", width: "600px"}}>{movie.overview}</h3>
+                                   </div>
+                <div className="reviewsformdiv" style={{marginTop: "300px"}}>
+                     <div className="reviews">
+                 { 
+                      receivedReview.map(review => (
+                          <>
+                          <CommentFrame>
+                     <Comment >
+                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "80px", textAlign: "center"}} key={review.id} >{review.review} 
+                         <p style={{textAlign: "right"}}>  - {review.username} </p>
+                         </Comment.Text>
+                          <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginTop: "-45px"}} width ="55px"/>
+                         </Comment>
+                          <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
+                         </CommentFrame> </>
+                         ))} 
+                        
+                        </div>
+                
+                
+                 
                 
               
+
+                
+
+                        
+
+
+
+                         <div className="formdiv">
                      <Form >
-                 < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
+                 < TextArea style={{width: "600px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
                     </Form>    
                           <Button  
                                onClick={submitReview}
@@ -212,6 +241,10 @@ const MovieShow = (props) => {
                               color='red'
                               position="right"
                           /> 
+                          </div>
+     </div> 
+</div> 
+
 
   
                             {/* <Form >
@@ -229,27 +262,9 @@ const MovieShow = (props) => {
 
 
                    
-                 <h1>Reviews</h1>
-                <div className="reviewsdiv">
-                 { 
-                      receivedReview.map(review => (
-                          <>
-                          <CommentFrame>
-                     <Comment >
-                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "80px", textAlign: "center"}} key={review.id} >{review.review} 
-                         <p style={{textAlign: "right"}}>  - {review.username} </p>
-                         </Comment.Text>
-                          <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginTop: "-45px"}} width ="55px"/>
-                         </Comment>
-                          <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
-                         </CommentFrame> </>
-                         ))} 
-                        
-                        </div> 
-
-
+          
             
-                        <h1>Reviews</h1>
+                     
                         {/* <div className="reviewsdiv">
                          {
                               this.state.receivedReview.map(review => (
