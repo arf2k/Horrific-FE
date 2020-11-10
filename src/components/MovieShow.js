@@ -35,8 +35,10 @@ const MovieShow = (props) => {
           })
                .then(resp => resp.json())
                .then(data => {
+                    console.log(data)
                    setMovie(data.single_movie)
                    setReceivedReview(data.reviews)
+                   
      
       })}, [props.movieId])
 
@@ -77,7 +79,10 @@ const MovieShow = (props) => {
                     .then(response => response.json())
                     .then(data => {
                        console.log(data)
-                    //    updateReviews()
+                    
+                         setReceivedReview(data)
+                         setReview("")
+                      
                        
                     })
                              
@@ -107,18 +112,18 @@ const MovieShow = (props) => {
                     //           }
 
 
-                              const updateReviews = () => {
-                                   let token = localStorage.getItem("token")
-                              fetch(`http://localhost:3001/movies/${props.match.params.movieId}`, {
-                                   method: "GET",
-                                   headers:
-                                        { Authorization: `Bearer ${token}` }
-                              })
-                                   .then(resp => resp.json())
-                                   .then(data => {
-                                        setReceivedReview(data.reviews)
-                                   })
-                              }
+                              // const updateReviews = () => {
+                              //      let token = localStorage.getItem("token")
+                              // fetch(`http://localhost:3001/movies/${props.match.params.movieId}`, {
+                              //      method: "GET",
+                              //      headers:
+                              //           { Authorization: `Bearer ${token}` }
+                              // })
+                              //      .then(resp => resp.json())
+                              //      .then(data => {
+                              //           setReceivedReview(data.reviews)
+                              //      })
+                              // }
                               
 
 
@@ -200,19 +205,22 @@ const MovieShow = (props) => {
                
                       <h3 style={{color: "red", width: "600px"}}>{movie.overview}</h3>
                                    </div>
-                <div className="reviewsformdiv" style={{marginTop: "300px"}}>
+                <div className="reviewsformdiv" style={{marginTop: "150px"}}>
                      <div className="reviews">
                  { 
                       receivedReview.map(review => (
                           <>
                           <CommentFrame>
-                     <Comment >
-                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "80px", textAlign: "center"}} key={review.id} >{review.review} 
-                         <p style={{textAlign: "right"}}>  - {review.username} </p>
+                       <div className="commentpic">      
+                     <Comment >                     
+                         <h5 style={{textAlign: "left", marginLeft: "5px", color: "red", marginTop: "5x"}}>  {review.username} - </h5>
+                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "120px", marginTop: "-18px", textAlign: "start", marginRight: "5px"}} key={review.id} >{review.review}
+                       
                          </Comment.Text>
-                          <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginTop: "-45px"}} width ="55px"/>
+                          <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginLeft: "10px", marginTop: "-35px", position: "absolute", bottom: "0", marginBottom: "10px"}} width ="60px" height= "75px"/>
                          </Comment>
-                          <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
+                         </div>
+                          <i style={{marginInlineStart: "auto", color: "red"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
                          </CommentFrame> </>
                          ))} 
                         
@@ -229,7 +237,7 @@ const MovieShow = (props) => {
 
 
 
-                         <div className="formdiv">
+                         <div className="formdiv" style={{marginTop: "200px"}}>
                      <Form >
                  < TextArea style={{width: "600px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
                     </Form>    
@@ -286,7 +294,7 @@ const MovieShow = (props) => {
           
                          
               
-                    
+              <div className="buttonandvideo" style={{marginTop: "50px"}}>      
         <div className="buttondiv"> <Button onClick={clickSearch} icon labelPosition='left'>Clips & Trailers<Icon name='play' /></Button> </div>
          <FilmContainer> 
            <FilmBox>
@@ -301,6 +309,7 @@ const MovieShow = (props) => {
                 </PlayerWrapper>
            </FilmBox>
           </FilmContainer> 
+          </div>
                
                 <div className="vidGallery" style={{display: "inline-flex"}} >
               Click a video title to play
@@ -339,12 +348,13 @@ const CommentFrame = styled.div`
 border-color: red;
 border-style: ridge;
 border-width: 5px;
-width: 400px;
-height: 100px;
+width: 500px;
+height: 130px;
 background-color: #343A40;
 margin: 10px auto;
 display: grid;
-align-items: flex-end;
+position: relative;
+
 
 `
 
