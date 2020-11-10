@@ -52,13 +52,7 @@ class NavBar extends React.Component {
                                              />
                                              </>
                                         }
-                                          <Menu.Item
-                                             name='Home'
-                                             as={Link}
-                                             to="/"
-                                             active={activeItem === 'Home'}
-                                             onClick={this.handleItemClick}
-                                             />
+
                                              
                                              <Menu.Item
                                              name='Browse Movies'

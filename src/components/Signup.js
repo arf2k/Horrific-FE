@@ -165,10 +165,10 @@ function Signup(props) {
                         />
                     </Choose>
                 </Avatars>
-                <span style={{ fontSize: "1em" }}>Pick your Villain </span>
+                <span style={{ fontSize: "3em", color: "red" }}>Pick your Villain </span>
             </div>
     } else {
-        props.history.push("/")
+        props.history.push("/movies")
     }
     return (
         result)

@@ -130,10 +130,10 @@ goBack = () => {
                    {comments.map(comment => (
                          <CommentFrame>
                      <Comment >
-                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "80px"}}  key={comment.id} >{comment.comment} 
-                         <p style={{textAlign: "right"}}>  - {comment.username} </p>
+                     <h5 style={{textAlign: "left", marginLeft: "5px", color: "red"}}>  - {comment.username} </h5>
+                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "120px", marginTop: "-18px", textAlign: "start", marginRight: "5px"}} key={comment.id} >{comment.comment} 
                          </Comment.Text>
-                          <img alt="" src={`/${comment.avatar}`} style={{display: "flex", marginTop: "-50px", width: "50px"}} />
+                          <img alt="" src={`/${comment.avatar}`} style={{display: "flex", marginLeft: "10px", marginTop: "-35px", position: "absolute", bottom: "0", marginBottom: "10px"}} width= "60px" height= "75px" />
                          </Comment>
                          </CommentFrame>  
           ))} 
@@ -196,12 +196,12 @@ const CommentFrame = styled.div`
 border-color: red;
 border-style: ridge;
 border-width: 5px;
-width: 400px;
-height: 100px;
+width: 500px;
+height: 130px;
 background-color: #343A40;
 margin: 10px auto;
 display: grid;
-align-items: flex-end;
+position: relative;
 
 `
 
