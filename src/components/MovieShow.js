@@ -185,7 +185,7 @@ const MovieShow = (props) => {
           </FilmContainer> 
           </div>
                
-                <div className="vidGallery" style={{display: "inline-flex"}} >
+                <div className="vidGallery" style={{display: "inline-flex", marginLeft: "100px"}} >
               Click a video title to play
                   {videoList.map(item => (
                     <ul key={item.id.videoId}>

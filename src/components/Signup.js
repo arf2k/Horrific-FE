@@ -53,6 +53,7 @@ function Signup(props) {
     let result = <></>
     if (!localStorage.getItem("token")) {
         result =
+        <Background>
             <div>
 
                 <div>Welcome!</div>
@@ -103,18 +104,18 @@ function Signup(props) {
                             value='assets/avatars/MichaelMyers.jpg'
                             checked={avatar === 'assets/avatars/MichaelMyers.jpg'}
                             onChange={radioHandler}
-                            style={{ fontSize: "18px", marginTop: "15px" }}
+                            style={{ fontSize: "18px", marginTop: "15px", color: "red" }}
                         />
                     </Choose>
                     <Choose>
                         <Avatar src={'assets/avatars/Carrie.jpg'} />
                         <Radio
-                            label='Carrie'
+                            label ='Carrie' 
                             name='avatar'
                             value='assets/avatars/Carrie.jpg'
                             checked={avatar === 'assets/avatars/Carrie.jpg'}
                             onChange={radioHandler}
-                            style={{ fontSize: "18px", marginTop: "15px" }}
+                            style={{ fontSize: "18px", marginTop: "15px", color: "red" }}
                         />
                     </Choose>
                     <Choose>
@@ -165,8 +166,10 @@ function Signup(props) {
                         />
                     </Choose>
                 </Avatars>
-                <span style={{ fontSize: "3em", color: "red" }}>Pick your Villain </span>
+                <br></br>
+                <span style={{ fontSize: "2em", color: "red", marginTop: "400px" }}>Pick your Villain </span>
             </div>
+            </Background>
     } else {
         props.history.push("/movies")
     }
@@ -179,14 +182,15 @@ function Signup(props) {
 export default Signup
 
 const Avatars = styled.div`
-    margin: 170px auto;
-    margin-bottom: 10px;
+    margin-left: 300px;
+    margin-top: 50px;
     text-align: center;
     display: flex;
     justify-content: space-between;
     width: 70%;
     flex-wrap: wrap;
     align-content: stretch;
+    color: red;
 `
 const Choose = styled.div`
 `
@@ -198,3 +202,10 @@ const Avatar = styled.img`
     z-index: 10;
     position: relative;
     `
+
+
+const Background = styled.div`
+background-color: black;
+height: 100vh;
+
+`

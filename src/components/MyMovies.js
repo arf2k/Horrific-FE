@@ -79,7 +79,7 @@ class MyMovies extends React.Component {
                               }
                          </MyContainer>
 
-                         <h1 style={{ color: "red" }}>My Reviews</h1>
+                         <h1 style={{ color: "red", marginTop: "100px" }}>My Reviews</h1>
         
                                                      
                                    {reviews.map(review => (

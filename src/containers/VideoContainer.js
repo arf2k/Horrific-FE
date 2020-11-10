@@ -2,6 +2,7 @@ import React from 'react';
 import VideoPlayer from '../components/VideoPlayer.js';
 import {Segment, Input} from 'semantic-ui-react';
 import VideoPlayback from '../components/VideoPlayback.js'
+import styled from 'styled-components'
 
 
 
@@ -65,11 +66,12 @@ class VideoContainer extends React.Component {
      render() {
           return (
                <>
+               <Background>
                     <Segment textAlign="right" inverted color="black">
                          <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={this.keyDown} value={this.state.searchTerm} onChange={this.searchChange} />
                     </Segment>
                     <VideoPlayer videoPick={this.state.videoPick} user={this.props.user} videoInfo={this.state.videoInfo} videoList={this.state.videoList}/>
-                
+                    </Background>
                 
               </>
           )
@@ -84,5 +86,11 @@ class VideoContainer extends React.Component {
 }
 
 export default VideoContainer
+
+
+const Background = styled.div`
+background-color: black;
+
+`
 
 

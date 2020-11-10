@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
+import styled from 'styled-components'
 
 function Login(props) {
-
+   
      const [username, setUsername] = useState('')
      const [password, setPassword] = useState('')
 
@@ -21,11 +22,13 @@ function Login(props) {
      }
      let result = <></>
      if (!localStorage.getItem("token")) {
+        
           result =
+          <Background>
                <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
                          <Header as='h2' color='red' textAlign='center'>
-                              <Image  src='/logo.png' /> Log-in to your account
+                               Log-in to your account
             </Header>
                          <Form size='large' onSubmit={props.loginHandler} >
                               <Segment stacked>
@@ -41,7 +44,7 @@ function Login(props) {
                                         value={password}
                                    />
 
-                                   <Button color='' fluid size='large'>
+                                   <Button  color="red" fluid size='large'>
                                         Login
                                    </Button>
                                    </Segment>
@@ -52,10 +55,15 @@ function Login(props) {
                          </Grid.Column>
                     </Grid>
             
-          
+          </Background>
      }
      return (result)}
 
 
 
 export default Login
+
+
+const Background = styled.div`
+background-color: black;
+`

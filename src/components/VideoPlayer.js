@@ -67,7 +67,7 @@ changeHandler = (e) => {
                </FilmContainer>
 
                <Form >
-                 < TextArea style={{width: "600px", marginTop: "0px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} /> 
+                 < TextArea style={{width: "700px", height: "50px", marginTop: "0px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} /> 
                  <Button           
                                onClick={this.submitComment}
                                content='Add Comment'
@@ -75,7 +75,7 @@ changeHandler = (e) => {
                                icon='pencil'
                               color='red'
                               position="right"
-                              style={{marginTop: "40px" }}
+                              style={{marginTop: "15px" }}
                           />
                     </Form>
 
