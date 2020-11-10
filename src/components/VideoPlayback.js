@@ -130,10 +130,10 @@ goBack = () => {
                    {comments.map(comment => (
                          <CommentFrame>
                      <Comment >
-                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "50px"}}  key={comment.id} >{comment.comment} 
-                         <p>  - {comment.username} </p>
+                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "80px"}}  key={comment.id} >{comment.comment} 
+                         <p style={{textAlign: "right"}}>  - {comment.username} </p>
                          </Comment.Text>
-                          <img alt="" src={`/${comment.avatar}`} style={{display: "flex", marginTop: "-50px", width: "55px"}} />
+                          <img alt="" src={`/${comment.avatar}`} style={{display: "flex", marginTop: "-50px", width: "50px"}} />
                          </Comment>
                          </CommentFrame>  
           ))} 

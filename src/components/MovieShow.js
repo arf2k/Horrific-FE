@@ -236,8 +236,10 @@ const MovieShow = (props) => {
                           <>
                           <CommentFrame>
                      <Comment >
-                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "50px"}} key={review.id} >{review.review} - {review.username} </Comment.Text>
-                          <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginTop: "-50px"}} width ="55px"/>
+                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "80px", textAlign: "center"}} key={review.id} >{review.review} 
+                         <p style={{textAlign: "right"}}>  - {review.username} </p>
+                         </Comment.Text>
+                          <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginTop: "-45px"}} width ="55px"/>
                          </Comment>
                           <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
                          </CommentFrame> </>

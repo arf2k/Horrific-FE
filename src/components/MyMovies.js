@@ -79,13 +79,15 @@ class MyMovies extends React.Component {
                          </MyContainer>
 
                          <h1 style={{ color: "red" }}>My Reviews</h1>
-<Background>
-                         {reviews.map(review => (
-                              <List divided relaxed style={{ color: "red" }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
-                             
+        
+                                                     
+                                   {reviews.map(review => (
+                              <CommentFrame> 
+                              <List class="forward icon" divided relaxed style={{ color: "red" }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
+                              </CommentFrame>
                          ))}
 
-</Background>
+
 
               
                </Background>
@@ -118,6 +120,18 @@ justify-content: center;
 align-content: center;
 margin-top: 0vh;
 margin-left: 15vw;
+
+`
+const CommentFrame = styled.div`
+border-color: red;
+border-style: ridge;
+border-width: 5px;
+width: 1000px;
+height: 50px;
+background-color: #343A40;
+margin: 10px auto;
+display: grid;
+align-items: flex-end;
 
 `
 

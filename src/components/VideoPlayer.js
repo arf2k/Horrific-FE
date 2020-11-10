@@ -50,7 +50,8 @@ changeHandler = (e) => {
      render(){
           return(
              <>
-             <h1>Search and Discuss New Content</h1>
+             <Background>
+             <h1 style={{color: "red"}}>Search and Discuss New Content</h1>
               <FilmContainer> 
                    <FilmBox>
                <PlayerWrapper>
@@ -82,7 +83,7 @@ changeHandler = (e) => {
                  {this.props.videoList.map(item => (
                    <ul key={item.id.videoId}>
                      <div >
-                       <b onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
+                       <b style={{color: "red"}} onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
                      
                      </div>
                      <img  alt="" src={item.snippet.thumbnails.default.url}/>
@@ -92,7 +93,8 @@ changeHandler = (e) => {
                  ))}
                  </div>
     
-           
+                 </Background>
+
 </>
         
           )
@@ -104,6 +106,10 @@ changeHandler = (e) => {
 
 export default VideoPlayer
 
+const Background = styled.div`
+background-color: black;
+height: 100vh;
+`
 
 
 
