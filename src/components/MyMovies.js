@@ -67,28 +67,28 @@ class MyMovies extends React.Component {
           return (
                <>
                     <Background>
-                         <Back> <Button labelPosition="right" color='red' icon="fast backward" onClick={this.goBack}> Rewind </Button> </Back>
+                         <Back> <Button labelPosition="right" color='red' icon="fast backward" onClick={this.goBack}>Rewind</Button> </Back>
 
                          <h1 style={{ color: "red" }}>My Movies</h1>
                          <MyContainer>
 
                               {favorites.map(favorite => (
-                                   <> <i class="small delete icon" onClick={() => this.deleteFavorite(favorite.id)} />
-                                        <Card onClick={() => this.props.history.push(`/movies/${favorite.movie_id}`)} key={favorite.id} raised image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} /> </>))
-
+                                   <> <i class="small delete icon" style={{color: "red"}} onClick={() => this.deleteFavorite(favorite.id)} />
+                                        <Card style={{marginBottom: "0"}} onClick={() => this.props.history.push(`/movies/${favorite.movie_id}`)} key={favorite.id} image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`} /> </>))
                               }
-
                          </MyContainer>
 
                          <h1 style={{ color: "red" }}>My Reviews</h1>
-
+<Background>
                          {reviews.map(review => (
                               <List divided relaxed style={{ color: "red" }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
-
+                             
                          ))}
 
-                    </Background>
+</Background>
 
+              
+               </Background>
                </>
           )
 
@@ -104,7 +104,9 @@ text-align: right
 `
 
 const Background = styled.div`
-background-color: black
+background-color: black;
+height: 200vh;
+
 
 `
 
@@ -114,18 +116,9 @@ flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
 align-content: center;
-margin-top: 10vh;
+margin-top: 0vh;
 margin-left: 15vw;
 
 `
 
 
-const CardWrapper = styled.div`
-width: 100%;
-display: inline-flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: space-between
-
-
-`

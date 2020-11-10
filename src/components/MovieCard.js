@@ -29,7 +29,7 @@ class MovieCard extends React.Component {
             
                       
                           <Card raised image={`https://image.tmdb.org/t/p/w185${this.props.movie.poster_path}`} onClick={() => {this.clickHandler()}} />
-                        <NavLink to="/favorites">  <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px", color: "red", marginTop: "5px"}}>&#9760;</span></NavLink>
+                        <span onClick={() => {this.props.submitFavorite(this.props.movie)}} style={{fontSize: "70px", color: "red", marginTop: "5px"}}>&#9760;</span>
                          <Card.Content>
                          </Card.Content> 
                          

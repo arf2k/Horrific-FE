@@ -77,8 +77,15 @@ class NavBar extends React.Component {
                                         <Menu.Item
                                              name='Community Videos'
                                              as={Link}
-                                             to="/video_player"
+                                             to="/community_videos"
                                              active={activeItem === 'Community Videos'}
+                                             onClick={this.handleItemClick}
+                                             />   
+                                        <Menu.Item
+                                             name='Explore Videos'
+                                             as={Link}
+                                             to="/video_search"
+                                             active={activeItem === 'Explore Videos'}
                                              onClick={this.handleItemClick}
                                              />   
                                         </Menu>

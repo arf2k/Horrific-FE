@@ -40,6 +40,7 @@ const MovieShow = (props) => {
      
       })}, [props.movieId])
 
+     //  [props.movieId]
 //      componentDidMount ()  {
 //           let token = localStorage.getItem("token")
 //           fetch(`http://localhost:3001/movies/${this.props.match.params.movieId}`, {
@@ -76,6 +77,7 @@ const MovieShow = (props) => {
                     .then(response => response.json())
                     .then(data => {
                        console.log(data)
+                    //    updateReviews()
                        
                     })
                              
@@ -84,7 +86,7 @@ const MovieShow = (props) => {
                     
 
                     // submitReview(){
-                
+             
                     //      let token = localStorage.getItem("token")
                     //      fetch(`http://localhost:3001/movies/${this.state.movie.id}/reviews`, {
                     //           method: "POST",
@@ -98,25 +100,25 @@ const MovieShow = (props) => {
                     //           .then(response => response.json())
                     //           .then(data => {
                     //              console.log(data)
-                    //                this.update()
+                    //                this.updateReviews()
                                  
                     //           })
                                    
                     //           }
 
 
-                    //           update () {
-                    //                let token = localStorage.getItem("token")
-                    //           fetch(`http://localhost:3001/movies/${this.state.movie.id}`, {
-                    //                method: "GET",
-                    //                headers:
-                    //                     { Authorization: `Bearer ${token}` }
-                    //           })
-                    //                .then(resp => resp.json())
-                    //                .then(data => {
-                    //                     this.setState({ movie: data.single_movie, review: data.reviews})
-                    //                })
-                    //           }
+                              const updateReviews = () => {
+                                   let token = localStorage.getItem("token")
+                              fetch(`http://localhost:3001/movies/${props.match.params.movieId}`, {
+                                   method: "GET",
+                                   headers:
+                                        { Authorization: `Bearer ${token}` }
+                              })
+                                   .then(resp => resp.json())
+                                   .then(data => {
+                                        setReceivedReview(data.reviews)
+                                   })
+                              }
                               
 
 
@@ -191,7 +193,7 @@ const MovieShow = (props) => {
            <Back>  <Button color='red' onClick={goBack}> Rewind</Button>  </Back>
 
                  <div className="movieShow">
-                     <h1>{movie.title}</h1> 
+                     {/* <h1>{movie.title}</h1>  */}
           
                     <img alt="" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                
@@ -212,7 +214,7 @@ const MovieShow = (props) => {
                           /> 
 
   
-                          {/* <Form movie={this.state.movie.id} >
+                            {/* <Form >
                          < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Write a review' name="review" value={this.state.review} onChange={this.changeHandler} /> 
                         </Form>    
                         <Button
@@ -222,8 +224,8 @@ const MovieShow = (props) => {
                                   icon='pencil'
                                   color='red'
                                   position="right"
-                                  movie={this.state.movie.id}
-                             />  */}
+          
+                             />    */}
 
 
                    
@@ -234,8 +236,8 @@ const MovieShow = (props) => {
                           <>
                           <CommentFrame>
                      <Comment >
-                         <Comment.Text  key={review.id} >{review.review} - {review.username} </Comment.Text>
-                          <img alt="" src={`/${review.avatar}`} style={{display: "flex"}} width="75px"/>
+                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "50px"}} key={review.id} >{review.review} - {review.username} </Comment.Text>
+                          <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginTop: "-50px"}} width ="55px"/>
                          </Comment>
                           <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
                          </CommentFrame> </>
@@ -245,8 +247,8 @@ const MovieShow = (props) => {
 
 
             
-                        {/* <h1>Reviews</h1>
-                        <div className="reviewsdiv">
+                        <h1>Reviews</h1>
+                        {/* <div className="reviewsdiv">
                          {
                               this.state.receivedReview.map(review => (
                                   <>
@@ -268,7 +270,7 @@ const MovieShow = (props) => {
                          
               
                     
-       <div className="buttondiv"> <Button onClick={clickSearch} icon labelPosition='left'>Clips & Trailers<Icon name='play' /></Button> </div>
+        <div className="buttondiv"> <Button onClick={clickSearch} icon labelPosition='left'>Clips & Trailers<Icon name='play' /></Button> </div>
          <FilmContainer> 
            <FilmBox>
            <PlayerWrapper>
@@ -295,7 +297,7 @@ const MovieShow = (props) => {
                       </ul>
                     
                  ))}
-                    </div>      
+                    </div>       
                          
                          
                      </Background> 
@@ -305,7 +307,7 @@ const MovieShow = (props) => {
           )   
               
                   }
-               
+
      
 
 
@@ -315,18 +317,22 @@ const Back = styled.div`
 text-align: right
 `
 
+
 const CommentFrame = styled.div`
 border-color: red;
 border-style: ridge;
 border-width: 5px;
-width: 500px;
-height: 160px;
-background-color: gray;
-margin: 0px auto;
-display: inline-flex;
+width: 400px;
+height: 100px;
+background-color: #343A40;
+margin: 10px auto;
+display: grid;
 align-items: flex-end;
 
 `
+
+
+
 const Background = styled.div`
 background-color: black;
 `

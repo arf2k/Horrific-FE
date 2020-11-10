@@ -8,7 +8,9 @@ let api_key = process.env.REACT_APP_YT_API_KEY
 class VideoPlayer extends React.Component {
 
      state = {
-          comment: ""
+          comment: "",
+          videoPick: "",
+          videoInfo: []
      }
 
 
@@ -19,7 +21,6 @@ changeHandler = (e) => {
 }
  
      submitComment = () => {
-
           let token = localStorage.getItem("token")
           fetch(`http://localhost:3001/videos/comments`, {
                method: "POST",
@@ -28,7 +29,7 @@ changeHandler = (e) => {
                     "Accepts": "application/json",
                     "Content-type": "application/json"
                },
-               body: JSON.stringify({ comment: this.state.comment, user: this.props.user, avatar: this.props.user.avatar, username: this.props.user.username, yt_id: this.props.videoPick, id:this.props.videoPick})
+               body: JSON.stringify({ comment: this.state.comment, user: this.props.user, avatar: this.props.user.avatar, username: this.props.user.username, yt_id: this.state.videoPick, id:this.state.videoPick, title: this.state.videoInfo.snippet.title, thumbnail: this.state.videoInfo.snippet.thumbnails.default.url })
           })
                .then(response => response.json())
                .then(data => {
@@ -38,19 +39,24 @@ changeHandler = (e) => {
                         
                }
                
+               chooseVideo = (item) => {
+                    this.setState({videoPick: item.id.videoId})
+                    this.setState({videoInfo: item})
+                 } 
+
 
 
 
      render(){
           return(
              <>
-               <h1>Community Videos- inside the videoplayer</h1>
+             <h1>Search and Discuss New Content</h1>
               <FilmContainer> 
                    <FilmBox>
                <PlayerWrapper>
                <ReactPlayer
                  style={{position: "absolute", top: "0", left: "0"}}
-                 url={`https://www.youtube.com/watch?v=${this.props.videoPick}`}
+                 url={`https://www.youtube.com/watch?v=${this.state.videoPick}`}
                  width= '100%'
                  height='100%'
                  controls={true}
@@ -60,18 +66,31 @@ changeHandler = (e) => {
                </FilmContainer>
 
                <Form >
-                 < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} /> 
-                    </Form>    
-                          <Button  
+                 < TextArea style={{width: "800px", marginTop: "0px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} /> 
+                 <Button  
                                onClick={this.submitComment}
-                               content='Add Review'
+                               content='Add Comment'
                                labelPosition='right'
                                icon='pencil'
                               color='red'
                               position="right"
-                          /> 
+                          />
+                    </Form>
 
 
+               <div className="vidGallery" style={{display: "inline-flex"}}> 
+                 {this.props.videoList.map(item => (
+                   <ul key={item.id.videoId}>
+                     <div >
+                       <b onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
+                     
+                     </div>
+                     <img  alt="" src={item.snippet.thumbnails.default.url}/>
+                     </ul>
+                 
+                    
+                 ))}
+                 </div>
     
            
 </>

@@ -1,6 +1,7 @@
 import React from 'react';
 import VideoPlayer from '../components/VideoPlayer.js';
-import {Segment, Input} from 'semantic-ui-react'
+import {Segment, Input} from 'semantic-ui-react';
+import VideoPlayback from '../components/VideoPlayback.js'
 
 
 
@@ -13,7 +14,8 @@ class VideoContainer extends React.Component {
       
           searchTerm: "",
           videoList: [],
-          videoPick: ""
+          videoPick: "",
+          videoInfo: []
 
      }
 
@@ -51,6 +53,7 @@ class VideoContainer extends React.Component {
 
      chooseVideo = (item) => {
         this.setState({videoPick: item.id.videoId})
+        this.setState({videoInfo: item})
      } 
 
      hide = (e) => {
@@ -60,50 +63,15 @@ class VideoContainer extends React.Component {
 
 
      render() {
-          console.log(this.state.videoPick)
           return (
                <>
-                    <p>inside the video container</p>
-
                     <Segment textAlign="right" inverted color="black">
                          <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={this.keyDown} value={this.state.searchTerm} onChange={this.searchChange} />
                     </Segment>
-                    <VideoPlayer videoPick={this.state.videoPick} user={this.props.user}/>
-
-     
-            {/* {this.state.videoList &&
-              (this.state.videoList.length === 0
-             ? <p>No results</p>
-             : ( */}
-
-<>
-               <div className="vidGallery" style={{display: "inline-flex"}}> 
-                 {this.state.videoList.map(item => (
-                   <ul key={item.id.videoId}>
-                     <div >
-                       <b onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
-                     
-                     </div>
-                     <img  alt="" src={item.snippet.thumbnails.default.url}/>
-                     </ul>
-                 
-                    
-                 ))}
-                 </div>
-
-                 </>
-              
-                     
-                   
+                    <VideoPlayer videoPick={this.state.videoPick} user={this.props.user} videoInfo={this.state.videoInfo} videoList={this.state.videoList}/>
                 
-     
-           
-         
-
-
-
-
-               </>
+                
+              </>
           )
      }
 
