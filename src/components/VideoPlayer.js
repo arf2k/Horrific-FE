@@ -67,19 +67,20 @@ changeHandler = (e) => {
                </FilmContainer>
 
                <Form >
-                 < TextArea style={{width: "800px", marginTop: "0px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} /> 
-                 <Button  
+                 < TextArea style={{width: "600px", marginTop: "0px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} /> 
+                 <Button           
                                onClick={this.submitComment}
                                content='Add Comment'
                                labelPosition='right'
                                icon='pencil'
                               color='red'
                               position="right"
+                              style={{marginTop: "40px" }}
                           />
                     </Form>
 
 
-               <div className="vidGallery" style={{display: "inline-flex"}}> 
+               <div className="vidGallery" style={{display: "flex", marginLeft: "250px", marginTop: "50px"}}> 
                  {this.props.videoList.map(item => (
                    <ul key={item.id.videoId}>
                      <div >

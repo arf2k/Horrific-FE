@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 let api_key = process.env.REACT_APP_YT_API_KEY
 
-// class MovieShow extends React.Component {
+
 const MovieShow = (props) => {
   
      
@@ -19,12 +19,7 @@ const MovieShow = (props) => {
 
      const[review, setReview] = useState("")
      
-     // state= {
-     //      movie : [],
-     //      receivedReview : [],
-     //      review: ""
-
-     // }
+  
 
       useEffect( () => {
           let token = localStorage.getItem("token")
@@ -42,22 +37,7 @@ const MovieShow = (props) => {
      
       })}, [props.movieId])
 
-     //  [props.movieId]
-//      componentDidMount ()  {
-//           let token = localStorage.getItem("token")
-//           fetch(`http://localhost:3001/movies/${this.props.match.params.movieId}`, {
-//                method: "GET",
-//                headers:
-//                     { Authorization: `Bearer ${token}` }
-//           })
-//                .then(resp => resp.json())
-//                .then(data => {
-//                     console.log(data)
-//                    this.setState({movie: data.single_movie})
-//                   this.setState({receivedReview: data.reviews})
-     
-//      })
-// }
+
 
 
 
@@ -90,41 +70,6 @@ const MovieShow = (props) => {
                     
                     
 
-                    // submitReview(){
-             
-                    //      let token = localStorage.getItem("token")
-                    //      fetch(`http://localhost:3001/movies/${this.state.movie.id}/reviews`, {
-                    //           method: "POST",
-                    //           headers: {
-                    //                Authorization: `Bearer ${token}`,
-                    //                "Accepts": "application/json",
-                    //                "Content-type": "application/json"
-                    //           },
-                    //           body: JSON.stringify({ review: this.state.review, user: this.props.user, title: this.state.movie.title, username: this.props.user.username})
-                    //      })
-                    //           .then(response => response.json())
-                    //           .then(data => {
-                    //              console.log(data)
-                    //                this.updateReviews()
-                                 
-                    //           })
-                                   
-                    //           }
-
-
-                              // const updateReviews = () => {
-                              //      let token = localStorage.getItem("token")
-                              // fetch(`http://localhost:3001/movies/${props.match.params.movieId}`, {
-                              //      method: "GET",
-                              //      headers:
-                              //           { Authorization: `Bearer ${token}` }
-                              // })
-                              //      .then(resp => resp.json())
-                              //      .then(data => {
-                              //           setReceivedReview(data.reviews)
-                              //      })
-                              // }
-                              
 
 
     const deleteReview = (reviewId) => {
@@ -138,21 +83,6 @@ const MovieShow = (props) => {
           .then(data => {console.log(data)
         })
      }
-
-
-     // deleteReview = (reviewId) => {
-     //      let token= localStorage.getItem("token")
-     //      fetch(`http://localhost:3001/movies/${this.props.match.params.movieId}/reviews/${reviewId}`, {
-     //           method: "DELETE",
-     //           headers: 
-     //           {Authorization: `Bearer ${token}`}
-     //      })
-     //      .then(resp => resp.json())
-     //      .then(data => {console.log(data)
-     //           this.update()
-     //    })
-     // }
-
 
 
 
@@ -182,14 +112,7 @@ const MovieShow = (props) => {
      }
                     
 
- 
-     // changeHandler = (e) => {
 
-     //           this.setState({review : e.target.value})
-     //      }
-
-     
-     // render() {
 
           return (
 
@@ -226,15 +149,6 @@ const MovieShow = (props) => {
                         
                         </div>
                 
-                
-                 
-                
-              
-
-                
-
-                        
-
 
 
                          <div className="formdiv" style={{marginTop: "200px"}}>
@@ -251,48 +165,8 @@ const MovieShow = (props) => {
                           /> 
                           </div>
      </div> 
-</div> 
-
-
-  
-                            {/* <Form >
-                         < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Write a review' name="review" value={this.state.review} onChange={this.changeHandler} /> 
-                        </Form>    
-                        <Button
-                                  onClick={this.submitReview}
-                                  content='Add Review'
-                                  labelPosition='right'
-                                  icon='pencil'
-                                  color='red'
-                                  position="right"
-          
-                             />    */}
-
-
+</div>
                    
-          
-            
-                     
-                        {/* <div className="reviewsdiv">
-                         {
-                              this.state.receivedReview.map(review => (
-                                  <>
-                                  <CommentFrame>
-                                  <Comment >
-                                  <Comment.Text  key={review.id} >{review.review} - {review.username} </Comment.Text>
-                                   <img src={`/${review.avatar}`} style={{display: "flex"}} width="75px"/>
-                                  </Comment>
-                                  <i style={{marginInlineStart: "auto"}} class="small delete icon" onClick={() => this.deleteReview(review.id)}/>
-                                  </CommentFrame> </>
-                                 ))} 
-                                 
-                                 </div> */}
-
-
-
-
-          
-                         
               
               <div className="buttonandvideo" style={{marginTop: "50px"}}>      
         <div className="buttondiv"> <Button onClick={clickSearch} icon labelPosition='left'>Clips & Trailers<Icon name='play' /></Button> </div>

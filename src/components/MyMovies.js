@@ -20,6 +20,7 @@ class MyMovies extends React.Component {
           })
                .then(resp => resp.json())
                .then(data => {
+                    console.log(data)
                     this.setState({ favorites: data.favorites, reviews: data.reviews })
                })
      }
@@ -66,10 +67,10 @@ class MyMovies extends React.Component {
 
           return (
                <>
-                    <Background>
+                     <Background>
                          <Back> <Button labelPosition="right" color='red' icon="fast backward" onClick={this.goBack}>Rewind</Button> </Back>
 
-                         <h1 style={{ color: "red" }}>My Movies</h1>
+                         <h1 style={{ color: "red"}}>My Movies</h1>
                          <MyContainer>
 
                               {favorites.map(favorite => (
@@ -83,8 +84,8 @@ class MyMovies extends React.Component {
                                                      
                                    {reviews.map(review => (
                               <CommentFrame> 
-                              <List class="forward icon" divided relaxed style={{ color: "red" }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
-                              </CommentFrame>
+                              <List divided relaxed style={{ color: "red", fontSize: "15x", textAlign: "initial"  }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
+                              </CommentFrame> 
                          ))}
 
 
@@ -102,7 +103,8 @@ export default MyMovies
 
 
 const Back = styled.div`
-text-align: right
+text-align: right;
+
 `
 
 const Background = styled.div`

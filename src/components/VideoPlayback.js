@@ -111,7 +111,7 @@ goBack = () => {
                     </FilmContainer>
 
 
-                     <div className="vidPlaybackGallery" style={{display: "inline-flex", flexWrap: "wrap", color: "red"}}> 
+                     <div className="vidPlaybackGallery" style={{display: "inline-flex", flexWrap: "wrap", color: "red", marginLeft: "250px"}}> 
                  {this.state.videos.map(video => (
                    <ul key={video.id}>
                      <div >
