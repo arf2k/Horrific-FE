@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, List } from 'semantic-ui-react';
+import { Button, Card, List, Segment } from 'semantic-ui-react';
 import styled from 'styled-components'
 
 
@@ -68,9 +68,9 @@ class MyMovies extends React.Component {
           return (
                <>
                      <Background>
-                         <Back> <Button labelPosition="right" color='red' icon="fast backward" onClick={this.goBack}>Rewind</Button> </Back>
+                         <Back> <Button style={{opacity: ".8"}} color='red' onClick={this.goBack}>Rewind</Button> </Back>
 
-                         <h1 style={{ color: "red"}}>My Movies</h1>
+                         <h1 style={{ opacity: ".8", color: "red", fontFamily: "Creepster", fontSize: "50px"}}>My Movies</h1>
                          <MyContainer>
 
                               {favorites.map(favorite => (
@@ -79,12 +79,12 @@ class MyMovies extends React.Component {
                               }
                          </MyContainer>
 
-                         <h1 style={{ color: "red", marginTop: "100px" }}>My Reviews</h1>
+                         <h1 style={{ opacity: ".8", color: "red", marginTop: "100px", fontFamily: "Creepster", fontSize: "30px" }}>My Reviews</h1>
         
                                                      
                                    {reviews.map(review => (
                               <CommentFrame> 
-                              <List divided relaxed style={{ color: "red", fontSize: "15x", textAlign: "initial"  }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
+                              <List style={{ color: "red", fontSize: "15x", textAlign: "initial"  }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
                               </CommentFrame> 
                          ))}
 
@@ -109,7 +109,7 @@ text-align: right;
 
 const Background = styled.div`
 background-color: black;
-height: 200vh;
+height: 300vh;
 
 
 `

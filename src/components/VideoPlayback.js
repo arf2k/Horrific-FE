@@ -92,9 +92,9 @@ goBack = () => {
 
                <>
                <Background>
-               <Back> <Button labelPosition="right" color='red' icon="fast backward" onClick={this.goBack}>Rewind</Button> </Back>
+               <Back> <Button color='red' onClick={this.goBack}>Rewind</Button> </Back>
 
-                    <h1>video playback</h1>
+                    <h1 style={{opacity: ".8", color: "red", fontFamily: "Creepster", fontSize: "50px"}}>Community Videos</h1>
 
                     <FilmContainer>
                          <FilmBox>
@@ -153,6 +153,7 @@ goBack = () => {
                                icon='pencil'
                               color='red'
                               position="right"
+                              style={{opacity: ".8"}}
               
                               />
                
@@ -202,6 +203,7 @@ background-color: #343A40;
 margin: 10px auto;
 display: grid;
 position: relative;
+opacity: .8;
 
 `
 

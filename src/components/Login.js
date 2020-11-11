@@ -27,8 +27,8 @@ function Login(props) {
           <Background>
                <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                         <Header as='h2' color='red' textAlign='center'>
-                               Log-in to your account
+                         <Header style={{fontFamily: "Creepster", fontSize: "30px"}} as='h2' color='red' textAlign='center'>
+                               Login to your account
             </Header>
                          <Form size='large' onSubmit={props.loginHandler} >
                               <Segment stacked>
@@ -44,7 +44,7 @@ function Login(props) {
                                         value={password}
                                    />
 
-                                   <Button  color="red" fluid size='large'>
+                                   <Button  color="red" fluid size='large' >
                                         Login
                                    </Button>
                                    </Segment>

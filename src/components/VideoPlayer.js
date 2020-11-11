@@ -51,7 +51,7 @@ changeHandler = (e) => {
           return(
              <>
              <Background>
-             <h1 style={{color: "red"}}>Search and Discuss New Content</h1>
+             <h1 style={{color: "red", opacity: ".8", fontFamily: "Creepster", fontSize: "40px"}}>Search and Discuss New Content</h1>
               <FilmContainer> 
                    <FilmBox>
                <PlayerWrapper>
@@ -84,7 +84,7 @@ changeHandler = (e) => {
                  {this.props.videoList.map(item => (
                    <ul key={item.id.videoId}>
                      <div >
-                       <b style={{color: "red"}} onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
+                       <b style={{color: "red", opacity: ".8"}} onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
                      
                      </div>
                      <img  alt="" src={item.snippet.thumbnails.default.url}/>

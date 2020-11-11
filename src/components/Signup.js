@@ -59,8 +59,8 @@ function Signup(props) {
                 <div>Welcome!</div>
                 <Grid textAlign='center' style={{ marginTop: '13vh' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='red' textAlign='center'>
-                            <Icon name="pencil" /> Sign Up!
+                        <Header style={{fontFamily: "Creepster", fontSize: "50px"}} as='h2' color='red' textAlign='center'>
+                            Sign Up!
                         </Header>
                         <Form size='large' onSubmit={pwValidation}>
                             <Segment stacked>
@@ -167,7 +167,7 @@ function Signup(props) {
                     </Choose>
                 </Avatars>
                 <br></br>
-                <span style={{ fontSize: "2em", color: "red", marginTop: "400px" }}>Pick your Villain </span>
+                <span style={{ fontSize: "30px", color: "red", marginTop: "400px", fontFamily: "Creepster" }}>Pick your Villain </span>
             </div>
             </Background>
     } else {
