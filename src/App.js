@@ -115,7 +115,7 @@ class App extends React.Component {
             <Route path="/movies" render={(routerprops) => <MovieContainer {...routerprops} user={this.state.user}/> }/>
             <Route path="/video_search" render= {(routerprops => <VideoContainer {...routerprops} user={this.state.user} />)}/>
             <Route path="/community_videos" render= {(routerprops => <VideoPlayback {...routerprops} user={this.state.user} />)}/>
-            <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} setUser={this.setUser} /> } />
+            {/* <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} setUser={this.setUser} /> } /> */}
        </Switch>
        :
        <Switch>

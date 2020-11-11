@@ -77,6 +77,7 @@ fetch(`http://localhost:3001/videos/${this.state.chosenVideoInfo.id}/comments`, 
      .then(data => {
      console.log(data)
         this.getAllComments()
+        this.setState({comment: ""})
      })
 }
 
@@ -124,8 +125,7 @@ goBack = () => {
                  ))}
                     </div> 
                    
-                    {/* <div className="playbackGallComments" style={{display: "grid", marginTop: "1px", marginBottom: "1px"}}> */}
-                    {/* {this.state.allComments.length > 0? */}
+                 
                    
                    {comments.map(comment => (
                          <CommentFrame>
@@ -139,9 +139,7 @@ goBack = () => {
           ))} 
                          
                         
-                         {/* </div>                    */}
-                         {/* : null} */}
-
+                    
 
                <Form >
                  < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} />   

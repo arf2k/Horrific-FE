@@ -33,8 +33,8 @@ changeHandler = (e) => {
           })
                .then(response => response.json())
                .then(data => {
-                  console.log(data)
-                  
+                    this.setState({comment: ""})
+                    this.props.history.push("/community_videos")
                })
                         
                }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, List, Segment } from 'semantic-ui-react';
+import { Button, Card, List, Icon } from 'semantic-ui-react';
 import styled from 'styled-components'
 
 
@@ -71,6 +71,8 @@ class MyMovies extends React.Component {
                          <Back> <Button style={{opacity: ".8"}} color='red' onClick={this.goBack}>Rewind</Button> </Back>
 
                          <h1 style={{ opacity: ".8", color: "red", fontFamily: "Creepster", fontSize: "50px"}}>My Movies</h1>
+                              
+
                          <MyContainer>
 
                               {favorites.map(favorite => (
@@ -80,12 +82,15 @@ class MyMovies extends React.Component {
                          </MyContainer>
 
                          <h1 style={{ opacity: ".8", color: "red", marginTop: "100px", fontFamily: "Creepster", fontSize: "30px" }}>My Reviews</h1>
-        
-                                                     
+
                                    {reviews.map(review => (
+                                        <>
                               <CommentFrame> 
-                              <List style={{ color: "red", fontSize: "15x", textAlign: "initial"  }} onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} key={review.id}>{review.title} : {review.review}  </List>
+                              <List style={{ color: "red", fontSize: "15x", textAlign: "initial", marginLeft: "5px"  }} key={review.id}> {review.title} : {review.review}  </List>
+                              <i onClick={() => this.props.history.push(`/movies/${review.movie_id}`)} style={{color: "red", position: "absolute", right: "0", marginBottom: "5px"}} class="external alternate icon"></i>
                               </CommentFrame> 
+                               </>
+                             
                          ))}
 
 
@@ -134,6 +139,7 @@ background-color: #343A40;
 margin: 10px auto;
 display: grid;
 align-items: flex-end;
+position: relative;
 
 `
 

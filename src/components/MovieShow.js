@@ -72,17 +72,17 @@ const MovieShow = (props) => {
 
 
 
-    const deleteReview = (reviewId) => {
-          let token= localStorage.getItem("token")
-          fetch(`http://localhost:3001/movies/${props.match.params.movieId}/reviews/${reviewId}`, {
-               method: "DELETE",
-               headers: 
-               {Authorization: `Bearer ${token}`}
-          })
-          .then(resp => resp.json())
-          .then(data => {console.log(data)
-        })
-     }
+//     const deleteReview = (reviewId) => {
+//           let token= localStorage.getItem("token")
+//           fetch(`http://localhost:3001/movies/${props.match.params.movieId}/reviews/${reviewId}`, {
+//                method: "DELETE",
+//                headers: 
+//                {Authorization: `Bearer ${token}`}
+//           })
+//           .then(resp => resp.json())
+//           .then(data => {console.log(data)
+//         })
+//      }
 
 
 
@@ -143,7 +143,7 @@ const MovieShow = (props) => {
                           <img alt="" src={`/${review.avatar}`} style={{display: "flex", marginLeft: "10px", marginTop: "-35px", position: "absolute", bottom: "0", marginBottom: "10px"}} width ="60px" height= "75px"/>
                          </Comment>
                          </div>
-                          <i style={{marginInlineStart: "auto", color: "red"}} class="small delete icon" onClick={() => deleteReview(review.id)}/>
+                          {/* <i style={{marginInlineStart: "auto", color: "red"}} class="small delete icon" onClick={() => deleteReview(review.id)}/> */}
                          </CommentFrame> </>
                          ))} 
                         
