@@ -118,7 +118,7 @@ const MovieShow = (props) => {
 
                <>
                 <Background>
-           <Back>  <Button color='red' style={{opacity: ".8"}} onClick={goBack}> Rewind</Button>  </Back>
+           <Back>  <Button color='red' onClick={goBack}> Rewind</Button>  </Back>
 
                <div className="movieandreviews" style={{display: "flex", justifyContent: "center"}}>
                  <div className="movieShow" style={{marginLeft: "150px"}} >
@@ -153,7 +153,7 @@ const MovieShow = (props) => {
 
                          <div className="formdiv" style={{marginTop: "200px"}}>
                      <Form >
-                 < TextArea style={{width: "600px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
+                 < TextArea style={{width: "500px"}}  placeholder='Write a review' name="review" value={review} onChange={e => setReview(e.target.value)} /> 
                     </Form>    
                           <Button  
                                onClick={submitReview}
@@ -162,7 +162,7 @@ const MovieShow = (props) => {
                                icon='pencil'
                               color='red'
                               position="right"
-                              style={{opacity: ".8"}}
+                           
                           /> 
                           </div>
      </div> 
@@ -229,7 +229,6 @@ background-color: #343A40;
 margin: 10px auto;
 display: grid;
 position: relative;
-opacity: .8;
 
 
 `

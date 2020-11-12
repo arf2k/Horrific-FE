@@ -29,7 +29,7 @@ class NavBar extends React.Component {
                                     <Menu.Item
                                         name='Logout'
                                         as={Link}
-                                        to='/logout'
+                                        to='/login'
                                         onClick={this.props.logout}
                                         />
                                         :

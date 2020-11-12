@@ -68,9 +68,9 @@ class MyMovies extends React.Component {
           return (
                <>
                      <Background>
-                         <Back> <Button style={{opacity: ".8"}} color='red' onClick={this.goBack}>Rewind</Button> </Back>
+                         <Back> <Button color='red' onClick={this.goBack}>Rewind</Button> </Back>
 
-                         <h1 style={{ opacity: ".8", color: "red", fontFamily: "Creepster", fontSize: "50px"}}>My Movies</h1>
+                         <h1 style={{color: "red", fontFamily: "Helvetica", fontSize: "50px", marginLeft: "250px"}}>My Movies</h1>
                               
 
                          <MyContainer>
@@ -81,7 +81,7 @@ class MyMovies extends React.Component {
                               }
                          </MyContainer>
 
-                         <h1 style={{ opacity: ".8", color: "red", marginTop: "100px", fontFamily: "Creepster", fontSize: "30px" }}>My Reviews</h1>
+                         <h1 style={{color: "red", marginTop: "100px", fontFamily: "Helvetica", fontSize: "30px", marginLeft: "250px" }}>My Reviews</h1>
 
                                    {reviews.map(review => (
                                         <>
@@ -114,7 +114,7 @@ text-align: right;
 
 const Background = styled.div`
 background-color: black;
-height: 300vh;
+height: 250vh;
 
 
 `
@@ -140,6 +140,7 @@ margin: 10px auto;
 display: grid;
 align-items: flex-end;
 position: relative;
+margin-right: 250px
 
 `
 

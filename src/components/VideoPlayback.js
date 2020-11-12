@@ -82,6 +82,10 @@ fetch(`http://localhost:3001/videos/${this.state.chosenVideoInfo.id}/comments`, 
 }
 
 
+
+
+
+
 goBack = () => {
      this.props.history.goBack()
 }
@@ -95,7 +99,7 @@ goBack = () => {
                <Background>
                <Back> <Button color='red' onClick={this.goBack}>Rewind</Button> </Back>
 
-                    <h1 style={{opacity: ".8", color: "red", fontFamily: "Creepster", fontSize: "50px"}}>Community Videos</h1>
+                    <h1 style={{color: "red", fontFamily: "Helvetica", fontSize: "40px"}}>Community Videos</h1>
 
                     <FilmContainer>
                          <FilmBox>
@@ -142,7 +146,7 @@ goBack = () => {
                     
 
                <Form >
-                 < TextArea style={{width: "900px", marginTop: "50px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} />   
+                 < TextArea style={{width: "800px", marginTop: "50px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} />   
                </Form>  
                <Button 
                                onClick={this.submitComment}
@@ -151,8 +155,6 @@ goBack = () => {
                                icon='pencil'
                               color='red'
                               position="right"
-                              style={{opacity: ".8"}}
-              
                               />
                
                </Background>
