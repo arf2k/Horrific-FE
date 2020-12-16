@@ -1,59 +1,56 @@
-import React from 'react';
-import MovieCard from './MovieCard.js'
-import SearchForm from './SearchForm.js'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import MovieCard from "./MovieCard.js";
+import SearchForm from "./SearchForm.js";
+import styled from "styled-components";
 
-class MovieList extends React.Component {
-     
-     state = {
-          searchTerm: ""
-     }
+function MovieList(props) {
+  const [searchTerm, setSearchTerm] = useState("");
 
+  const renderSearch = () => {
+    return props.movies
+      .filter((movie) =>
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          submitFavorite={props.submitFavorite}
+          goToShow={props.goToShow}
+        />
+      ));
+  };
 
-     
- 
-     renderSearch = () => {
-        
-          return this.props.movies.filter(movie =>  movie.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(movie => <MovieCard key={movie.id} movie={movie} submitFavorite={this.props.submitFavorite} goToShow={this.props.goToShow} />)
-     }
+  const searchChangeHandler = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
-   searchChangeHandler = (e) => {
-
-        this.setState({searchTerm : e.target.value})
-   }
-
-     
-     render() {
-          return(
-               <>
-               <Background>
-                
-               <SearchForm searchTerm={this.state.searchTerm} searchChangeHandler={this.searchChangeHandler} />    
-           <MyContainer>
-                {this.renderSearch()}
-              </MyContainer>
- 
-               </Background>
-               </>
-          )
-     }
+  return (
+    <>
+      <Background>
+        <SearchForm
+          searchTerm={searchTerm}
+          searchChangeHandler={searchChangeHandler}
+        />
+        <MyContainer>{renderSearch()}</MyContainer>
+      </Background>
+    </>
+  );
+  // }
 }
 
-
-export default MovieList
-
+export default MovieList;
 
 const Background = styled.div`
-background-color: black;
-`
+  background-color: black;
+`;
 
 const MyContainer = styled.section`
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: center;
-align-content: center;
-margin-top: 10vh;
-margin-left: 15vw;
-
-`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10vh;
+  margin-left: 15vw;
+`;
