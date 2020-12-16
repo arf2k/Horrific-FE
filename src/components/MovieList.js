@@ -36,7 +36,6 @@ function MovieList(props) {
       </Background>
     </>
   );
-  // }
 }
 
 export default MovieList;
