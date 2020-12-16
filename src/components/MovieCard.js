@@ -2,7 +2,6 @@ import React from "react";
 import { Card } from "semantic-ui-react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 
 function MovieCard(props) {
   const clickHandler = (e) => {

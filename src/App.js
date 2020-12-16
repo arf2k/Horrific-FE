@@ -10,7 +10,6 @@ import MyMovies from './components/MyMovies.js'
 import MovieShow from './components/MovieShow.js'
 import Signup from './components/Signup.js'
 import MovieList from './components/MovieList.js'
-import VideoPlayer from './components/VideoPlayer.js'
 import VideoContainer from './containers/VideoContainer.js'
 import VideoPlayback from './components/VideoPlayback.js'
 

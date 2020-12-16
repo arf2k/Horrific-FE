@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Button, Form, Grid, Header, Icon, Message, Segment, Radio } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Radio } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 

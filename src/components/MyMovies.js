@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, List, Icon } from 'semantic-ui-react';
+import { Button, Card, List } from 'semantic-ui-react';
 import styled from 'styled-components'
 
 
