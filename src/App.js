@@ -3,7 +3,6 @@ import './App.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/Login.js';
-import Welcome from './components/Welcome.js';
 import NavBar from './containers/NavBar.js';
 import MovieContainer from './containers/MovieContainer.js'
 import MyMovies from './components/MyMovies.js'
@@ -114,7 +113,6 @@ class App extends React.Component {
             <Route path="/movies" render={(routerprops) => <MovieContainer {...routerprops} user={this.state.user}/> }/>
             <Route path="/video_search" render= {(routerprops => <VideoContainer {...routerprops} user={this.state.user} />)}/>
             <Route path="/community_videos" render= {(routerprops => <VideoPlayback {...routerprops} user={this.state.user} />)}/>
-            {/* <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} setUser={this.setUser} /> } /> */}
        </Switch>
        :
        <Switch>
