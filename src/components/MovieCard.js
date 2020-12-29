@@ -22,7 +22,7 @@ function MovieCard(props) {
           onClick={() => {
             props.submitFavorite(props.movie);
           }}
-          style={{ fontSize: "70px", color: "red", marginTop: "5px" }}
+          style={{ fontSize: "70px", color: "red", marginTop: "5px", cursor: "pointer" }}
         >
           &#9760;
         </span>
