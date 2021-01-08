@@ -31,7 +31,6 @@ function Signup(props) {
 
     }
     const radioHandler = (e, result) => {
-        console.log(result.value)
         setAvatar(result.value)
     }
     const invalidPassword = (password !== passwordConfirmation && password !== "" && passwordConfirmation !== "")

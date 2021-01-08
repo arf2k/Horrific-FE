@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components'
-import {Button, Icon, Form, TextArea} from 'semantic-ui-react'
+import {Button, Form, TextArea} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 let api_key = process.env.REACT_APP_YT_API_KEY

@@ -1,7 +1,6 @@
 import React from 'react';
 import VideoPlayer from '../components/VideoPlayer.js';
 import {Segment, Input} from 'semantic-ui-react';
-import VideoPlayback from '../components/VideoPlayback.js'
 import styled from 'styled-components'
 
 
