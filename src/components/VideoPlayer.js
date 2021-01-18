@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components'
 import {Button, Form, TextArea} from 'semantic-ui-react'
@@ -6,22 +6,22 @@ import { withRouter } from 'react-router-dom'
 
 let api_key = process.env.REACT_APP_YT_API_KEY
 
-class VideoPlayer extends React.Component {
+const VideoPlayer = (props) => {
 
-     state = {
-          comment: "",
-          videoPick: "",
-          videoInfo: []
-     }
+ 
+
+     const [comment, setComment] = useState("");
+     const [videoPick, setVideoPick] = useState("");
+     const [videoInfo, setVideoInfo] = useState([]);
 
 
 
-changeHandler = (e) => {
-     this.setState({comment: e.target.value})
+const changeHandler = (e) => {
+     setComment({comment: e.target.value})
 
 }
  
-     submitComment = () => {
+     const submitComment = () => {
           let token = localStorage.getItem("token")
           fetch(`http://localhost:3001/videos/comments`, {
                method: "POST",
@@ -30,25 +30,25 @@ changeHandler = (e) => {
                     "Accepts": "application/json",
                     "Content-type": "application/json"
                },
-               body: JSON.stringify({ comment: this.state.comment, user: this.props.user, avatar: this.props.user.avatar, username: this.props.user.username, yt_id: this.state.videoPick, id:this.state.videoPick, title: this.state.videoInfo.snippet.title, thumbnail: this.state.videoInfo.snippet.thumbnails.default.url })
+               body: JSON.stringify({ comment: comment, user: props.user, avatar: props.user.avatar, username: props.user.username, yt_id: videoPick, id:videoPick, title: videoInfo.snippet.title, thumbnail: videoInfo.snippet.thumbnails.default.url })
           })
                .then(response => response.json())
                .then(data => {
-                    this.setState({comment: ""})
-                    this.props.history.push("/community_videos")
+                    setComment({comment: ""})
+                    props.history.push("/community_videos")
                })
                         
                }
                
-               chooseVideo = (item) => {
-                    this.setState({videoPick: item.id.videoId})
-                    this.setState({videoInfo: item})
+              const chooseVideo = (item) => {
+                    setVideoPick({videoPick: item.id.videoId})
+                    setVideoInfo({videoInfo: item})
                  } 
 
 
 
 
-     render(){
+    
           return(
              <>
              <Background>
@@ -58,7 +58,7 @@ changeHandler = (e) => {
                <PlayerWrapper>
                <ReactPlayer
                  style={{position: "absolute", top: "0", left: "0"}}
-                 url={`https://www.youtube.com/watch?v=${this.state.videoPick}`}
+                 url={`https://www.youtube.com/watch?v=${videoPick}`}
                  width= '100%'
                  height='100%'
                  controls={true}
@@ -68,9 +68,9 @@ changeHandler = (e) => {
                </FilmContainer>
 
                <Form >
-                 < TextArea style={{width: "700px", height: "50px", marginTop: "0px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} /> 
+                 < TextArea style={{width: "700px", height: "50px", marginTop: "0px"}}  placeholder='Comments' name="comment" value={comment} onChange={changeHandler} /> 
                  <Button           
-                               onClick={this.submitComment}
+                               onClick={submitComment}
                                content='Add Comment'
                                labelPosition='right'
                                icon='pencil'
@@ -82,10 +82,10 @@ changeHandler = (e) => {
 
 
                <div className="vidGallery" style={{display: "flex", marginLeft: "250px", marginTop: "50px"}}> 
-                 {this.props.videoList.map(item => (
+                 {props.videoList.map(item => (
                    <ul key={item.id.videoId}>
                      <div >
-                       <b style={{color: "red"}} onClick={() => this.chooseVideo(item)}>{item.snippet.title}</b>
+                       <b style={{color: "red"}} onClick={() => chooseVideo(item)}>{item.snippet.title}</b>
                      
                      </div>
                      <img  alt="" src={item.snippet.thumbnails.default.url}/>
@@ -104,7 +104,7 @@ changeHandler = (e) => {
      }
 
 
-}
+
 
 export default withRouter(VideoPlayer)
 

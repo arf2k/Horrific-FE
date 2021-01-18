@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components';
 import {Comment, Form, TextArea, Button} from 'semantic-ui-react'
@@ -15,7 +15,7 @@ const VideoPlayback = (props) => {
      const [allComments, setAllComments] = useState([]);
 
 
-const fetchVideos = () => {
+ useEffect(() => {
           let token = localStorage.getItem("token")
           fetch('http://localhost:3001/videos', {
                method: "GET",
@@ -30,7 +30,7 @@ const fetchVideos = () => {
                })
    
 
-}
+}, [])
 
 const getAllComments = () => {
      let token = localStorage.getItem("token")
