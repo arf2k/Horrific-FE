@@ -3,7 +3,7 @@ import { Card } from "semantic-ui-react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
-function MovieCard(props) {
+const MovieCard = (props) => {
   const clickHandler = (e) => {
     props.history.push(`movies/${props.movie.id}`);
   };

@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard.js";
 import SearchForm from "./SearchForm.js";
 import styled from "styled-components";
 
-function MovieList(props) {
+const MovieList = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const renderSearch = () => {

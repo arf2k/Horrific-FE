@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactPlayer from 'react-player';
 import styled from 'styled-components';
 import {Comment, Form, TextArea, Button} from 'semantic-ui-react'
 
 
 
-class VideoPlayback extends React.Component {
+const VideoPlayback = (props) => {
 
-     state = {
-          videos: [],
-          chosenVideo: "",
-          chosenVideoInfo: [],
-          comment: "",
-          allComments: []
 
-     }
+     const [videos, setVideos] = useState([]);
+     const [chosenVideo, setChosenVideo] = useState("");
+     const [chosenVideoInfo, setChosenVideoInfo] = useState([]);
+     const [comment, setComment] = useState("");
+     const [allComments, setAllComments] = useState([]);
 
-componentDidMount() {
+
+const fetchVideos = () => {
           let token = localStorage.getItem("token")
           fetch('http://localhost:3001/videos', {
                method: "GET",
@@ -26,58 +25,57 @@ componentDidMount() {
                .then(resp => resp.json())
                .then(data => {
              
-                    this.setState({videos: data })
+                    setVideos({videos: data })
                   
                })
    
 
 }
 
-getAllComments() {
+const getAllComments = () => {
      let token = localStorage.getItem("token")
-     fetch(`http://localhost:3001/videos/${this.state.chosenVideoInfo.id}/comments`, {
+     fetch(`http://localhost:3001/videos/${chosenVideoInfo.id}/comments`, {
           method: "GET",
           headers:
                { Authorization: `Bearer ${token}` }
      })
           .then(resp => resp.json())
           .then(data => {
-               this.setState({allComments: data })
+               setAllComments({allComments: data })
              
           })
 }
 
 
 
-chooseVideo = (video) => {
-this.setState({chosenVideo: video.yt_id})
-this.setState({chosenVideoInfo : video})
-this.getAllComments()
+const chooseVideo = (video) => {
+setChosenVideo({chosenVideo: video.yt_id})
+setChosenVideoInfo({chosenVideoInfo : video})
+getAllComments()
 }
 
 
-changeHandler = (e) => {
-     this.setState({comment: e.target.value})
+const changeHandler = (e) => {
+     setComment({comment: e.target.value})
 
 }
 
 
-submitComment = () => {
+const submitComment = () => {
   let token = localStorage.getItem("token")
-fetch(`http://localhost:3001/videos/${this.state.chosenVideoInfo.id}/comments`, {
+fetch(`http://localhost:3001/videos/${chosenVideoInfo.id}/comments`, {
      method: "POST",
      headers: {
           Authorization: `Bearer ${token}`,
           "Accepts": "application/json",
           "Content-type": "application/json"
      },
-     body: JSON.stringify({ comment: this.state.comment, user: this.props.user, avatar: this.props.user.avatar, username: this.props.user.username, yt_id: this.state.chosenVideoInfo.yt_id, id: this.state.chosenVideoInfo.id, title: this.state.chosenVideoInfo.title, thumbnail: this.state.chosenVideoInfo.thumbnail })
+     body: JSON.stringify({ comment: comment, user: props.user, avatar: props.user.avatar, username: props.user.username, yt_id: chosenVideoInfo.yt_id, id: chosenVideoInfo.id, title: chosenVideoInfo.title, thumbnail: chosenVideoInfo.thumbnail })
 })
      .then(response => response.json())
      .then(data => {
-     console.log(data)
-        this.getAllComments()
-        this.setState({comment: ""})
+        getAllComments()
+        setComment({comment: ""})
      })
 }
 
@@ -86,18 +84,18 @@ fetch(`http://localhost:3001/videos/${this.state.chosenVideoInfo.id}/comments`, 
 
 
 
-goBack = () => {
-     this.props.history.goBack()
+const goBack = () => {
+     props.history.goBack()
 }
 
-     render() {
-          const comments= this.state.allComments
+ 
+          const comments= allComments
 
           return (
 
                <>
                <Background>
-               <Back> <Button color='red' onClick={this.goBack}>Rewind</Button> </Back>
+               <Back> <Button color='red' onClick={goBack}>Rewind</Button> </Back>
 
                     <h1 style={{color: "red", fontFamily: "Helvetica", fontSize: "40px"}}>Community Videos</h1>
 
@@ -106,7 +104,7 @@ goBack = () => {
                               <PlayerWrapper>
                                    <ReactPlayer
                                         style={{ position: "absolute", top: "0", left: "0" }}
-                                        url={`https://www.youtube.com/watch?v=${this.state.chosenVideo}`}
+                                        url={`https://www.youtube.com/watch?v=${chosenVideo}`}
                                         width='100%'
                                         height='100%'
                                         controls={true}
@@ -117,10 +115,10 @@ goBack = () => {
 
 
                      <div className="vidPlaybackGallery" style={{display: "inline-flex", flexWrap: "wrap", color: "red", marginLeft: "250px"}}> 
-                 {this.state.videos.map(video => (
+                 {videos.map(video => (
                    <ul key={video.id}>
                      <div >
-                       <b onClick={()=> this.chooseVideo(video) }>{video.title}</b>
+                       <b onClick={()=> chooseVideo(video) }>{video.title}</b>
                      
                      </div>
                      <img  alt="" src={video.thumbnail}/>
@@ -146,10 +144,10 @@ goBack = () => {
                     
 
                <Form >
-                 < TextArea style={{width: "800px", marginTop: "50px"}}  placeholder='Comments' name="comment" value={this.state.comment} onChange={this.changeHandler} />   
+                 < TextArea style={{width: "800px", marginTop: "50px"}}  placeholder='Comments' name="comment" value={comment} onChange={changeHandler} />   
                </Form>  
                <Button 
-                               onClick={this.submitComment}
+                               onClick={submitComment}
                                content='Add Review'
                                labelPosition='right'
                                icon='pencil'
@@ -163,7 +161,7 @@ goBack = () => {
      }
 
 
-}
+
 
 export default VideoPlayback
 

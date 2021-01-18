@@ -2,7 +2,7 @@ import React from 'react'
 import {Input, Segment} from 'semantic-ui-react'
 import styled from 'styled-components'
 
-function SearchForm(props) {
+const SearchForm = (props) => {
      return (
       <>
       <Background>

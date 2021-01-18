@@ -60,20 +60,7 @@ const MovieShow = (props) => {
       });
   };
 
-//   const deleteReview = (reviewId) => {
-//     let token = localStorage.getItem("token");
-//     fetch(
-//       `http://localhost:3001/movies/${props.match.params.movieId}/reviews/${reviewId}`,
-//       {
-//         method: "DELETE",
-//         headers: { Authorization: `Bearer ${token}` },
-//       }
-//     )
-//       .then((resp) => resp.json())
-//       .then((data) => {
-//         console.log(data);
-//       });
-//   };
+
 
   const searchYoutube = () => {
     fetch(
@@ -105,11 +92,9 @@ const MovieShow = (props) => {
     <>
       <Background>
         <Back>
-          {" "}
           <Button color="red" onClick={goBack}>
-            {" "}
             Rewind
-          </Button>{" "}
+          </Button>
         </Back>
 
         <div
@@ -139,8 +124,8 @@ const MovieShow = (props) => {
                             marginTop: "5x",
                           }}
                         >
-                          {" "}
-                          {review.username} -{" "}
+                         
+                          {review.username}
                         </h5>
                         <Comment.Text
                           style={{
@@ -171,8 +156,7 @@ const MovieShow = (props) => {
                         />
                       </Comment>
                     </div>
-                    {/* <i style={{marginInlineStart: "auto", color: "red", marginTop: "35px"}} class="small delete icon" onClick={() => deleteReview(review.id)}/> */}
-                  </CommentFrame>{" "}
+                  </CommentFrame>
                 </>
               ))}
             </div>
