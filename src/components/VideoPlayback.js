@@ -15,7 +15,7 @@ const VideoPlayback = (props) => {
      const [allComments, setAllComments] = useState([]);
 
 
- useEffect(() => {
+     useEffect(() => {
           let token = localStorage.getItem("token")
           fetch('http://localhost:3001/videos', {
                method: "GET",
@@ -24,13 +24,13 @@ const VideoPlayback = (props) => {
           })
                .then(resp => resp.json())
                .then(data => {
-             
+                    console.log(data)
                     setVideos({videos: data })
                   
                })
    
 
-}, [])
+},[])
 
 const getAllComments = () => {
      let token = localStorage.getItem("token")
@@ -88,15 +88,17 @@ const goBack = () => {
      props.history.goBack()
 }
 
- 
-          const comments= allComments
+
+
+        
+          let comments= allComments
 
           return (
-
+               
                <>
                <Background>
                <Back> <Button color='red' onClick={goBack}>Rewind</Button> </Back>
-
+               
                     <h1 style={{color: "red", fontFamily: "Helvetica", fontSize: "40px"}}>Community Videos</h1>
 
                     <FilmContainer>
