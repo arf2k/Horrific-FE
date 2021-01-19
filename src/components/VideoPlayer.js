@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import {Button, Form, TextArea} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
-let api_key = process.env.REACT_APP_YT_API_KEY
 
 const VideoPlayer = (props) => {
 

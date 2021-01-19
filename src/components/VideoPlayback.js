@@ -24,13 +24,14 @@ const VideoPlayback = (props) => {
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
-                    setVideos({videos: data })
+                    setVideos(data)
                   
                })
    
 
 },[])
+
+console.log(videos)
 
 const getAllComments = () => {
      let token = localStorage.getItem("token")
