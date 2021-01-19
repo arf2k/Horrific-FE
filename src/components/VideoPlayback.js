@@ -102,7 +102,7 @@ const goBack = () => {
                <Background>
                <Back> <Button color='red' onClick={goBack}>Rewind</Button> </Back>
                
-                    <h1 style={{color: "red", fontFamily: "Helvetica", fontSize: "40px"}}>Community Videos</h1>
+                    <VidTitle>Community Videos</VidTitle>
 
                     <FilmContainer>
                          <FilmBox>
@@ -118,8 +118,7 @@ const goBack = () => {
                          </FilmBox>
                     </FilmContainer>
 
-
-                     <div className="vidPlaybackGallery" style={{display: "inline-flex", flexWrap: "wrap", color: "red", marginLeft: "250px"}}> 
+                    <GalleryStyle>                     
                  {videos.map(video => (
                    <ul key={video.id}>
                      <div >
@@ -130,17 +129,24 @@ const goBack = () => {
                      </ul>
 
                  ))}
-                    </div> 
+                </GalleryStyle>
+
                    
                  
                    
                    {comments.map(comment => (
                          <CommentFrame>
                      <Comment >
-                     <h5 style={{textAlign: "left", marginLeft: "5px", color: "red"}}>  - {comment.username} </h5>
-                         <Comment.Text style={{color: "red", flexWrap: "wrap", marginLeft: "120px", marginTop: "-18px", textAlign: "start", marginRight: "5px"}} key={comment.id} >{comment.comment} 
+                     <UsernameTitle> - {comment.username}</UsernameTitle>
+                        <CommentTextBox><Comment.Text key={comment.id} style={{color: "red"}}> 
+                         {comment.comment}
                          </Comment.Text>
-                          <img alt="" src={`/${comment.avatar}`} style={{display: "flex", marginLeft: "10px", marginTop: "-35px", position: "absolute", bottom: "0", marginBottom: "10px"}} width= "60px" height= "75px" />
+                         </CommentTextBox>
+                         <AvatarStyle>
+                          <img alt="" src={`/${comment.avatar}`} 
+                          width= "60px" height= "75px" 
+                         />
+                          </AvatarStyle>
                          </Comment>
                          </CommentFrame>  
           ))} 
@@ -186,6 +192,37 @@ width: 100%;
 max-width: 800px;
 `
 
+const GalleryStyle = styled.div`
+display: inline-flex;
+flex-wrap: wrap;
+color: red;
+margin-left: 250px
+
+`
+
+const UsernameTitle = styled.h5`
+text-align: left;
+margin-left: 5px;
+color: red
+`
+const AvatarStyle = styled.div`
+display: flex;
+margin-left: 10px;
+margin-top: -35px; 
+position: absolute; 
+bottom: 0;
+margin-bottom: 10px
+`
+
+const CommentTextBox = styled.div`
+flex-wrap: wrap; 
+margin-left: 120px; 
+margin-top: -18px; 
+text-align: start; 
+margin-right: 5px
+`
+
+
 const FilmContainer = styled.div`
 width: 100%
 height: 100vh;
@@ -194,7 +231,12 @@ justify-content: center;
 align-items: center;
 
 `
+const VidTitle = styled.h1`
+color: red; 
+font-family: Helvetica;
+font-size: 40px
 
+`
 
 const CommentFrame = styled.div`
 border-color: red;

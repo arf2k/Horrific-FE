@@ -51,9 +51,9 @@ const VideoContainer = (props) => {
         setVideoInfo(item)
      } 
 
-    const hide = (e) => {
-          e.target.style.display = "none"
-     }
+//     const hide = (e) => {
+//           e.target.style.display = "none"
+//      }
 
 
 

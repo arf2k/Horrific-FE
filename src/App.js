@@ -67,7 +67,7 @@ class App extends React.Component {
     e.preventDefault()
     const username = (e.target.username.value)
     const password = e.target.password.value
-    const passwordConfirmation = e.target.passwordConfirmation.value
+    // const passwordConfirmation = e.target.passwordConfirmation.value
     let user = { username, password, avatar }
     let configObj = {
       method: "POST",
