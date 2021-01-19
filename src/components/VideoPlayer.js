@@ -16,7 +16,7 @@ const VideoPlayer = (props) => {
 
 
 const changeHandler = (e) => {
-     setComment({comment: e.target.value})
+     setComment(e.target.value)
 
 }
  
@@ -33,15 +33,16 @@ const changeHandler = (e) => {
           })
                .then(response => response.json())
                .then(data => {
-                    setComment({comment: ""})
+                    setComment(comment)
                     props.history.push("/community_videos")
                })
                         
                }
                
               const chooseVideo = (item) => {
-                    setVideoPick({videoPick: item.id.videoId})
-                    setVideoInfo({videoInfo: item})
+                    setVideoPick(item.id.videoId)
+                    setVideoInfo(item)
+                  
                  } 
 
 

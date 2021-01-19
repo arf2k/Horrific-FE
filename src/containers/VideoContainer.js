@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import VideoPlayer from '../components/VideoPlayer.js';
 import {Segment, Input} from 'semantic-ui-react';
 import styled from 'styled-components'
@@ -7,29 +7,24 @@ import styled from 'styled-components'
 
 
 let api_key = process.env.REACT_APP_YT_API_KEY
-class VideoContainer extends React.Component {
+const VideoContainer = (props) => {
 
 
-     state = {
-      
-          searchTerm: "",
-          videoList: [],
-          videoPick: "",
-          videoInfo: []
-
-     }
+     const [searchTerm, setSearchTerm] = useState("");
+     const [videoList, setVideoList] = useState([]);
+     const [videoPick, setVideoPick] = useState("");
+     const [videoInfo, setVideoInfo] = useState([]);
 
 
 
-     searchYoutube() {
-          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${this.state.searchTerm}&key=${api_key}`, {
+     const searchYoutube = () => {
+          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${searchTerm}&key=${api_key}`, {
                method: "GET",
                header: 'Accept: application/json'
           })
                .then(resp => resp.json())
                .then(data => {
-                    console.log(data)
-                    this.setState({videoList: data.items})
+                    setVideoList(data.items)
                })
      }
 
@@ -37,39 +32,39 @@ class VideoContainer extends React.Component {
    
 
 
-     searchChange = (e) => {
-          this.setState({ searchTerm: e.target.value })
+     const searchChange = (e) => {
+          setSearchTerm(e.target.value)
      }
 
-     keyDown = (e) => {
+     const keyDown = (e) => {
           if (e.keyCode === 13) {
          
-               this.searchYoutube()
+               searchYoutube()
 
 
           }
      }
 
 
-     chooseVideo = (item) => {
-        this.setState({videoPick: item.id.videoId})
-        this.setState({videoInfo: item})
+     const chooseVideo = (item) => {
+        setVideoPick(item.id.videoId)
+        setVideoInfo(item)
      } 
 
-     hide = (e) => {
+    const hide = (e) => {
           e.target.style.display = "none"
      }
 
 
 
-     render() {
+     
           return (
                <>
                <Background>
                     <Segment textAlign="right" inverted color="black">
-                         <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={this.keyDown} value={this.state.searchTerm} onChange={this.searchChange} />
+                         <Input icon='search' type="text" name="search" placeholder='Search Videos' onKeyDown={keyDown} value={searchTerm} onChange={searchChange} />
                     </Segment>
-                    <VideoPlayer videoPick={this.state.videoPick} user={this.props.user} videoInfo={this.state.videoInfo} videoList={this.state.videoList}/>
+                    <VideoPlayer videoPick={videoPick} user={props.user} videoInfo={videoInfo} videoList= {videoList}/>
                     </Background>
                 
               </>
@@ -82,7 +77,7 @@ class VideoContainer extends React.Component {
 
 
 
-}
+
 
 export default VideoContainer
 

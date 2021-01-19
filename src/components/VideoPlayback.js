@@ -31,7 +31,6 @@ const VideoPlayback = (props) => {
 
 },[])
 
-console.log(videos)
 
 const getAllComments = () => {
      let token = localStorage.getItem("token")
@@ -42,7 +41,7 @@ const getAllComments = () => {
      })
           .then(resp => resp.json())
           .then(data => {
-               setAllComments({allComments: data })
+               setAllComments(data)
              
           })
 }
@@ -50,14 +49,17 @@ const getAllComments = () => {
 
 
 const chooseVideo = (video) => {
-setChosenVideo({chosenVideo: video.yt_id})
-setChosenVideoInfo({chosenVideoInfo : video})
+setChosenVideo(video.yt_id)
+setChosenVideoInfo(video)
 getAllComments()
+console.log(chosenVideoInfo)
+
 }
 
 
+
 const changeHandler = (e) => {
-     setComment({comment: e.target.value})
+     setComment(e.target.value)
 
 }
 
@@ -76,7 +78,7 @@ fetch(`http://localhost:3001/videos/${chosenVideoInfo.id}/comments`, {
      .then(response => response.json())
      .then(data => {
         getAllComments()
-        setComment({comment: ""})
+        setComment("")
      })
 }
 
