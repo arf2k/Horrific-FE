@@ -18,14 +18,13 @@ const MovieCard = (props) => {
             clickHandler();
           }}
         />
-        <span
+       <SpanStyle
           onClick={() => {
             props.submitFavorite(props.movie);
           }}
-          style={{ fontSize: "70px", color: "red", marginTop: "5px", cursor: "pointer" }}
         >
           &#9760;
-        </span>
+        </SpanStyle>
         <Card.Content></Card.Content>
       </CardWrapper>
     </Background>
@@ -45,3 +44,10 @@ const CardWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `;
+
+const SpanStyle = styled.span`
+font-size: 70px;
+color: red; 
+margin-top: 5px; 
+cursor: pointer
+`
