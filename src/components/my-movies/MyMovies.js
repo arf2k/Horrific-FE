@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, List } from 'semantic-ui-react';
-import styled from 'styled-components'
+import { Back, Background, MyContainer, CommentFrame } from "./MyMoviesStyles"
 
 
 class MyMovies extends React.Component {
@@ -104,43 +104,5 @@ class MyMovies extends React.Component {
      }
 }
 export default MyMovies
-
-
-const Back = styled.div`
-text-align: right;
-
-`
-
-const Background = styled.div`
-background-color: black;
-height: 250vh;
-
-
-`
-
-const MyContainer = styled.section`
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: center;
-align-content: center;
-margin-top: 0vh;
-margin-left: 15vw;
-
-`
-const CommentFrame = styled.div`
-border-color: red;
-border-style: ridge;
-border-width: 5px;
-width: 1000px;
-height: 50px;
-background-color: #343A40;
-margin: 10px auto;
-display: grid;
-align-items: flex-end;
-position: relative;
-margin-right: 250px
-
-`
 
 

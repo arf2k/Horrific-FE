@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import MovieCard from "./MovieCard.js";
-import SearchForm from "./SearchForm.js";
-import styled from "styled-components";
+import MovieCard from "../movie-card/MovieCard.js";
+import SearchForm from "../SearchForm";
+import { Background, MyContainer } from "./MovieListStyles"
 
 const MovieList = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,16 +40,3 @@ const MovieList = (props) => {
 
 export default MovieList;
 
-const Background = styled.div`
-  background-color: black;
-`;
-
-const MyContainer = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  margin-top: 10vh;
-  margin-left: 15vw;
-`;

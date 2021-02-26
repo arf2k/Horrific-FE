@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
-import styled from "styled-components";
 import { withRouter } from "react-router-dom";
+import { Background, CardWrapper, SpanStyle } from "./MovieCardStyles"
 
 const MovieCard = (props) => {
   const clickHandler = (e) => {
@@ -33,21 +33,4 @@ const MovieCard = (props) => {
 
 export default withRouter(MovieCard);
 
-const Background = styled.div`
-  background-color: black;
-`;
 
-const CardWrapper = styled.div`
-  width: 100%;
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
-const SpanStyle = styled.span`
-font-size: 70px;
-color: red; 
-margin-top: 5px; 
-cursor: pointer
-`

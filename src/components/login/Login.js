@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
-import styled from 'styled-components'
+import { Background } from "./LoginStyles"
 
 function Login(props) {
    
@@ -64,7 +64,3 @@ function Login(props) {
 export default Login
 
 
-const Background = styled.div`
-background-color: black;
-height: 150vh
-`
