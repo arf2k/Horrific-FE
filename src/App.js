@@ -2,14 +2,14 @@ import "./App.css";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/login/Login.js";
-import NavBar from "./containers/NavBar.js";
-import MovieContainer from "./containers/MovieContainer.js";
+import NavBar from "./containers/nav-bar/NavBar.js";
+import MovieContainer from "./containers/movie-container/MovieContainer.js";
 import MyMovies from "./components/my-movies/MyMovies.js";
-import MovieShow from "./components/MovieShow.js";
-import Signup from "./components/Signup.js";
+import MovieShow from "./components/movie-show/MovieShow.js";
+import Signup from "./components/sign-up/Signup.js";
 import MovieList from "./components/movie-list/MovieList.js";
-import VideoContainer from "./containers/VideoContainer.js";
-import VideoPlayback from "./components/VideoPlayback.js";
+import VideoContainer from "./containers/video-container/VideoContainer.js";
+import VideoPlayback from "./components/video-playback/VideoPlayback.js";
 
 const BASE_API = "http://localhost:3001/";
 
@@ -86,6 +86,7 @@ class App extends React.Component {
   };
 
   render() {
+    const user = this.state
     return (
       <div className="App">
         <NavBar logout={this.logout} />
@@ -94,13 +95,13 @@ class App extends React.Component {
             <Route
               path="/movies/:movieId"
               render={(routerprops) => (
-                <MovieShow {...routerprops} user={this.state.user} />
+                <MovieShow {...routerprops} user={user} />
               )}
             />
             <Route
               path="/favorites"
               render={(routerprops) => (
-                <MyMovies {...routerprops} user={this.state.user} />
+                <MyMovies {...routerprops} user={user} />
               )}
             />
             <Route
@@ -112,7 +113,7 @@ class App extends React.Component {
               render={(routerprops) => (
                 <MyMovies
                   {...routerprops}
-                  user={this.state.user}
+                  user={user}
                   loginHandler={this.loginHandler}
                 />
               )}
@@ -126,19 +127,19 @@ class App extends React.Component {
             <Route
               path="/movies"
               render={(routerprops) => (
-                <MovieContainer {...routerprops} user={this.state.user} />
+                <MovieContainer {...routerprops} user={user} />
               )}
             />
             <Route
               path="/video_search"
               render={(routerprops) => (
-                <VideoContainer {...routerprops} user={this.state.user} />
+                <VideoContainer {...routerprops} user={user} />
               )}
             />
             <Route
               path="/community_videos"
               render={(routerprops) => (
-                <VideoPlayback {...routerprops} user={this.state.user} />
+                <VideoPlayback {...routerprops} user={user} />
               )}
             />
           </Switch>
@@ -161,7 +162,7 @@ class App extends React.Component {
               render={(routerprops) => (
                 <MovieContainer
                   {...routerprops}
-                  user={this.state.user}
+                  user={user}
                   loginHandler={this.loginHandler}
                 />
               )}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import MovieList from "../components/movie-list/MovieList.js";
-import MovieShow from "../components/MovieShow.js";
-import styled from "styled-components";
+import MovieList from "../../components/movie-list/MovieList.js";
+import MovieShow from "../../components/movie-show/MovieShow.js";
+import { Background } from "./MovieContainerStyles";
 
 const MovieContainer = (props) => {
   const [api, setApi] = useState([]);
@@ -55,8 +55,3 @@ const MovieContainer = (props) => {
   );
 };
 export default MovieContainer;
-
-const Background = styled.div`
-  background-color: black;
-  height: 200vh;
-`;

@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button, Form, Grid, Header, Message, Segment, Radio } from 'semantic-ui-react'
-import styled from 'styled-components'
-
+import { Avatars, Avatar, Background, Choose} from "./SignupStyles"
 
 
 function Signup(props) {
@@ -180,31 +179,3 @@ function Signup(props) {
 
 export default Signup
 
-const Avatars = styled.div`
-    margin-left: 300px;
-    margin-top: 50px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-    flex-wrap: wrap;
-    align-content: stretch;
-    color: red;
-`
-const Choose = styled.div`
-`
-
-const Avatar = styled.img`
-    display:block;
-    width: 160px;
-    height: 220px;
-    z-index: 10;
-    position: relative;
-    `
-
-
-const Background = styled.div`
-background-color: black;
-height: 100vh;
-
-`

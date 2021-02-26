@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Form, TextArea, Button, Comment, Icon } from "semantic-ui-react";
 import ReactPlayer from "react-player";
-import styled from "styled-components";
+import {
+  Back,
+  CommentFrame,
+  Background,
+  PlayerWrapper,
+  FilmBox,
+  FilmContainer,
+} from "./MovieShowStyles";
 
 let api_key = process.env.REACT_APP_YT_API_KEY;
 
@@ -19,18 +26,21 @@ const MovieShow = (props) => {
   useEffect(() => {
     let token = localStorage.getItem("token");
     const fetchMovies = () => {
-    return fetch(`http://localhost:3001/movies/${props.match.params.movieId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setMovie(data.single_movie);
-        setReceivedReview(data.reviews);
-      });
-     }
-     fetchMovies()
-  }, [props.movieId]);
+      return fetch(
+        `http://localhost:3001/movies/${props.match.params.movieId}`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+        .then((resp) => resp.json())
+        .then((data) => {
+          setMovie(data.single_movie);
+          setReceivedReview(data.reviews);
+        });
+    };
+    fetchMovies();
+  }, [props.match.params.movieId]);
 
   const submitReview = () => {
     let token = localStorage.getItem("token");
@@ -59,8 +69,6 @@ const MovieShow = (props) => {
         setReview("");
       });
   };
-
-
 
   const searchYoutube = () => {
     fetch(
@@ -124,7 +132,6 @@ const MovieShow = (props) => {
                             marginTop: "5x",
                           }}
                         >
-                         
                           {review.username}
                         </h5>
                         <Comment.Text
@@ -231,44 +238,3 @@ const MovieShow = (props) => {
 };
 
 export default MovieShow;
-
-const Back = styled.div`
-  text-align: right;
-`;
-
-const CommentFrame = styled.div`
-  border-color: red;
-  border-style: ridge;
-  border-width: 5px;
-  width: 500px;
-  height: 130px;
-  background-color: #343a40;
-  margin: 10px auto;
-  display: grid;
-  position: relative;
-`;
-
-const Background = styled.div`
-  background-color: black;
-`;
-
-const PlayerWrapper = styled.div`
-  margin: auto;
-  position: relative;
-  padding-top: 56.25%;
-`;
-
-const FilmBox = styled.div`
-  height: 500px;
-  width: 100%;
-  max-width: 800px;
-`;
-
-const FilmContainer = styled.div`
-width: 100%
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-
-`;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MovieCard from "../movie-card/MovieCard.js";
-import SearchForm from "../SearchForm";
+import SearchForm from "../search-form/SearchForm";
 import { Background, MyContainer } from "./MovieListStyles"
 
 const MovieList = (props) => {

@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import ReactPlayer from 'react-player';
-import styled from 'styled-components'
-import {Button, Form, TextArea} from 'semantic-ui-react'
-import { withRouter } from 'react-router-dom'
-
+import { Button, Form, TextArea } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
+import { Background, PlayerWrapper, FilmContainer, FilmBox } from "./VideoPlayerStyles"
 
 const VideoPlayer = (props) => {
 
@@ -108,30 +107,3 @@ const changeHandler = (e) => {
 
 export default withRouter(VideoPlayer)
 
-const Background = styled.div`
-background-color: black;
-height: 100vh;
-`
-
-
-
-const PlayerWrapper = styled.div`
-margin: auto;
-position: relative;
-padding-top: 56.25%;
-`
-
-const FilmBox = styled.div`
-height: 500px;
-width: 100%;
-max-width: 800px;
-`
-
-const FilmContainer = styled.div`
-width: 100%
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-
-`
