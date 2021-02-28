@@ -25,14 +25,17 @@ const MovieList = (props) => {
     setSearchTerm(e.target.value);
   };
 
+
+
   return (
     <>
       <Background>
         <SearchForm
           searchTerm={searchTerm}
           searchChangeHandler={searchChangeHandler}
-        />
+        /> 
         <MyContainer>{renderSearch()}</MyContainer>
+  
       </Background>
     </>
   );

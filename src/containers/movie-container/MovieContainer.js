@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MovieList from "../../components/movie-list/MovieList.js";
 import MovieShow from "../../components/movie-show/MovieShow.js";
+import FilmContext from "../../film-context/FilmContext.js";
 import { Background } from "./MovieContainerStyles";
 
-const MovieContainer = (props) => {
-  const [api, setApi] = useState([]);
+const MovieContainer = ({props, match}) => {
+  // const [api, setApi] = useState([]);
   const [chosenMovie, setChosenMovie] = useState(null);
 
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-    fetch("http://localhost:3001/movies", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setApi(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   let token = localStorage.getItem("token");
+  //   fetch("http://localhost:3001/movies", {
+  //     method: "GET",
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   })
+  //     .then((resp) => resp.json())
+  //     .then((data) => {
+  //       setApi(data);
+  //     });
+  // }, []);
 
   const submitFavorite = (movieObj) => {
     let token = localStorage.getItem("token");
@@ -39,12 +40,14 @@ const MovieContainer = (props) => {
   const goToShow = (movieObj) => {
     return setChosenMovie(movieObj);
   };
-
+  
+const collections = useContext(FilmContext)
   return (
     <>
       <Background>
         <MovieList
-          movies={api}
+          // movies={api}
+          movies = {collections}
           submitFavorite={submitFavorite}
           goToShow={goToShow}
         />
