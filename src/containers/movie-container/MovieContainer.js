@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import MovieList from "../../components/movie-list/MovieList.js";
 import MovieShow from "../../components/movie-show/MovieShow.js";
-import FilmContext from "../../film-context/FilmContext.js";
+import FilmContext from "../../contexts /film-context/FilmContext.js";
 import { Background } from "./MovieContainerStyles";
 
 const MovieContainer = ({props, match}) => {
