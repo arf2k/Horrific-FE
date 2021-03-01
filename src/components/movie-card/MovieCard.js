@@ -1,11 +1,11 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
-import { Background, CardWrapper, SpanStyle } from "./MovieCardStyles"
+import { Background, CardWrapper, SpanStyle } from "./MovieCardStyles";
 
-const MovieCard = (props) => {
+const MovieCard = ({ history, submitFavorite, movie }) => {
   const clickHandler = (e) => {
-    props.history.push(`movies/${props.movie.id}`);
+    history.push(`movies/${movie.id}`);
   };
 
   return (
@@ -13,14 +13,14 @@ const MovieCard = (props) => {
       <CardWrapper>
         <Card
           raised
-          image={`https://image.tmdb.org/t/p/w185${props.movie.poster_path}`}
+          image={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
           onClick={() => {
             clickHandler();
           }}
         />
-       <SpanStyle
+        <SpanStyle
           onClick={() => {
-            props.submitFavorite(props.movie);
+            submitFavorite(movie);
           }}
         >
           &#9760;
@@ -29,8 +29,6 @@ const MovieCard = (props) => {
       </CardWrapper>
     </Background>
   );
-}
+};
 
 export default withRouter(MovieCard);
-
-

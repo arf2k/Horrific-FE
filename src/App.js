@@ -86,7 +86,7 @@ class App extends React.Component {
   };
 
   render() {
-    const user = this.state
+
     return (
       <div className="App">
         <NavBar logout={this.logout} />
@@ -95,13 +95,13 @@ class App extends React.Component {
             <Route
               path="/movies/:movieId"
               render={(routerprops) => (
-                <MovieShow {...routerprops} user={user} />
+                <MovieShow {...routerprops} user={this.state.user} />
               )}
             />
             <Route
               path="/favorites"
               render={(routerprops) => (
-                <MyMovies {...routerprops} user={user} />
+                <MyMovies {...routerprops} user={this.state.user} />
               )}
             />
             <Route
@@ -113,7 +113,7 @@ class App extends React.Component {
               render={(routerprops) => (
                 <MyMovies
                   {...routerprops}
-                  user={user}
+                  user={this.state.user}
                   loginHandler={this.loginHandler}
                 />
               )}
@@ -127,19 +127,19 @@ class App extends React.Component {
             <Route
               path="/movies"
               render={(routerprops) => (
-                <MovieContainer {...routerprops} user={user} />
+                <MovieContainer {...routerprops} user={this.state.user} />
               )}
             />
             <Route
               path="/video_search"
               render={(routerprops) => (
-                <VideoContainer {...routerprops} user={user} />
+                <VideoContainer {...routerprops} user={this.state.user} />
               )}
             />
             <Route
               path="/community_videos"
               render={(routerprops) => (
-                <VideoPlayback {...routerprops} user={user} />
+                <VideoPlayback {...routerprops} user={this.state.user} />
               )}
             />
           </Switch>
@@ -162,7 +162,7 @@ class App extends React.Component {
               render={(routerprops) => (
                 <MovieContainer
                   {...routerprops}
-                  user={user}
+                  user={this.state.user}
                   loginHandler={this.loginHandler}
                 />
               )}

@@ -4,7 +4,7 @@ import { Button, Form, Grid, Header, Message, Segment, Radio } from 'semantic-ui
 import { Avatars, Avatar, Background, Choose} from "./SignupStyles"
 
 
-function Signup(props) {
+const Signup = ({ signupHandler, history } ) => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -45,7 +45,7 @@ function Signup(props) {
             alert("Must have an avatar")
         }
         else {
-            return props.signupHandler(e, avatar)
+            return signupHandler(e, avatar)
         }
     }
     let result = <></>
@@ -169,7 +169,7 @@ function Signup(props) {
             </div>
             </Background>
     } else {
-        props.history.push("/movies")
+        history.push("/movies")
     }
     return (
         result)

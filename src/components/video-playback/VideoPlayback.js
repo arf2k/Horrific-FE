@@ -15,7 +15,7 @@ import {
   Background,
 } from "./VideoPlaybackStyles";
 
-const VideoPlayback = (props) => {
+const VideoPlayback = ({ user, history }) => {
   const [videos, setVideos] = useState([]);
   const [chosenVideo, setChosenVideo] = useState("");
   const [chosenVideoInfo, setChosenVideoInfo] = useState([]);
@@ -67,9 +67,9 @@ const VideoPlayback = (props) => {
       },
       body: JSON.stringify({
         comment: comment,
-        user: props.user,
-        avatar: props.user.avatar,
-        username: props.user.username,
+        user: user,
+        avatar: user.avatar,
+        username: user.username,
         yt_id: chosenVideoInfo.yt_id,
         id: chosenVideoInfo.id,
         title: chosenVideoInfo.title,
@@ -84,7 +84,7 @@ const VideoPlayback = (props) => {
   };
 
   const goBack = () => {
-    props.history.goBack();
+    history.goBack();
   };
 
   let comments = allComments;

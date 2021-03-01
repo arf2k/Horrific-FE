@@ -12,7 +12,7 @@ import {
 
 let api_key = process.env.REACT_APP_YT_API_KEY;
 
-const MovieShow = (props) => {
+const MovieShow = ({ match, user, history }) => {
   const [movie, setMovie] = useState([]);
 
   const [receivedReview, setReceivedReview] = useState([]);
@@ -25,14 +25,11 @@ const MovieShow = (props) => {
 
   useEffect(() => {
     let token = localStorage.getItem("token");
-    const fetchMovies = () => {
-      return fetch(
-        `http://localhost:3001/movies/${props.match.params.movieId}`,
-        {
-          method: "GET",
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+    const fetchMovies = (async) => {
+      return fetch(`http://localhost:3001/movies/${match.params.movieId}`, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      })
         .then((resp) => resp.json())
         .then((data) => {
           setMovie(data.single_movie);
@@ -40,27 +37,24 @@ const MovieShow = (props) => {
         });
     };
     fetchMovies();
-  }, [props.match.params.movieId]);
+  }, [match.params.movieId]);
 
   const submitReview = () => {
     let token = localStorage.getItem("token");
-    fetch(
-      `http://localhost:3001/movies/${props.match.params.movieId}/reviews`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accepts: "application/json",
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          review: review,
-          user: props.user,
-          title: movie.title,
-          username: props.user.username,
-        }),
-      }
-    )
+    fetch(`http://localhost:3001/movies/${match.params.movieId}/reviews`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accepts: "application/json",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        review: review,
+        user: user,
+        title: movie.title,
+        username: user.username,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -93,7 +87,7 @@ const MovieShow = (props) => {
   };
 
   const goBack = () => {
-    props.history.goBack();
+    history.goBack();
   };
 
   return (

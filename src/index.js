@@ -5,14 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import { Provider } from "react-redux";
 
 ReactDOM.render(
-  <Provider>
   <Router>
     <App />
-  </Router>
-  </Provider>,
+  </Router>,
   document.getElementById("root")
 );
 

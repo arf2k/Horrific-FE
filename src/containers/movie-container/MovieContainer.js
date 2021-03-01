@@ -1,26 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import MovieList from "../../components/movie-list/MovieList.js";
 import MovieShow from "../../components/movie-show/MovieShow.js";
-import FilmContext from "../../contexts /film-context/FilmContext.js";
+// import FilmContext from "../../contexts /film-context/FilmContext.js";
 import { Background } from "./MovieContainerStyles";
 
-const MovieContainer = ({props, match}) => {
-  // const [api, setApi] = useState([]);
+const MovieContainer = ({ user }) => {
+  const [api, setApi] = useState([]);
   const [chosenMovie, setChosenMovie] = useState(null);
 
-  // useEffect(() => {
-  //   let token = localStorage.getItem("token");
-  //   fetch("http://localhost:3001/movies", {
-  //     method: "GET",
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => {
-  //       setApi(data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    fetch("http://localhost:3001/movies", {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setApi(data);
+      });
+  }, []);
 
   const submitFavorite = (movieObj) => {
+    console.log(movieObj);
     let token = localStorage.getItem("token");
     fetch("http://localhost:3001/users/favorites", {
       method: "POST",
@@ -29,7 +30,7 @@ const MovieContainer = ({props, match}) => {
         Accepts: "application/json",
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ movie: movieObj, user: props.user }),
+      body: JSON.stringify({ movie: movieObj, user: user }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -40,14 +41,14 @@ const MovieContainer = ({props, match}) => {
   const goToShow = (movieObj) => {
     return setChosenMovie(movieObj);
   };
-  
-const collections = useContext(FilmContext)
+
+  // const collections = useContext(FilmContext)
   return (
     <>
       <Background>
         <MovieList
-          // movies={api}
-          movies = {collections}
+          movies={api}
+          // movies = {collections}
           submitFavorite={submitFavorite}
           goToShow={goToShow}
         />

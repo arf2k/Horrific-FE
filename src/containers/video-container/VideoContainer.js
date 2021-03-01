@@ -4,7 +4,7 @@ import { Segment, Input } from "semantic-ui-react";
 import styled from "styled-components";
 
 let api_key = process.env.REACT_APP_YT_API_KEY;
-const VideoContainer = (props) => {
+const VideoContainer = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [videoList, setVideoList] = useState([]);
   const [videoPick, setVideoPick] = useState("");
@@ -55,7 +55,7 @@ const VideoContainer = (props) => {
         </Segment>
         <VideoPlayer
           videoPick={videoPick}
-          user={props.user}
+          user={user}
           videoInfo={videoInfo}
           videoList={videoList}
         />
