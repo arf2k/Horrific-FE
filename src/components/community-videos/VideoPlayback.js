@@ -10,7 +10,7 @@ import {
   CommentFrame,
   Background,
 } from "./VideoPlaybackStyles";
-import VideoScreen from "../video-screen/VideoScreen"
+import VideoScreen from "../video-screen/VideoScreen";
 
 const VideoPlayback = ({ user, history }) => {
   const [videos, setVideos] = useState([]);
@@ -18,6 +18,7 @@ const VideoPlayback = ({ user, history }) => {
   const [chosenVideoInfo, setChosenVideoInfo] = useState([]);
   const [comment, setComment] = useState("");
   const [allComments, setAllComments] = useState([]);
+  const [videosNumber, setVideosNumber] = useState(3);
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -98,10 +99,10 @@ const VideoPlayback = ({ user, history }) => {
 
         <VidTitle>Community Videos</VidTitle>
 
-     <VideoScreen videoPick={videoPick}/>
+        <VideoScreen videoPick={videoPick} />
 
         <GalleryStyle>
-          {videos.map((video) => (
+          {videos.slice(0, videosNumber).map((video) => (
             <ul key={video.id}>
               <div>
                 <b onClick={() => chooseVideo(video)}>{video.title}</b>
@@ -109,8 +110,14 @@ const VideoPlayback = ({ user, history }) => {
               <img alt="" src={video.thumbnail} />
             </ul>
           ))}
+          <Button
+            color="red"
+            style={{ height: "35px", margin: "auto" }}
+            onClick={() => setVideosNumber(videosNumber + 2)}
+          >
+            Show More
+          </Button>
         </GalleryStyle>
-
         {comments.map((comment) => (
           <CommentFrame>
             <Comment>

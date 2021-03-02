@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Form, TextArea, Button, Comment, Icon } from "semantic-ui-react";
-import ReactPlayer from "react-player";
 import {
   Back,
   CommentFrame,
   Background,
-  PlayerWrapper,
-  FilmBox,
-  FilmContainer,
   VidTitle,
   VidGallery,
   MovieAndReviews,
@@ -17,6 +13,7 @@ import {
   CommentTextStyle,
   AvatarImageStyle,
 } from "./MovieShowStyles";
+import VideoScreen from "../video-screen/VideoScreen"
 
 let api_key = process.env.REACT_APP_YT_API_KEY;
 
@@ -174,24 +171,7 @@ const MovieShow = ({ match, user, history }) => {
               <Icon name="play" />
             </Button>{" "}
           </div>
-          <FilmContainer>
-            <FilmBox>
-              <PlayerWrapper>
-                <ReactPlayer
-                  style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "0",
-                    transform: "none",
-                  }}
-                  url={`https://www.youtube.com/watch?v=${videoPick}`}
-                  width="100%"
-                  height="100%"
-                  controls={true}
-                />
-              </PlayerWrapper>
-            </FilmBox>
-          </FilmContainer>
+  <VideoScreen videoPick={videoPick}/>
         </div>
 
         <VidGallery>

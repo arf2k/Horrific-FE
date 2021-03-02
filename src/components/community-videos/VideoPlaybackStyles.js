@@ -20,7 +20,8 @@ export const GalleryStyle = styled.div`
 display: inline-flex;
 flex-wrap: wrap;
 color: red;
-margin-left: 250px
+margin-left: 250px;
+cursor: pointer;
 
 `
 

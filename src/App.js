@@ -8,7 +8,7 @@ import MyMovies from "./components/my-movies/MyMovies.js";
 import MovieShow from "./components/movie-show/MovieShow.js";
 import Signup from "./components/sign-up/Signup.js";
 import MovieList from "./components/movie-list/MovieList.js";
-import VideoContainer from "./containers/video-container/VideoContainer.js";
+import VideoContainer from "./containers/video-search/VideoContainer.js";
 import VideoPlayback from "./components/community-videos/VideoPlayback.js";
 
 const BASE_API = "http://localhost:3001/";
