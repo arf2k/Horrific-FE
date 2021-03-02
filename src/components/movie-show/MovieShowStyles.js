@@ -16,6 +16,46 @@ export const CommentFrame = styled.div`
   position: relative;
 `;
 
+export const MovieShowDiv = styled.div`
+  margin-left: 150px;
+`;
+
+export const OverviewStyle = styled.h3`
+  color: red;
+  width: 600px;
+`;
+
+export const CommentUsernameStyle = styled.h5`
+  text-align: left;
+  margin-left: 5px;
+  color: red;
+  margin-top: 5x;
+`;
+
+export const CommentTextStyle = styled.div`
+  color: red;
+  flex-wrap: wrap;
+  margin-left: 120px;
+  margin-top: -18px;
+  text-align: start;
+  margin-right: 5px;
+`;
+
+
+export const AvatarImageStyle = styled.img`
+display: flex;
+margin-left: 10px;
+margin-top: -35px;
+position: absolute;
+bottom: 0;
+margin-bottom: 10px;
+`
+
+export const MovieAndReviews = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Background = styled.div`
   background-color: black;
 `;
@@ -42,12 +82,12 @@ align-items: center;
 `;
 
 export const VidGallery = styled.div`
-display: flex;
-margin-left: 75px;
-margin-top: 50px ;
-`
+  display: flex;
+  margin-left: 75px;
+  margin-top: 10px;
+`;
 
 export const VidTitle = styled.b`
-color: red; 
-cursor: pointer;
-`
+  color: red;
+  cursor: pointer;
+`;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Back = styled.div`
-text-align: right
-`
+  text-align: right;
+`;
 
 export const PlayerWrapper = styled.div`
 margin: auto;

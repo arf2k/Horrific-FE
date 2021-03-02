@@ -9,7 +9,13 @@ import {
   FilmBox,
   FilmContainer,
   VidTitle,
-  VidGallery
+  VidGallery,
+  MovieAndReviews,
+  MovieShowDiv,
+  OverviewStyle,
+  CommentUsernameStyle,
+  CommentTextStyle,
+  AvatarImageStyle,
 } from "./MovieShowStyles";
 
 let api_key = process.env.REACT_APP_YT_API_KEY;
@@ -101,18 +107,15 @@ const MovieShow = ({ match, user, history }) => {
           </Button>
         </Back>
 
-        <div
-          className="movieandreviews"
-          style={{ display: "flex", justifyContent: "center" }}
-        >
-          <div className="movieShow" style={{ marginLeft: "150px" }}>
+        <MovieAndReviews>
+          <MovieShowDiv>
             <img
               alt=""
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             />
+            <OverviewStyle> {movie.overview}</OverviewStyle>
+          </MovieShowDiv>
 
-            <h3 style={{ color: "red", width: "600px" }}>{movie.overview}</h3>
-          </div>
           <div className="reviewsformdiv" style={{ marginTop: "150px" }}>
             <div className="reviews">
               {receivedReview.map((review) => (
@@ -120,43 +123,20 @@ const MovieShow = ({ match, user, history }) => {
                   <CommentFrame>
                     <div className="commentpic">
                       <Comment>
-                        <h5
-                          style={{
-                            textAlign: "left",
-                            marginLeft: "5px",
-                            color: "red",
-                            marginTop: "5x",
-                          }}
-                        >
+                        <CommentUsernameStyle>
+                          {" "}
                           {review.username}
-                        </h5>
-                        <Comment.Text
-                          style={{
-                            color: "red",
-                            flexWrap: "wrap",
-                            marginLeft: "120px",
-                            marginTop: "-18px",
-                            textAlign: "start",
-                            marginRight: "5px",
-                          }}
-                          key={review.id}
-                        >
+                        </CommentUsernameStyle>
+
+                        <CommentTextStyle key={review.id}>
                           {review.review}
-                        </Comment.Text>
-                        <img
+                        </CommentTextStyle>
+                        <AvatarImageStyle
                           alt=""
                           src={`/${review.avatar}`}
-                          style={{
-                            display: "flex",
-                            marginLeft: "10px",
-                            marginTop: "-35px",
-                            position: "absolute",
-                            bottom: "0",
-                            marginBottom: "10px",
-                          }}
                           width="60px"
                           height="75px"
-                        />
+                        ></AvatarImageStyle>
                       </Comment>
                     </div>
                   </CommentFrame>
@@ -184,10 +164,10 @@ const MovieShow = ({ match, user, history }) => {
               />
             </div>
           </div>
-        </div>
+        </MovieAndReviews>
 
         <div className="buttonandvideo" style={{ marginTop: "50px" }}>
-          <div className="buttondiv">
+          <div className="buttondiv" style={{paddingBottom: "10px"}}>
             {" "}
             <Button onClick={clickSearch} icon labelPosition="left">
               Clips & Trailers
@@ -214,19 +194,25 @@ const MovieShow = ({ match, user, history }) => {
           </FilmContainer>
         </div>
 
-     <VidGallery>
-              Click a video title to play
-                          {videoList.map((item) => (
+        <VidGallery>
+          Click a video title to play
+          {videoList.map((item) => (
             <ul key={item.id.videoId}>
-              <div>             <VidTitle onClick={() => chooseVideo(item)}>
-                {item.snippet.title}
-             </VidTitle>
-             </div>
+              <div>
+                {" "}
+                <VidTitle onClick={() => chooseVideo(item)}>
+                  {item.snippet.title}
+                </VidTitle>
+              </div>
 
-              <img style={{border: "2px solid red", marginTop: "2px"}} alt="" src={item.snippet.thumbnails.default.url} />
+              <img
+                style={{ border: "2px solid red", marginTop: "2px" }}
+                alt=""
+                src={item.snippet.thumbnails.default.url}
+              />
             </ul>
           ))}
-      </VidGallery>
+        </VidGallery>
       </Background>
     </>
   );
