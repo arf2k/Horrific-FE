@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
-import ReactPlayer from "react-player";
 import { Comment, Form, TextArea, Button } from "semantic-ui-react";
 import {
   Back,
-  PlayerWrapper,
-  FilmContainer,
   GalleryStyle,
   UsernameTitle,
   AvatarStyle,
   CommentTextBox,
-  FilmBox,
   VidTitle,
   CommentFrame,
   Background,
 } from "./VideoPlaybackStyles";
+import VideoScreen from "../video-screen/VideoScreen"
 
 const VideoPlayback = ({ user, history }) => {
   const [videos, setVideos] = useState([]);
-  const [chosenVideo, setChosenVideo] = useState("");
+  const [videoPick, setVideoPick] = useState("");
   const [chosenVideoInfo, setChosenVideoInfo] = useState([]);
   const [comment, setComment] = useState("");
   const [allComments, setAllComments] = useState([]);
@@ -47,7 +44,7 @@ const VideoPlayback = ({ user, history }) => {
   };
 
   const chooseVideo = (video) => {
-    setChosenVideo(video.yt_id);
+    setVideoPick(video.yt_id);
     setChosenVideoInfo(video);
     getAllComments();
   };
@@ -101,19 +98,7 @@ const VideoPlayback = ({ user, history }) => {
 
         <VidTitle>Community Videos</VidTitle>
 
-        <FilmContainer>
-          <FilmBox>
-            <PlayerWrapper>
-              <ReactPlayer
-                style={{ position: "absolute", top: "0", left: "0" }}
-                url={`https://www.youtube.com/watch?v=${chosenVideo}`}
-                width="100%"
-                height="100%"
-                controls={true}
-              />
-            </PlayerWrapper>
-          </FilmBox>
-        </FilmContainer>
+     <VideoScreen videoPick={videoPick}/>
 
         <GalleryStyle>
           {videos.map((video) => (

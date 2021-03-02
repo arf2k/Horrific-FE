@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import VideoPlayer from "../../components/video-player/VideoPlayer.js";
+import VideoPlayer from "../../components/video-explorer/VideoPlayer.js";
 import { Segment, Input } from "semantic-ui-react";
 import styled from "styled-components";
 

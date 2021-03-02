@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import ReactPlayer from "react-player";
 import { Button, Form, TextArea } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
-import {
-  Background,
-  PlayerWrapper,
-  FilmContainer,
-  FilmBox,
-  VidGallery,
-  VidTitle,
-  Image
-} from "./VideoPlayerStyles";
+import { Background, VidGallery, VidTitle } from "./VideoPlayerStyles";
+import VideoScreen from "../video-screen/VideoScreen";
 
 const VideoPlayer = ({ user, history, videoList }) => {
   const [comment, setComment] = useState("");
@@ -59,21 +51,10 @@ const VideoPlayer = ({ user, history, videoList }) => {
         <h1 style={{ color: "red", fontFamily: "Helvetica", fontSize: "40px" }}>
           Search and Discuss New Content
         </h1>
-        <FilmContainer>
-          <FilmBox>
-            <PlayerWrapper>
-              <ReactPlayer
-                style={{ position: "absolute", top: "0", left: "0" }}
-                url={`https://www.youtube.com/watch?v=${videoPick}`}
-                width="100%"
-                height="100%"
-                controls={true}
-              />
-            </PlayerWrapper>
-          </FilmBox>
-        </FilmContainer>
 
-        <Form style={{marginTop: "-160px"}}>
+        <VideoScreen videoPick={videoPick} />
+
+        <Form style={{ marginTop: "-5px" }}>
           <TextArea
             style={{ width: "700px", height: "50px", marginTop: "0px" }}
             placeholder="Comments"
@@ -92,23 +73,22 @@ const VideoPlayer = ({ user, history, videoList }) => {
           />
         </Form>
 
-          <VidGallery>
-
+        <VidGallery>
           {videoList.map((item) => (
             <ul key={item.id.videoId}>
               <div>
-                <VidTitle onClick={() => chooseVideo(item)}> 
-                      {item.snippet.title}
-                  </VidTitle>
-\              </div>
-              <img alt="" src={item.snippet.thumbnails.default.url} style={{border: "2px solid red", marginTop: "10px"}} />
+                <VidTitle onClick={() => chooseVideo(item)}>
+                  {item.snippet.title}
+                </VidTitle>
+              </div>
+              <img
+                alt=""
+                src={item.snippet.thumbnails.default.url}
+                style={{ border: "2px solid red", marginTop: "10px" }}
+              />
             </ul>
-         
           ))}
-             </VidGallery>
-
-     
- 
+        </VidGallery>
       </Background>
     </>
   );
