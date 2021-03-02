@@ -24,7 +24,6 @@ height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
-margin-top: -150px
 
 `
 export const VidGallery = styled.div`
@@ -41,4 +40,7 @@ export const Image = styled.img`
 margin-top: 10px;
 border: 2px solid red;
 `
+export const Back = styled.div`
+  text-align: right;
+`;
 

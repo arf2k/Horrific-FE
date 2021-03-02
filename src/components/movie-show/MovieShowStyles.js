@@ -40,3 +40,14 @@ justify-content: center;
 align-items: center;
 
 `;
+
+export const VidGallery = styled.div`
+display: flex;
+margin-left: 75px;
+margin-top: 50px ;
+`
+
+export const VidTitle = styled.b`
+color: red; 
+cursor: pointer;
+`

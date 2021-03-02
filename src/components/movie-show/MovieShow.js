@@ -8,6 +8,8 @@ import {
   PlayerWrapper,
   FilmBox,
   FilmContainer,
+  VidTitle,
+  VidGallery
 } from "./MovieShowStyles";
 
 let api_key = process.env.REACT_APP_YT_API_KEY;
@@ -212,20 +214,19 @@ const MovieShow = ({ match, user, history }) => {
           </FilmContainer>
         </div>
 
-        <div
-          className="vidGallery"
-          style={{ display: "inline-flex", marginLeft: "100px" }}
-        >
-          Click a video title to play
-          {videoList.map((item) => (
+     <VidGallery>
+              Click a video title to play
+                          {videoList.map((item) => (
             <ul key={item.id.videoId}>
-              <div style={{ color: "red" }}>
-                <b onClick={() => chooseVideo(item)}>{item.snippet.title} </b>
-              </div>
-              <img alt="" src={item.snippet.thumbnails.default.url} />
+              <div>             <VidTitle onClick={() => chooseVideo(item)}>
+                {item.snippet.title}
+             </VidTitle>
+             </div>
+
+              <img style={{border: "2px solid red", marginTop: "2px"}} alt="" src={item.snippet.thumbnails.default.url} />
             </ul>
           ))}
-        </div>
+      </VidGallery>
       </Background>
     </>
   );

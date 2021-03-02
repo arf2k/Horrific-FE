@@ -7,6 +7,9 @@ import {
   PlayerWrapper,
   FilmContainer,
   FilmBox,
+  VidGallery,
+  VidTitle,
+  Image
 } from "./VideoPlayerStyles";
 
 const VideoPlayer = ({ user, history, videoList }) => {
@@ -70,7 +73,7 @@ const VideoPlayer = ({ user, history, videoList }) => {
           </FilmBox>
         </FilmContainer>
 
-        <Form>
+        <Form style={{marginTop: "-160px"}}>
           <TextArea
             style={{ width: "700px", height: "50px", marginTop: "0px" }}
             placeholder="Comments"
@@ -89,21 +92,23 @@ const VideoPlayer = ({ user, history, videoList }) => {
           />
         </Form>
 
-        <div
-          className="vidGallery"
-          style={{ display: "flex", marginLeft: "250px", marginTop: "50px" }}
-        >
+          <VidGallery>
+
           {videoList.map((item) => (
             <ul key={item.id.videoId}>
               <div>
-                <b style={{ color: "red" }} onClick={() => chooseVideo(item)}>
-                  {item.snippet.title}
-                </b>
-              </div>
-              <img alt="" src={item.snippet.thumbnails.default.url} />
+                <VidTitle onClick={() => chooseVideo(item)}> 
+                      {item.snippet.title}
+                  </VidTitle>
+\              </div>
+              <img alt="" src={item.snippet.thumbnails.default.url} style={{border: "2px solid red", marginTop: "10px"}} />
             </ul>
+         
           ))}
-        </div>
+             </VidGallery>
+
+     
+ 
       </Background>
     </>
   );
