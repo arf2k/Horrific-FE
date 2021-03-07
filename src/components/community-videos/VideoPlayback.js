@@ -110,13 +110,21 @@ const VideoPlayback = ({ user, history }) => {
               <img alt="" src={video.thumbnail} />
             </ul>
           ))}
+          {videosNumber < videos.length? (
           <Button
             color="red"
             style={{ height: "35px", margin: "auto" }}
             onClick={() => setVideosNumber(videosNumber + 2)}
           >
             Show More
-          </Button>
+          </Button> ) :   null} 
+          {videosNumber > 3? ( <Button
+            color="red"
+            style={{ height: "35px", margin: "auto" }}
+            onClick={() => setVideosNumber(videosNumber - 2)}
+          >
+            Show Fewer
+          </Button>) : null }
         </GalleryStyle>
         {comments.map((comment) => (
           <CommentFrame>
