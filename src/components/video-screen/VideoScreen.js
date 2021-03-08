@@ -3,7 +3,10 @@ import { FilmContainer, FilmBox, PlayerWrapper} from "./VideoScreenStyles";
 import ReactPlayer from "react-player";
 
 
-const VideoScreen = ({ videoPick }) => (
+
+const VideoScreen = ({ videoPick, onProgress, onPause}) => (
+
+  
         <FilmContainer>
         <FilmBox>
           <PlayerWrapper>
@@ -13,10 +16,13 @@ const VideoScreen = ({ videoPick }) => (
               width="100%"
               height="100%"
               controls={true}
+              onProgress={onProgress}
+              onPause={onPause}
             />
           </PlayerWrapper>
         </FilmBox>
       </FilmContainer>
+
 
 )
 

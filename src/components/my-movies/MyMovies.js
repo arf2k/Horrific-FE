@@ -2,11 +2,20 @@ import React from "react";
 import { Button, Card, List } from "semantic-ui-react";
 import { Back, Background, MyContainer, CommentFrame } from "./MyMoviesStyles";
 
+
+
+
+
 class MyMovies extends React.Component {
   state = {
     favorites: [],
     reviews: [],
     iconShown: false,
+    dragAreaStartIndex: 0,
+    dragAreaEndIndex: 0,
+    dragStartIndex: 0,
+    dragEndIndex: 0
+    
   };
 
   componentDidMount() {
@@ -17,7 +26,8 @@ class MyMovies extends React.Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        this.setState({ favorites: data.favorites, reviews: data.reviews });
+        this.setState({ favorites: data.favorites, reviews: data.reviews, dragAreaStartIndex: data.favorites[0], dragAreaEndIndex: data.favorites.length -1  });
+        
       });
   }
 
@@ -49,10 +59,14 @@ class MyMovies extends React.Component {
       });
   };
 
+  
+  
+
+  
+  
   render() {
     const favorites = this.state.favorites;
     const reviews = this.state.reviews;
-
     return (
       <>
         <Background>
@@ -73,9 +87,8 @@ class MyMovies extends React.Component {
           >
             My Movies
           </h1>
-
           <MyContainer>
-            {favorites.map((favorite) => (
+            {favorites.map((favorite, index) => (
               <>
                 {" "}
                 <i
@@ -85,11 +98,10 @@ class MyMovies extends React.Component {
                 />
                 <Card
                   style={{ marginBottom: "0" }}
-                  onClick={() =>
-                    this.props.history.push(`/movies/${favorite.movie_id}`)
-                  }
+                  onClick={() => 
+                    this.props.history.push(`/movies/${favorite.movie_id}`)}
                   key={favorite.id}
-                  image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w185${favorite.poster_path}` }
                 />{" "}
               </>
             ))}

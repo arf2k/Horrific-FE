@@ -47,7 +47,9 @@ const VideoPlayback = ({ user, history }) => {
   const chooseVideo = (video) => {
     setVideoPick(video.yt_id);
     setChosenVideoInfo(video);
-    getAllComments();
+    getAllComments()
+    
+;
   };
 
   const changeHandler = (e) => {
@@ -85,6 +87,18 @@ const VideoPlayback = ({ user, history }) => {
     history.goBack();
   };
 
+  const handleTime = (state) => {
+    if(state.playedSeconds > 5){
+      console.log("over 5 seconds")
+    }
+  }
+
+  const suggestComment = () => {
+    alert("make a comment")
+  }
+
+  
+
   let comments = allComments;
 
   return (
@@ -99,7 +113,7 @@ const VideoPlayback = ({ user, history }) => {
 
         <VidTitle>Community Videos</VidTitle>
 
-        <VideoScreen videoPick={videoPick} />
+        <VideoScreen videoPick={videoPick} onProgress={handleTime} onPause={suggestComment} />
 
         <GalleryStyle>
           {videos.slice(0, videosNumber).map((video) => (
