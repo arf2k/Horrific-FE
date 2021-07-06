@@ -21,7 +21,6 @@ const MovieContainer = ({ user }) => {
   }, []);
 
   const submitFavorite = (movieObj) => {
-    console.log(movieObj);
     let token = localStorage.getItem("token");
     fetch("http://localhost:3001/users/favorites", {
       method: "POST",
@@ -34,7 +33,6 @@ const MovieContainer = ({ user }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
       });
   };
 
